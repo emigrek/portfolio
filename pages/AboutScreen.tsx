@@ -10,7 +10,7 @@ function AboutScreen() {
     <Screen className="bg-gradient-to-t from-stone-800 to-black flex flex-col items-center justify-center space-y-12 lg:space-y-10">
         <div className='flex flex-col lg:flex-row space-y-4 space-x-4 items-center justify-center align-middle lg:py-10 lg:border-b-2 border-white/20'>
             <div className="lg:text-6xl text-4xl font-thin text-white flex items-center justify-center">
-                <div>Hi I'm </div>
+                <div>Hi I&apos;m </div>
                 <div className='font-bold mx-2'>Emigrek</div>
                 <div><HandRaisedIcon className='w-8 h-8 lg:w-12 lg:h-12 lg:ml-3'/></div>
             </div>
