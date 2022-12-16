@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { projectsState } from '../atoms/projects'
 import Project from './Project';
 
@@ -10,7 +10,7 @@ function ProjectOverlay() {
       <div className='w-full mx-3 space-x-4 flex flex-row overflow-x-auto'>
         {
           projects.map(project => (
-            <Project key={project._id} project={project}/>
+            <Project key={project?._id} project={project}/>
           ))
         }
       </div>

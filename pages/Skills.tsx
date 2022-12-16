@@ -16,7 +16,7 @@ function Skills() {
       <div className='flex flex-wrap flex-row items-center align-middle justify-center gap-2'>
         {
           skills?.map((skill, index) => (
-            <Skill key={skill._id} skill={skill}/>
+            <Skill key={skill?._id} skill={skill}/>
           ))
         }
       </div>
