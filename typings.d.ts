@@ -25,8 +25,8 @@ export interface Skill extends SanityBody {
 export interface Project extends SanityBody {
     _type: "project";
     title: string;
-    url: string;
-    repo: string;
+    url: string | null;
+    repo: string | null;
     progress: number;
     skills: Skill[]
 }

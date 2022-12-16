@@ -19,13 +19,15 @@ export default {
             name: 'url',
             title: "URL",
             type: "string",
-            description: 'URL to the project'
+            description: 'URL to the project',
+            initialValue: null
         },
         {
             name: 'repo',
             title: "Github Repo",
             type: "string",
-            description: 'URL to the Github repo'
+            description: 'URL to the Github repo',
+            initialValue: null
         },
         {
             name: 'skills',

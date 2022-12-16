@@ -17,10 +17,12 @@ function Project({ project } : Props) {
     const active = project?._id == projectIframe?._id;
 
     const handleSourceClick = (project: ProjectType) => {
+        if(!project?.repo) return;
         openInNewTab(project?.repo);
     };
 
     const handleWebClick = (project: ProjectType) => {
+        if(!project?.url) return;
         openInNewTab(project?.url);
     };
 
@@ -60,10 +62,10 @@ function Project({ project } : Props) {
                 </div>
             </div>
             <div className='flex items-center'>
-                { project?.url != " " ? (
+                { project?.url ? (
                     <div onClick={() => handleWebClick(project)} className='cursor-pointer font-medium text-white/50'><LinkIcon className='w-5 h-5 text-white'/></div>      
                 ) : '' }
-                { project?.repo != " " ? (
+                { project?.repo ? (
                     <div onClick={() => handleSourceClick(project)} className='cursor-pointer font-medium text-white/50'><CodeBracketSquareIcon className='w-5 h-5 text-white'/></div>      
                 ) : '' } 
             </div>
