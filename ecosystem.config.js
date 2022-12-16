@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: "PORTFOLIO WEB",
+    name: "PWEB",
     script: "npm run start"
   }]
 }

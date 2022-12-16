@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: "PORTFOLIO SANITY",
+    name: "PSANITY",
     script: "npm run start"
   }]
 }
