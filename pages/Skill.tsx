@@ -18,7 +18,7 @@ function Skill({ skill }: Props) {
         </div>
       </div>
       <div>
-        <Image alt={`skill-image-${skill?.title}`} src={urlFor(skill?.image).url()} width={`100`} height={`100`} className="w-8 h-8 lg:w-14 lg:h-14 relative"/>
+        <Image alt={`skill-image-${skill?.title}`} src={urlFor(skill?.image!).url()} width={`100`} height={`100`} className="w-8 h-8 lg:w-14 lg:h-14 relative"/>
       </div>
       <Progress zIndex={-1} color={skill?.color} progress={skill?.progress}/>
     </div>

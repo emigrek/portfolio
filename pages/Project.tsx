@@ -31,7 +31,7 @@ function Project({ project} : Props) {
 
     return (
         <div 
-            onClick={() => handleProjectClick(project)} key={project._id} 
+            onClick={() => handleProjectClick(project)} key={project?._id} 
             className={`
                 relative flex min-w-[200px] py-2 bg-black/25 shadow-lg backdrop-blur-3xl gap-2 rounded-lg justify-around align-middle items-center transition-all
                 ${active ? 'bg-black/25' : 'bg-black/50'}
@@ -43,9 +43,9 @@ function Project({ project} : Props) {
                 </div>
                 <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-black/30 p-1">
                     {
-                        project.skills.map(skill => (
+                        project.skills?.map(skill => (
                             <div key={skill?._id}>
-                                <Image alt={`${project?.title}-skill-image-${skill?.title}`} src={urlFor(skill?.image).url()} width={`100`} height={`100`} className="w-6 h-6 lg:w-6 lg:h-6 relative"/>
+                                <Image alt={`${project?.title}-skill-image-${skill?.title}`} src={urlFor(skill?.image!).url()} width={`100`} height={`100`} className="w-6 h-6 lg:w-6 lg:h-6 relative"/>
                             </div>
                         ))
                     }
