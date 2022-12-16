@@ -8,7 +8,7 @@ function ProjectIframe() {
   const projectIframe = useRecoilValue(projectIframeState);
 
   if(!projectIframe) return (
-    <div className="aspect-video w-full h-[90%]">
+    <div className="aspect-video w-full h-[86%]">
       <div className="flex flex-col space-y-3 items-center justify-center w-full h-full bg-blue-500">
         <div className="text-2xl lg:text-4xl font-bold text-white">Select project to see preview</div>
       </div>
@@ -16,7 +16,7 @@ function ProjectIframe() {
   )
 
   if(!projectIframe?.url) return (
-    <div className="aspect-video w-full h-[90%]">
+    <div className="aspect-video w-full h-[86%]">
       <div className="flex flex-col space-y-3 items-center justify-center w-full h-full bg-blue-500">
         <div className="text-2xl lg:text-4xl font-bold text-white">
           This project has no preview
@@ -38,7 +38,7 @@ function ProjectIframe() {
   )
 
   return (
-    <iframe src={projectIframe?.url} className="aspect-video w-full h-[90%]"></iframe>
+    <iframe src={projectIframe?.url} className="aspect-video w-full h-[86%]"></iframe>
   )
 }
 

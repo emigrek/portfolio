@@ -39,15 +39,15 @@ function Project({ project } : Props) {
         <div 
             onClick={() => handleProjectClick(project)} key={project?._id} 
             className={`
-                relative flex gap-4 min-w-[200px] py-2 px-4 bg-black/25 shadow-lg backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all
-                ${active ? 'bg-black/30' : 'bg-black/50'}
+                relative flex gap-4 min-w-[200px] py-1 px-3 lg:py-2 lg:px-4 bg-black/25 shadow-lg backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all
+                ${active ? 'bg-black/30' : 'bg-black/40'}
             `}  
         >
-            <div className='cursor-pointer font-medium text-white flex flex-col justify-start w-full items-center space-y-1'>
-                <div className='text-md w-full flex justify-start items-center text-left flex-row'>
+            <div className='cursor-pointer text-white flex flex-col justify-start w-full items-center space-y-1'>
+                <div className='text-md font-medium w-full flex justify-start items-center text-left flex-row'>
                     {project?.title}
                 </div>
-                <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-black/10 p-1">
+                <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-white/10 p-1">
                     {
                         project?.skills?.map(skill => {
                             const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();

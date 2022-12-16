@@ -15,8 +15,10 @@ function Skill({ skill }: Props) {
     <div className='bg-black/25 shadow-xl relative backdrop-blur-3xl rounded-lg flex flex-row items-center justify-between mx-5 w-full lg:w-1/3 p-3 lg:p-4 align-middle'>
       <div className="flex flex-col space-y-1 text-left">
         <div className='lg:text-lg font-medium'>{ skill?.title }</div>
-        <div className='text-xs bg-black/40 text-white/30 flex items-center align-middle justify-center rounded-full p-1'>
-          {skill?.category}
+        <div className='text-xs text-white/40 flex items-center align-middle justify-start'>
+          <div>
+            {skill?.category}
+          </div>
         </div>
       </div>
       <div>

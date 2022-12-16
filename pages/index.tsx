@@ -2,7 +2,7 @@ import AboutScreen from "./AboutScreen";
 import ProjectsScreen from "./ProjectsScreen";
 import SkillsScreen from "./SkillsScreen";
 
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { PageInfo, Project, Skill as SkillType } from '../typings'
 import { fetchSkills } from '../utils/fetchSkills'
 import { fetchPageInfo } from "../utils/fetchPageInfo";
@@ -39,7 +39,7 @@ export default function Home({ skills, pageInfo, projects } : Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const skills: SkillType[] = await fetchSkills();
   const pageInfo: PageInfo = await fetchPageInfo();
   const projects: Project[] = await fetchProjects();
