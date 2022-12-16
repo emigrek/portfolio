@@ -39,7 +39,7 @@ export default function Home({ skills, pageInfo, projects } : Props) {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const skills: SkillType[] = await fetchSkills();
   const pageInfo: PageInfo = await fetchPageInfo();
   const projects: Project[] = await fetchProjects();
@@ -48,7 +48,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: {
       skills,
       pageInfo,
-      projects
+      projects,
+      fallback: false
     }
   }
 }

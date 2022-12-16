@@ -11,7 +11,7 @@ type Props = {
     project: ProjectType
 }
 
-function Project({ project} : Props) {
+function Project({ project } : Props) {
     const setProjectIframeUrl = useSetRecoilState(projectIframeState);
     const projectIframe = useRecoilValue(projectIframeState);
     const active = project?._id == projectIframe?._id;
@@ -43,11 +43,15 @@ function Project({ project} : Props) {
                 </div>
                 <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-black/30 p-1">
                     {
-                        project.skills?.map(skill => (
-                            <div key={skill?._id}>
-                                <Image alt={`${project?.title}-skill-image-${skill?.title}`} src={urlFor(skill?.image!).url()} width={`100`} height={`100`} className="w-6 h-6 lg:w-6 lg:h-6 relative"/>
-                            </div>
-                        ))
+                        project?.skills?.map(skill => {
+                            const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();
+
+                            return (
+                                <div key={skill?._id}>
+                                    <Image alt={`${project?.title}-skill-image-${skill?.title}`} unoptimized loader={() => src} src={src} width={128} height={128} className="w-6 h-6 lg:w-6 lg:h-6 relative"/>
+                                </div>
+                            );
+                        })
                     }
                 </div>
             </div>
