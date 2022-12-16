@@ -10,7 +10,7 @@ function ProjectOverlay() {
       <div className='w-full mx-3 space-x-4 flex flex-row overflow-x-auto'>
         {
           projects.map(project => (
-            <Project project={project}/>
+            <Project key={project._id} project={project}/>
           ))
         }
       </div>
