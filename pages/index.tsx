@@ -28,7 +28,7 @@ export default function Home({ skills, pageInfo, projects } : Props) {
     setSkills(skills);
     setPageInfo(pageInfo);
     setProjects(projects);
-  }, []);
+  }, [skills, pageInfo, projects]);
 
   return (
     <div className="flex flex-col items-center align-middle justify-center">
