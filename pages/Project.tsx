@@ -1,6 +1,6 @@
 import React from 'react'
 import { Project as ProjectType } from '../typings'
-import { CodeBracketSquareIcon } from '@heroicons/react/24/solid';
+import { CodeBracketSquareIcon, LinkIcon } from '@heroicons/react/24/solid';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { projectIframeState } from '../atoms/projectIframe'
 import Image from 'next/image'
@@ -20,6 +20,10 @@ function Project({ project } : Props) {
         openInNewTab(project?.repo);
     };
 
+    const handleWebClick = (project: ProjectType) => {
+        openInNewTab(project?.url);
+    };
+
     const handleProjectClick = (project: ProjectType) => {
         setProjectIframeUrl(project);
     };
@@ -33,15 +37,15 @@ function Project({ project } : Props) {
         <div 
             onClick={() => handleProjectClick(project)} key={project?._id} 
             className={`
-                relative flex min-w-[200px] py-2 bg-black/25 shadow-lg backdrop-blur-3xl gap-2 rounded-lg justify-around align-middle items-center transition-all
-                ${active ? 'bg-black/25' : 'bg-black/50'}
+                relative flex gap-4 min-w-[200px] py-2 px-4 bg-black/25 shadow-lg backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all
+                ${active ? 'bg-black/30' : 'bg-black/50'}
             `}  
         >
-            <div className='font-medium mx-3 text-white flex flex-col justify-start w-full items-center space-y-1'>
+            <div className='cursor-pointer font-medium text-white flex flex-col justify-start w-full items-center space-y-1'>
                 <div className='text-md w-full flex justify-start items-center text-left flex-row'>
                     {project?.title}
                 </div>
-                <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-black/30 p-1">
+                <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-black/10 p-1">
                     {
                         project?.skills?.map(skill => {
                             const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();
@@ -55,8 +59,14 @@ function Project({ project } : Props) {
                     }
                 </div>
             </div>
-            <div onClick={() => handleSourceClick(project)} className='cursor-pointer font-medium text-white/50'><CodeBracketSquareIcon className='w-8 h-8 text-white'/></div>
-            <Progress zIndex={-1} color={`#00ff00`} progress={project?.progress}/>        
+            <div className='flex items-center'>
+                { project?.url != " " ? (
+                    <div onClick={() => handleWebClick(project)} className='cursor-pointer font-medium text-white/50'><LinkIcon className='w-5 h-5 text-white'/></div>      
+                ) : '' }
+                { project?.repo != " " ? (
+                    <div onClick={() => handleSourceClick(project)} className='cursor-pointer font-medium text-white/50'><CodeBracketSquareIcon className='w-5 h-5 text-white'/></div>      
+                ) : '' } 
+            </div>
         </div>
     )
 }
