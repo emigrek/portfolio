@@ -1,4 +1,3 @@
-import { BeakerIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import ProjectIframe from './ProjectIframe'
 import ProjectOverlay from './ProjectOverlay'

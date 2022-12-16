@@ -33,7 +33,7 @@ function Project({ project} : Props) {
         <div 
             onClick={() => handleProjectClick(project)} key={project._id} 
             className={`
-                relative flex min-w-[200px] py-1 bg-black/25 shadow-xl backdrop-blur-3xl gap-2 rounded-lg justify-around align-middle items-center transition-all
+                relative flex min-w-[200px] py-2 bg-black/25 shadow-lg backdrop-blur-3xl gap-2 rounded-lg justify-around align-middle items-center transition-all
                 ${active ? 'bg-black/25' : 'bg-black/50'}
             `}  
         >
