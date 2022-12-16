@@ -14,6 +14,7 @@
 
 # sanity
 sanity/node_modules
+sanity/dist
 
 # production
 /build
