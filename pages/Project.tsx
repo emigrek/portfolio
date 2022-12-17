@@ -6,6 +6,7 @@ import { projectIframeState } from '../atoms/projectIframe'
 import Image from 'next/image'
 import { urlFor } from '../sanity'
 import Progress from './Progress';
+import { openInNewTab } from '../utils/openInNewTab';
 
 type Props = {
     project: ProjectType
