@@ -13,7 +13,7 @@ function NavButtons() {
                 <SparklesIcon className='w-5 h-5'/>
             </div>
         </Button>
-        <Button href="#projects" className="text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-blue-500/80">
+        <Button href="#projects" className="text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-white/80">
             <div className="font-medium">
                 Talk is cheap, show me the code
             </div>

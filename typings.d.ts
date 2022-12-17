@@ -34,5 +34,6 @@ export interface Project extends SanityBody {
 export interface PageInfo extends SanityBody {
     _type: "page";
     name: string,
+    github: string,
     target: string
 }

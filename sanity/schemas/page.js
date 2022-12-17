@@ -9,6 +9,11 @@ export default {
       type: 'string'
     },
     {
+      name: 'github',
+      title: "Github URL",
+      type: 'string'
+    },
+    {
       name: 'target',
       title: 'Target',
       type: 'string'

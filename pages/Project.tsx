@@ -1,6 +1,6 @@
 import React from 'react'
 import { Project as ProjectType } from '../typings'
-import { CodeBracketSquareIcon, LinkIcon } from '@heroicons/react/24/solid';
+import { ArrowTopRightOnSquareIcon, CodeBracketSquareIcon, LinkIcon } from '@heroicons/react/24/solid';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { projectIframeState } from '../atoms/projectIframe'
 import Image from 'next/image'
@@ -39,15 +39,15 @@ function Project({ project } : Props) {
         <div 
             onClick={() => handleProjectClick(project)} key={project?._id} 
             className={`
-                relative flex gap-4 min-w-[200px] py-1 px-3 lg:py-2 lg:px-4 bg-black/25 shadow-lg backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all
+                cursor-pointer relative flex gap-4 min-w-[200px] py-1 px-3 lg:py-3 lg:px-4 bg-black/25 hover:bg-black/30 shadow-xl backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all
                 ${active ? 'bg-black/30' : 'bg-black/40'}
             `}  
         >
-            <div className='cursor-pointer text-white flex flex-col justify-start w-full items-center space-y-1'>
+            <div className='text-white flex flex-col justify-start w-full items-center space-y-1'>
                 <div className='text-md font-medium w-full flex justify-start items-center text-left flex-row'>
                     {project?.title}
                 </div>
-                <div className="flex w-full flex-row justify-start gap-2 rounded-lg bg-white/10 p-1">
+                <div className="flex w-full flex-row justify-start gap-2 rounded-lg">
                     {
                         project?.skills?.map(skill => {
                             const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();
@@ -61,12 +61,12 @@ function Project({ project } : Props) {
                     }
                 </div>
             </div>
-            <div className='flex items-center'>
+            <div className='flex items-center gap-1'>
                 { project?.url ? (
-                    <div onClick={() => handleWebClick(project)} className='cursor-pointer font-medium text-white/50'><LinkIcon className='w-5 h-5 text-white'/></div>      
+                    <div onClick={() => handleWebClick(project)} className='cursor-pointer font-medium text-white/50'><ArrowTopRightOnSquareIcon className='w-6 h-6 text-white'/></div>      
                 ) : '' }
                 { project?.repo ? (
-                    <div onClick={() => handleSourceClick(project)} className='cursor-pointer font-medium text-white/50'><CodeBracketSquareIcon className='w-5 h-5 text-white'/></div>      
+                    <div onClick={() => handleSourceClick(project)} className='cursor-pointer font-medium text-white/50'><CodeBracketSquareIcon className='w-6 h6 text-white'/></div>      
                 ) : '' } 
             </div>
         </div>
