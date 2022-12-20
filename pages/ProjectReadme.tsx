@@ -22,8 +22,7 @@ function ProjectReadme() {
             {
                 data ? (
                     <ReactMarkdown 
-                        className="relative lg:w-1/3 w-full h-full text-white xl:p-8 p-2" 
-                        children={data} 
+                        className="relative lg:w-1/3 w-full h-full text-white xl:p-8 p-2"
                         remarkPlugins={[remarkGfm]} 
                         rehypePlugins={[rehypeRaw]}
                         components={{
@@ -34,7 +33,9 @@ function ProjectReadme() {
                             td: ({node, ...props}) => <td className="border border-white/60 p-1" {...props}/>,
                             pre: ({node, ...props}) => <pre className="bg-white/20 text-sm rounded-lg px-2 xl:p-2 whitespace-pre-wrap" {...props}/>,
                         }}
-                    />
+                    >
+                        {data}
+                    </ReactMarkdown>
                 ) : "Loading markdown..."
             }
         </div>
