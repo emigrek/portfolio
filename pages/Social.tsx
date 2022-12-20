@@ -18,7 +18,7 @@ function Social({ social } : Props) {
     return (
         <div onClick={() => {
             handleSocialClick(social);
-        }} className="cursor-pointer" key={social._id}>
+        }} className="cursor-pointer" key={social?._id}>
             <Image alt={`social-image-${social?.title}`} unoptimized loader={() => src} src={src} width={128} height={128} className="relative w-8"/>
         </div>
     )
