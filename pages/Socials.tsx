@@ -11,7 +11,7 @@ function Socials() {
             <div className="flex space-x-8 items-center justify-center xl:justify-end align-middle my-3 xl:my-10">
             {
                 pageInfo?.socials?.map(social => (
-                    <Social key={social._id} social={social}/>
+                    <Social key={social?._id} social={social}/>
                 ))
             }
             </div>
