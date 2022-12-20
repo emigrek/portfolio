@@ -9,7 +9,7 @@ function Skills() {
 
   return (
     <div className="container flex flex-col z-30">
-      <div className='flex flex-row items-center justify-center text-5xl lg:text-5xl space-x-3 pb-9'>
+      <div className='flex flex-row items-center justify-center text-5xl space-x-3 pb-9'>
         <div className="font-medium">Skills</div>
         <div><SparklesIcon className='w-12 h-12 text-blue-500'/></div>
       </div>

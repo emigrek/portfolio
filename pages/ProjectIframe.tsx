@@ -1,6 +1,7 @@
 import { CommandLineIcon, CursorArrowRaysIcon } from '@heroicons/react/24/solid';
 import React from 'react'
 import { useRecoilValue } from 'recoil'
+import { pageState } from '../atoms/page';
 import { pageInfoState } from '../atoms/pageInfo';
 import { projectIframeState } from '../atoms/projectIframe';
 import Button from './Button';
@@ -9,15 +10,17 @@ function ProjectIframe() {
   const projectIframe = useRecoilValue(projectIframeState);
   const pageInfo = useRecoilValue(pageInfoState);
 
+  const page = useRecoilValue(pageState);
+
   if(!projectIframe) return (
-    <div className="aspect-video w-full h-[85%] lg:h-[90%] bg-blue-500">
+    <div className="aspect-video w-full h-[85%] lg:h-[90%]">
       <div className="relative flex flex-col space-y-5 items-center justify-center w-full h-full opacity-80">
-        <div className="absolute top-[30%] xl:top-[37%] bg-black/30 px-2 py-4 rounded-lg min-w-[200px] h-20"></div>
+        <div className="absolute top-[30%] xl:top-[37%] bg-white/30 px-2 py-4 rounded-lg min-w-[200px] h-20"></div>
         <CursorArrowRaysIcon className='w-44 h-44 text-white z-[10]'/>
         <div className="text-2xl lg:text-4xl text-white">Select project to see preview</div>
         {
           pageInfo?.github ? (
-            <Button href={pageInfo?.github} className="group text-white/60 hover:text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-blue-400">
+            <Button href={pageInfo?.github} className="group text-white/60 hover:text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-white">
               <div className="font-normal">
                 Visit my Github for source
               </div>
@@ -32,13 +35,13 @@ function ProjectIframe() {
   )
 
   if(!projectIframe?.url) return (
-    <div className="aspect-video w-full h-[85%] lg:h-[90%] bg-blue-500">
+    <div className="aspect-video w-full h-[85%] lg:h-[90%]">
       <div className="flex flex-col space-y-5 items-center justify-center w-full h-full opacity-80">
         <CommandLineIcon className='w-44 h-44 text-white'/>
         <div className="text-2xl lg:text-4xl text-white">This project has no website</div>
         {
           projectIframe?.repo ? (
-            <Button href={projectIframe.repo} className="text-white/60 hover:text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-blue-400">
+            <Button href={projectIframe.repo} className="text-white/60 hover:text-white backdrop-blur-lg space-x-2 border-b-2 border-transparent transition-all hover:border-white">
               <div className="font-normal">
                 Visit Github repository instead
               </div>
@@ -51,7 +54,9 @@ function ProjectIframe() {
   )
 
   return (
-    <iframe src={projectIframe?.url} className="aspect-video w-full h-[85%] lg:h-[90%]"></iframe>
+    <iframe src={projectIframe?.url} className={`
+      transition-all aspect-video w-full ${page.nav ? 'h-[85%] lg:h-[90%]' : 'h-[100%]'}
+    `}></iframe>
   )
 }
 

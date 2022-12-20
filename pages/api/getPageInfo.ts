@@ -4,7 +4,10 @@ import { sanityClient } from "../../sanity";
 import { PageInfo } from '../../typings';
 
 const query = groq`
-    *[_type == "page"]
+    *[_type == "page"] {
+        ...,
+        socials[]->
+    }
 `
 
 type Data = {

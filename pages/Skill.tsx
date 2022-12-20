@@ -9,7 +9,7 @@ type Props = {
 }
 
 function Skill({ skill }: Props) {
-  const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();
+  const src = skill?.image && urlFor(skill?.image).url();
 
   return (
     <div className='bg-black/25 shadow-xl relative backdrop-blur-3xl rounded-lg flex flex-row items-center justify-between mx-5 w-full lg:w-1/3 p-3 lg:p-4 align-middle'>

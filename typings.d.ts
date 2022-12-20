@@ -1,3 +1,7 @@
+export interface Page {
+    nav: boolean;
+}
+
 interface SanityBody {
     _createdAt: string;
     _id: string;
@@ -11,6 +15,13 @@ interface Image {
         _ref: string;
         _type: 'reference';
     };
+}
+
+export interface Social extends SanityBody {
+    _type: "social";
+    title: string;
+    url: string;
+    image: Image;
 }
 
 export interface Skill extends SanityBody {
@@ -35,5 +46,6 @@ export interface PageInfo extends SanityBody {
     _type: "page";
     name: string,
     github: string,
-    target: string
+    target: string,
+    socials: Social[]
 }

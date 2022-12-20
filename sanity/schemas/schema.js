@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import page from './page'
 import skill from './skill'
 import project from './project'
+import social from './social'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -17,6 +18,7 @@ export default createSchema({
   types: schemaTypes.concat([
     page,
     skill,
-    project
+    project,
+    social
   ])
 })

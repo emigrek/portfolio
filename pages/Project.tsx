@@ -45,7 +45,7 @@ function Project({ project } : Props) {
                 <div className="flex w-full flex-row justify-start gap-2 rounded-lg">
                     {
                         project?.skills?.map(skill => {
-                            const src = skill?.image && urlFor(skill?.image).width(128).height(128).url();
+                            const src = skill?.image && urlFor(skill?.image).url();
 
                             return (
                                 <div key={skill?._id}>
