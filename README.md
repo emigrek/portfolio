@@ -28,6 +28,3 @@ run production build
 ```
 npm run build
 ```
-
-## 🚧 TODO
-* Socials
