@@ -39,7 +39,8 @@ export interface Project extends SanityBody {
     url: string | null;
     repo: string | null;
     progress: number;
-    skills: Skill[]
+    skills: Skill[];
+    pinned: boolean;
 }
 
 export interface PageInfo extends SanityBody {

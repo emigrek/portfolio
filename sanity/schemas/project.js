@@ -34,6 +34,12 @@ export default {
             title: 'Skills',
             type: 'array',
             of: [{type: 'reference', to: {type: 'skill'}}]
+        },
+        {
+            name: 'pinned',
+            title: 'Pinned',
+            type: 'boolean',
+            description: 'Pin this project to the top of the list',
         }
     ]
 }

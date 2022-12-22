@@ -18,7 +18,12 @@ function ProjectOverlay() {
       <div className="w-full h-full flex items-center overflow-x-auto scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent">
         <div className='h-[75%] px-2 space-x-3 select-none flex flex-row w-full'>
           {
-            projects?.map(project => (
+            projects?.filter(project => project.pinned).map(project => (
+              <Project key={project?._id} project={project}/>
+            ))
+          }
+          {
+            projects?.filter(project => !project.pinned).map(project => (
               <Project key={project?._id} project={project}/>
             ))
           }
