@@ -70,7 +70,7 @@ function Project({ project } : Props) {
                 ) : '' } 
             </div>
             {
-                project.pinned ? (
+                project?.pinned ? (
                     <div className='absolute top-[-5%] right-[-3%] flex items-center justify-center rounded-full bg-fuchsia-500 p-1 shadow-lg'>
                         <StarIcon className='w-4 h-4 text-white rounded-full'/>
                     </div>
