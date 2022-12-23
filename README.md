@@ -10,6 +10,7 @@ My homepage powered by Sanity.io and Next.js with Typescript
 | Recoil | state management  |
 | Sanity | headless cms  |
 | react-ga | google analytics  |
+| react-markdown | markdown preview |
 | Hero Icons | Icons |
 
 ## 🚀 Running
