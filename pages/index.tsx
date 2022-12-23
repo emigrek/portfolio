@@ -13,6 +13,8 @@ import { pageInfoState } from "../atoms/pageInfo";
 import { fetchProjects } from "../utils/fetchProjects";
 import { projectsState } from "../atoms/projects";
 
+import ReactGA from 'react-ga';
+
 type Props = {
   skills: SkillType[],
   pageInfo: PageInfo,
@@ -28,6 +30,12 @@ export default function Home({ skills, pageInfo, projects } : Props) {
     setSkills(skills);
     setPageInfo(pageInfo);
     setProjects(projects);
+
+    if(!process.env.NEXT_PUBLIC_GA_TRACKING_ID) 
+      return console.warn('No Google Analytics Tracking ID found, fill your .env file before building the project');
+
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GA_TRACKING_ID);
+    ReactGA.pageview(window.location.pathname);
   }, []);
 
   return (
