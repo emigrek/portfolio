@@ -17,14 +17,14 @@ function SkillImage({ skill, mini } : Props) {
     return (
         <div 
             style={ { backgroundColor: color ? `${color}5A` as string : '#ffffff50' } } 
-            className={`${mini ? 'w-8 h-8 lg:w-8 lg:h-8' : 'w-8 h-8 lg:w-14 lg:h-14'} relative shadow-sm rounded-full backdrop-blur-lg`}
+            className={`${mini ? 'w-8 h-8 lg:w-8 lg:h-8' : 'w-10 h-10 lg:w-14 lg:h-14'} relative shadow-sm rounded-full backdrop-blur-lg`}
         >
             <Image 
                 alt={`skill-image-${skill?.title}`}
                 src={src} 
                 width={128}
                 height={128}
-                className={`${mini ? 'p-2' : 'p-3'}`}
+                className={`${mini ? 'p-2' : 'xl:p-3 p-2'}`}
                 priority={true}
             />
         </div>

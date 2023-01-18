@@ -9,7 +9,7 @@ function useImageAverageColor(url: string) {
 
     useEffect(() => {
         average(url, { format: 'hex' }).then(color => {
-            let brighter = chroma(color as string).brighten(0.2).hex();
+            let brighter = chroma(color as string).brighten(0.6).hex();
             setColor(brighter as string);
             setLoading(false);
         }).catch(err => {
