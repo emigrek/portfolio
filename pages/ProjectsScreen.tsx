@@ -15,19 +15,20 @@ function ProjectsScreen() {
   const handleNavToggle = () => {
     setPage({
       nav: !page.nav,
+      sidebar: page.sidebar
     });
   }
 
   return (
-    <Screen id="projects" className="relative flex flex-col items-center justify-center">
+    <Screen id="projects" className="relative flex flex-col items-center justify-center z-[5]">
       <ProjectOverlay/> 
       <div className={
         `
-          transition-all absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center align-middle items-center z-10 
+          transition-all absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center align-middle items-center
           ${page.nav ? 'top-[12%] lg:top-[8%]' : 'top-[-1%] lg:top-[-1%]'}
         `
       }>
-        <div onClick={handleNavToggle} className="w-12 h-12 rounded-full bg-blue-500 flex justify-center items-center">
+        <div onClick={handleNavToggle} className="w-12 h-12 rounded-full bg-blue-500 flex justify-center items-center z-[7]">
           {
             page.nav ? (
               <ArrowUpIcon className="w-5 h-5 text-white"/>

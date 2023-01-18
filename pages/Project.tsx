@@ -41,8 +41,11 @@ function Project({ project } : Props) {
             `}  
         >
             <div className='text-white flex flex-col justify-start w-full items-center'>
-                <div className='w-full flex justify-start items-center text-left flex-row text-lg font-semibold'>
+                <div className='w-full flex justify-start items-center text-left flex-row font-semibold'>
                     {project?.title}
+                </div>
+                <div className='w-full flex justify-start items-center text-left flex-row text-[0.7rem] text-white/50'>
+                    Technologies
                 </div>
                 <div className="flex w-full flex-row justify-start gap-2 rounded-lg">
                     {

@@ -1,4 +1,10 @@
+export type Screen = {
+    name: string,
+    Icon?: SVGProps<SVGSVGElement> | null
+}
+
 export interface Page {
+    sidebar: boolean;
     nav: boolean;
 }
 
