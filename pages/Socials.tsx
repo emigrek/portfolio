@@ -7,14 +7,12 @@ function Socials() {
     const pageInfo = useRecoilValue(pageInfoState);
 
     return (
-        <div className="absolute container top-0 z-10 w-full h-24">
-            <div className="flex space-x-8 items-center justify-center xl:justify-end align-middle my-3 xl:my-10">
+        <div className="flex space-x-8 items-center justify-center align-middle">
             {
                 pageInfo?.socials?.map(social => (
                     <Social key={social?._id} social={social}/>
                 ))
             }
-            </div>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import { FaceSmileIcon, HandRaisedIcon, MoonIcon } from '@heroicons/react/24/sol
 import React from 'react'
 import { useRecoilValue } from 'recoil'
 import { pageInfoState } from '../atoms/pageInfo';
+import Socials from './Socials';
 
 function Welcome() {
     const pageInfo = useRecoilValue(pageInfoState);
