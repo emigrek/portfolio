@@ -12,6 +12,7 @@ My homepage powered by Sanity.io and Next.js with Typescript
 | react-ga | google analytics  |
 | react-markdown | markdown preview |
 | Hero Icons | Icons |
+| chroma-js color.js | working with colors |
 
 ## 🚀 Running
 ```
