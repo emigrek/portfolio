@@ -6,14 +6,18 @@ import { GetServerSideProps } from 'next'
 import { PageInfo, Project, Skill as SkillType } from '../typings'
 import { fetchSkills } from '../utils/fetchSkills'
 import { fetchPageInfo } from "../utils/fetchPageInfo";
-import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
+import { useEffect, useRef, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { skillsState } from "../atoms/skills";
 import { pageInfoState } from "../atoms/pageInfo";
 import { fetchProjects } from "../utils/fetchProjects";
 import { projectsState } from "../atoms/projects";
 
 import ReactGA from 'react-ga';
+import Navbar from "./Navbar";
+import ScrollProgress from "./ScrollProgress";
+import Sidebar from "./Sidebar";
+import { pageState } from "../atoms/page";
 
 type Props = {
   skills: SkillType[],
@@ -22,9 +26,14 @@ type Props = {
 }
 
 export default function Home({ skills, pageInfo, projects } : Props) {
+  const page = useRecoilValue(pageState);
+
+  const setPage = useSetRecoilState(pageState);
   const setSkills = useSetRecoilState(skillsState);
   const setPageInfo = useSetRecoilState(pageInfoState);
   const setProjects = useSetRecoilState(projectsState);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSkills(skills);
@@ -36,14 +45,33 @@ export default function Home({ skills, pageInfo, projects } : Props) {
 
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA_TRACKING_ID);
     ReactGA.pageview(window.location.pathname);
+
+    if(!scrollRef.current)
+      return;
+
+    const handleScroll = () => {
+      if(!scrollRef.current)
+      return;
+
+      const progress = scrollRef.current.scrollTop / (scrollRef.current.scrollHeight - scrollRef.current.clientHeight);
+      setPage({ ...page, scrollProgress: progress * 100 })
+    };
+    scrollRef.current?.addEventListener("scroll", handleScroll);
+    return () => scrollRef.current?.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="flex flex-col items-center align-middle justify-center">
-      <AboutScreen/>
-      <SkillsScreen/>
-      <ProjectsScreen/>
-    </div>
+    <main ref={scrollRef} className='bg-black w-full h-screen scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity overflow-y-scroll scroll-smooth'>
+      <Navbar/>
+      <ScrollProgress progress={page.scrollProgress} zIndex={30} />
+      <ScrollProgress progress={page.scrollProgress} zIndex={0} />
+      <Sidebar/>
+      <div className="flex flex-col items-center align-middle justify-center">
+        <AboutScreen/>
+        <SkillsScreen/>
+        <ProjectsScreen/>
+      </div>
+    </main>
   )
 }
 

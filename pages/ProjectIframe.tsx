@@ -45,7 +45,7 @@ function ProjectIframe() {
     `}>
       {showReadme || loading ? (
         <ProjectReadme/>
-      ) : ''}
+      ) : null}
       <iframe onLoad={handleIframeLoad} loading={'lazy'} src={projectIframe?.url} className="relative w-full h-full bg-black"></iframe>
     </div>
   )

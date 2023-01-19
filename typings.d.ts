@@ -6,6 +6,7 @@ export type Screen = {
 export interface Page {
     sidebar: boolean;
     nav: boolean;
+    scrollProgress: number;
 }
 
 interface SanityBody {

@@ -5,6 +5,7 @@ export const pageState = atom<Page>({
     key: 'page',
     default: {
         sidebar: false,
-        nav: true
+        nav: true,
+        scrollProgress: 0
     }
 }); 

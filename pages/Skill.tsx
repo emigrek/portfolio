@@ -9,7 +9,7 @@ type Props = {
 
 function Skill({ skill }: Props) {
   return (
-    <div className='bg-black/25 shadow-xl relative backdrop-blur-3xl rounded-lg flex flex-row items-center justify-between mx-5 w-full lg:w-1/3 p-3 lg:p-4 align-middle'>
+    <div className='bg-black/40 shadow-xl relative backdrop-blur-3xl rounded-lg flex flex-row items-center justify-between mx-5 w-full lg:w-1/3 p-3 lg:p-4 align-middle'>
       <div className='flex items-center space-x-4 justify-center'>    
         <SkillImage skill={skill} mini={false}/>
         <div className="flex flex-col text-left">

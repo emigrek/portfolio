@@ -12,10 +12,7 @@ function Sidebar() {
         return (
             <div onClick={
                 () => {
-                    setPage({
-                        nav: page.nav,
-                        sidebar: false
-                    });
+                    setPage({ ...page, sidebar: false });
                 }
             } className='w-full h-full absolute z-[11] bg-black/80 select-none'>
                 <div className='absolute w-64 h-full flex flex-col space-y-10 items-center justify-center bg-stone-800 z-[10]'>
