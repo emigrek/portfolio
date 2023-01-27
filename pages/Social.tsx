@@ -18,8 +18,13 @@ function Social({ social } : Props) {
     return (
         <div onClick={() => {
             handleSocialClick(social);
-        }} className="cursor-pointer" key={social?._id}>
-            <Image alt={`social-image-${social?.title}`} unoptimized loader={() => src} src={src} width={128} height={128} className="relative w-14 lg:w-16"/>
+        }} className="flex items-center justify-start w-full p-3 rounded-lg cursor-pointer xl:p-3 bg-white/10" key={social?._id}>
+            <Image alt={`social-image-${social?.title}`} unoptimized loader={() => src} src={src} width={128} height={128} className="relative w-10 xl:w-10"/>
+            <div className='hidden mx-4 md:block'>
+                {
+                    social?.title
+                }
+            </div>
         </div>
     )
 }

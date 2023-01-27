@@ -55,5 +55,9 @@ export interface PageInfo extends SanityBody {
     name: string,
     github: string,
     target: string,
+    description: string,
+    birthday: Date,
+    city: string,
+    country: string,
     socials: Social[]
 }

@@ -19,6 +19,26 @@ export default {
       type: 'string'
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text' 
+    },
+    {
+      name: "birthday",
+      title: "Birthday",
+      type: "date"
+    },
+    {
+      name: "city",
+      title: "City",
+      type: "string"
+    },
+    {
+      name: "country",
+      title: "Country",
+      type: "string"
+    },
+    {
       name: 'socials',
       title: 'Socials',
       type: 'array',

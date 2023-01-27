@@ -61,12 +61,12 @@ export default function Home({ skills, pageInfo, projects } : Props) {
   }, []);
 
   return (
-    <main ref={scrollRef} className='bg-black w-full h-screen scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity overflow-y-scroll scroll-smooth'>
+    <main ref={scrollRef} className='w-full h-screen overflow-y-scroll bg-black scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
       <Navbar/>
       <ScrollProgress progress={page.scrollProgress} zIndex={30} />
       <ScrollProgress progress={page.scrollProgress} zIndex={0} />
       <Sidebar/>
-      <div className="flex flex-col items-center align-middle justify-center">
+      <div className="flex flex-col items-center justify-center align-middle">
         <AboutScreen/>
         <SkillsScreen/>
         <ProjectsScreen/>
