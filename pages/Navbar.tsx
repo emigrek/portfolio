@@ -17,9 +17,9 @@ function Navbar() {
 
     if(!page.sidebar && page.scrollProgress <= 90)
         return (
-            <nav className='transition-all z-[4] absolute top-0 flex flex-wrap items-center md:justify-center mx-auto right-0 left-0 text-white w-full xl:h-20 h-16 bg-black/40 backdrop-blur-3xl shadow-lg select-none'>
+            <nav className='transition-all z-[4] absolute top-0 flex flex-wrap items-center md:justify-center mx-auto right-0 left-0 text-white w-full xl:h-20 h-16 bg-black/30 backdrop-blur-xl shadow-lg select-none'>
                 <SidebarCloseButton className="md:hidden"/>
-                <div id="navbar-default" className="hidden w-full text-lg flex-row space-x-10 xl:space-x-20 p-4 items-center justify-center md:flex md:w-auto">
+                <div id="navbar-default" className="flex-row items-center justify-center hidden w-full p-4 space-x-10 text-lg xl:space-x-20 md:flex md:w-auto">
                     { 
                         screens.map((screen: Screen) => 
                             <NavItem key={screen?.name} screen={screen} href={`#${screen?.name.toLowerCase()}`}/>

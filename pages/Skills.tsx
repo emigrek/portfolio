@@ -9,11 +9,11 @@ function Skills() {
 
   return (
     <div className="container flex flex-col z-[3]">
-      <div className='flex flex-row items-center justify-center text-5xl space-x-3 pb-9'>
+      <div className='flex flex-row items-center justify-center space-x-3 text-5xl pb-9'>
         <div className="font-medium">Skills</div>
-        <div><SparklesIcon className='w-12 h-12 text-blue-500'/></div>
+        <div><SparklesIcon className='w-12 h-12'/></div>
       </div>
-      <div className='flex flex-wrap flex-row items-center align-middle justify-center gap-2'>
+      <div className='flex flex-row flex-wrap items-center justify-center gap-2 align-middle'>
         {
           skills?.map((skill, index) => (
             <Skill key={skill?._id} skill={skill}/>

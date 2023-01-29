@@ -9,12 +9,12 @@ type Props = {
 
 function Skill({ skill }: Props) {
   return (
-    <div className='bg-black/40 shadow-xl relative backdrop-blur-3xl rounded-lg flex flex-row items-center justify-between mx-5 w-full lg:w-1/3 p-3 lg:p-4 align-middle'>
-      <div className='flex items-center space-x-4 justify-center'>    
+    <div className='relative flex flex-row items-center justify-between w-full p-3 mx-5 align-middle rounded-lg shadow-lg bg-black/30 backdrop-blur-xl lg:w-1/3 lg:p-4'>
+      <div className='flex items-center justify-center space-x-4'>    
         <SkillImage skill={skill} mini={false}/>
         <div className="flex flex-col text-left">
-          <div className='lg:text-lg font-medium'>{ skill?.title }</div>
-          <div className='text-xs text-white/40 flex items-center align-middle justify-start'>
+          <div className='font-medium lg:text-lg'>{ skill?.title }</div>
+          <div className='flex items-center justify-start text-xs align-middle text-white/40'>
             {skill?.category}
           </div>
         </div>

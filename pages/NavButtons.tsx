@@ -5,11 +5,11 @@ import Socials from './Socials'
 
 function NavButtons() {
   return (
-    <div className='flex flex-col items-center justify-center p-4 space-y-4 align-middle lg:space-y-0 lg:flex-row lg:space-x-10'>
+    <div className='flex flex-col items-center justify-center p-4 space-y-4 align-middle z-[3] lg:space-y-0 lg:flex-row lg:space-x-10'>
         <div className="flex md:hidden">
             <Socials/>
         </div>
-        <Button href="#skills" className="space-x-2 text-black bg-white rounded-full">
+        <Button href="#skills" className="space-x-2 text-black bg-white rounded-full shadow-lg">
             <div className="font-medium">
                 My skills
             </div>
@@ -17,12 +17,12 @@ function NavButtons() {
                 <SparklesIcon className='w-5 h-5'/>
             </div>
         </Button>
-        <Button href="#projects" className="space-x-2 text-white transition-all border-b-2 border-transparent backdrop-blur-lg hover:border-white/80">
+        <Button href="#projects" className="space-x-2 text-white transition-all border-b-2 border-transparent backdrop-blur-lg hover:border-blue-500/80">
             <div className="font-medium">
                 Talk is cheap, show me the code
             </div>
             <div>
-                <BeakerIcon className='w-5 h-5'/>
+                <BeakerIcon className='w-5 h-5 text-blue-500'/>
             </div>
         </Button>
     </div>
