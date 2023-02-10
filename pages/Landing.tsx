@@ -10,7 +10,7 @@ function Landing() {
 
   return (
     <div className='z-[3] grid md:gap-10 mt-10 mx-4 xl:w-6/12 grid-cols-1 md:grid-cols-4'>
-      <div className='flex-col justify-center mx-auto mb-16 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
+      <div className='flex-col justify-center mx-auto mb-10 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
         <div className='relative'>
           <Image priority className='relative rounded-full shadow-xl w-44 shadow-black/30 lg:w-48' src="/me.png" width={500} height={500} alt="Karol Janasz face"/>
           <div className='absolute bottom-0 right-0 w-full h-full opacity-60 -z-10 -left-5 -top-10 animate-sway' style={{filter: "blur(100px)", scale: "200%"}}>
