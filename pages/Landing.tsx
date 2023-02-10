@@ -10,7 +10,7 @@ function Landing() {
 
   return (
     <div className='z-[3] grid md:gap-10 mt-10 mx-4 xl:w-6/12 grid-cols-1 md:grid-cols-4'>
-      <div className='flex-col justify-center mx-auto mb-4 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
+      <div className='flex-col justify-center mx-auto mb-6 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
         <div className='relative'>
           <Image priority className='relative w-32 mx-auto rounded-full shadow-xl shadow-black/30 lg:w-48' src="/me.png" width={500} height={500} alt="Karol Janasz face"/>
           <div className='absolute bottom-0 right-0 w-full h-full opacity-60 -z-10 -left-5 -top-10 animate-sway' style={{filter: "blur(100px)", scale: "200%"}}>
@@ -22,7 +22,7 @@ function Landing() {
         <h4 className='my-2 mt-4 font-sans font-bold text-white md:text-lg'>{ pageInfo?.name?.toUpperCase() }</h4>
         <div className='text-sm'>{ birthdayFormatted }</div>
       </div>
-      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto space-y-4 font-light text-center whitespace-normal rounded-lg shadow-lg bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg'>
+      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto mb-6 space-y-4 font-light text-center whitespace-normal rounded-lg shadow-lg bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg md:mb-0'>
         <div>
           <span className={`p-2 md:text-2xl`}>👋</span>{ pageInfo?.description }
         </div>
