@@ -9,7 +9,7 @@ function Landing() {
   const birthdayFormatted = new Date(pageInfo?.birthday!).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
 
   return (
-    <div className='z-[3] items-center grid md:gap-10 mt-9 mx-4 grid-cols-1 md:grid-cols-4'>
+    <div className='z-[3] items-center grid md:gap-10 mx-4 grid-cols-1 md:grid-cols-4'>
       <div className='flex-col justify-center mx-auto mb-6 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
         <div className='relative'>
           <Image priority className='relative w-32 mx-auto rounded-full shadow-xl shadow-black/30 lg:w-48' src="/me.png" width={500} height={500} alt="Karol Janasz face"/>
@@ -22,7 +22,7 @@ function Landing() {
         <h4 className='my-2 mt-4 font-sans font-bold text-white md:text-lg'>{ pageInfo?.name?.toUpperCase() }</h4>
         <div className='text-sm'>{ birthdayFormatted }</div>
       </div>
-      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto mb-8 space-y-4 font-light text-center whitespace-normal rounded-lg shadow-lg bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg'>
+      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto mb-8 space-y-4 font-light text-center whitespace-normal rounded-lg bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg'>
         <div>
           <span className={`p-2 md:text-2xl`}>👋</span>{ pageInfo?.description }
         </div>
