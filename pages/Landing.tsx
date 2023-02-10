@@ -22,7 +22,7 @@ function Landing() {
         <h4 className='my-2 mt-4 font-sans font-bold text-white md:text-lg'>{ pageInfo?.name?.toUpperCase() }</h4>
         <div className='text-sm'>{ birthdayFormatted }</div>
       </div>
-      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto mb-8 space-y-4 font-light text-center whitespace-normal rounded-lg bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg'>
+      <div className='flex-col items-center max-w-md col-span-2 p-2 my-auto mb-4 space-y-4 font-light text-center whitespace-normal rounded-lg md:mb-6 bg-white/5 md:bg-black/20 backdrop-blur-xl text-md overflow-clip md:p-4 md:text-lg xl:text-xl lg:text-lg'>
         <div>
           <span className={`p-2 md:text-2xl`}>👋</span>{ pageInfo?.description }
         </div>
