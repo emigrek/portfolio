@@ -9,7 +9,7 @@ function NavButtons() {
         <div className="flex md:hidden">
             <Socials/>
         </div>
-        <Button href="#skills" className="space-x-2 text-black bg-white rounded-full shadow-lg">
+        <Button href="#skills" className="space-x-2 font-bold text-black bg-white rounded-full shadow-lg">
             <div className="font-medium">
                 My skills
             </div>

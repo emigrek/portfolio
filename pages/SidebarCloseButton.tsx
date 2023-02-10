@@ -16,7 +16,7 @@ function SidebarCloseButton({ className } : Props) {
             () => {
                 setPage({ ...page, sidebar: true});
             }
-        } type="button" className={`${className} inline-flex items-center p-2 ml-3 text-sm text-white hover:text-black hover:bg-gray-100 focus:outline-none`}>
+        } type="button" className={`${className} rounded-lg inline-flex items-center p-2 ml-3 text-sm text-white hover:text-black hover:bg-gray-100 focus:outline-none`}>
             <span className="sr-only">Open main menu</span>
             <Bars4Icon className="w-6 h-6"/>
         </button>
