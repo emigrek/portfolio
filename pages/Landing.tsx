@@ -9,7 +9,7 @@ function Landing() {
   const birthdayFormatted = new Date(pageInfo?.birthday!).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
 
   return (
-    <div className='z-[3] items-center grid md:gap-10 mt-10 mx-4 grid-cols-1 md:grid-cols-4'>
+    <div className='z-[3] items-center grid md:gap-10 mt-9 mx-4 grid-cols-1 md:grid-cols-4'>
       <div className='flex-col justify-center mx-auto mb-6 text-xl font-normal text-center align-middle md:mb-0 md:text-left text-white/70'>
         <div className='relative'>
           <Image priority className='relative w-32 mx-auto rounded-full shadow-xl shadow-black/30 lg:w-48' src="/me.png" width={500} height={500} alt="Karol Janasz face"/>
