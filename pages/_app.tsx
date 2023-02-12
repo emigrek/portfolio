@@ -2,10 +2,12 @@ import '../styles/globals.css'
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import type { AppProps } from 'next/app'
+import GAScript from './GAScript';
 
 export default function App({ Component, pageProps }: AppProps) {
   return ( 
-    <div>
+    <>
+      <GAScript/>
       <Head>
         <title>Karol Janasz - portfolio</title>
         <meta name="description" content="Emigrek's portfolio" />
@@ -16,6 +18,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <RecoilRoot>
         <Component {...pageProps} />
       </RecoilRoot>
-    </div>
+    </>
   );
 }

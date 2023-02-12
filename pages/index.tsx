@@ -1,7 +1,3 @@
-import AboutScreen from "./AboutScreen";
-import ProjectsScreen from "./ProjectsScreen";
-import SkillsScreen from "./SkillsScreen";
-
 import { GetServerSideProps } from 'next'
 import { PageInfo, Project, Skill as SkillType } from '../typings'
 import { fetchSkills } from '../utils/fetchSkills'
@@ -16,7 +12,9 @@ import Navbar from "./Navbar";
 import ScrollProgress from "./ScrollProgress";
 import Sidebar from "./Sidebar";
 import useScrollProgress from "../hooks/useScrollProgress";
-import useGoogleAnalytics from "../hooks/useGoogleAnalytics";
+import AboutScreen from "./AboutScreen";
+import ProjectsScreen from "./ProjectsScreen";
+import SkillsScreen from "./SkillsScreen";
 
 type Props = {
   skills: SkillType[],
@@ -31,8 +29,6 @@ export default function Home({ skills, pageInfo, projects } : Props) {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollProgress = useScrollProgress({ scrollRef });
-
-  useGoogleAnalytics();
 
   useEffect(() => {
     setSkills(skills);
