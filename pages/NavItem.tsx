@@ -31,8 +31,7 @@ function NavItem({ screen, href, className } : Props) {
             href={href} 
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            style={{ opacity: viewing || hovering ? 1 : 0.2 }} 
-            className={`${className} text-[#dedede] hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-10 w-32 rounded-lg bg-black hover:bg-white`}
+            className={`${className} ${viewing ? 'bg-black' : 'bg-black/10 text-neutral-700'} text-[#dedede] hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white`}
         >
             { Icon ? <Icon className="w-6 h-6"/> : null }
             <div>{ screen?.name }</div>

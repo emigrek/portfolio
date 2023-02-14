@@ -11,7 +11,6 @@ function Skills() {
     <div className="container flex flex-col z-[3]">
       <div className='flex flex-row items-center justify-center space-x-3 text-5xl pb-9'>
         <div className="font-medium">Skills</div>
-        <div><SparklesIcon className='w-12 h-12'/></div>
       </div>
       <div className='flex flex-row flex-wrap items-center justify-center gap-2 align-middle'>
         {
