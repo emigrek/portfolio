@@ -15,6 +15,7 @@ import useScrollProgress from "../hooks/useScrollProgress";
 import AboutScreen from "./AboutScreen";
 import ProjectsScreen from "./ProjectsScreen";
 import SkillsScreen from "./SkillsScreen";
+import Head from 'next/head';
 
 type Props = {
   skills: SkillType[],
@@ -37,16 +38,27 @@ export default function Home({ skills, pageInfo, projects } : Props) {
   }, []);
 
   return (
-    <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
-      <Navbar/>
-      <ScrollProgress progress={scrollProgress} zIndex={30} />
-      <Sidebar/>
-      <div className="flex flex-col items-center justify-center align-middle">
-        <AboutScreen/>
-        <SkillsScreen/>
-        <ProjectsScreen/>
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>{`${pageInfo?.name} - portfolio`}</title>
+        <meta name="description" content={`
+          Visit ${pageInfo?.name} portfolio, a ${pageInfo?.target} developer from ${pageInfo?.city} (${pageInfo?.country}).
+        `} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
+        <Navbar/>
+        <ScrollProgress progress={scrollProgress} zIndex={30} />
+        <Sidebar/>
+        <div className="flex flex-col items-center justify-center align-middle">
+          <AboutScreen/>
+          <SkillsScreen/>
+          <ProjectsScreen/>
+        </div>
+      </main>
+    </>
   )
 }
 
