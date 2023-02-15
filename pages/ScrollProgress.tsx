@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React from 'react'
 
 type Props = {
     progress: number,

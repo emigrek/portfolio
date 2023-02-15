@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React from 'react'
+import { useRecoilValue } from 'recoil';
 import { pageState } from '../atoms/page';
 import { Screen } from '../typings'
 import { screens } from './Navbar'
@@ -11,7 +11,6 @@ type Props = {
 }
 
 function NavItem({ screen, href, className } : Props) {
-    const [hovering, setHovering] = useState(false);
     const Icon = screen?.Icon;
     const page = useRecoilValue(pageState);
 
@@ -29,8 +28,6 @@ function NavItem({ screen, href, className } : Props) {
     return (
         <a 
             href={href} 
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
             className={`${className} ${viewing ? 'bg-black text-neutral-200' : 'bg-black/10 text-neutral-700'} hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white hover:font-semibold`}
         >
             { Icon ? <Icon className="w-6 h-6"/> : null }

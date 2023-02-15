@@ -2,7 +2,6 @@ import { useRecoilValue } from 'recoil'
 import { pageState } from '../atoms/page';
 import { projectsState } from '../atoms/projects'
 import Project from './Project';
-import SidebarCloseButton from './SidebarCloseButton';
 
 function ProjectOverlay() {
   const projects = useRecoilValue(projectsState);
@@ -15,9 +14,8 @@ function ProjectOverlay() {
         ${page.nav ? 'h-[15%] lg:h-[10%]' : 'h-[0%] lg:h-[0%]'}
       `
     }>
-      
-      <div className="absolute bottom-0 top-0 right-0 bg-gradient-to-r from-transparent to-blue-500 h-full w-10 z-10"></div>
-      <div className="w-full h-full flex items-center overflow-x-auto scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent">
+      <div className="absolute top-0 bottom-0 right-0 z-10 w-10 h-full bg-gradient-to-r from-transparent to-blue-500"></div>
+      <div className="flex items-center w-full h-full overflow-x-auto scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent">
         <div className='h-[75%] px-2 space-x-3 select-none flex flex-row w-full'>
           {
             projects?.filter(project => project.pinned).map(project => (

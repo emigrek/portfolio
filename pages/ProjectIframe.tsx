@@ -10,8 +10,8 @@ function ProjectIframe() {
   const [loading, setLoading] = useState<boolean>(true);
   const projectIframe = useRecoilValue(projectIframeState);
   const page = useRecoilValue(pageState);
-  var readmeTimeout: NodeJS.Timeout | null = null;
   
+  let readmeTimeout: NodeJS.Timeout | null = null;
   useEffect(() => {
     if(readmeTimeout)
       clearTimeout(readmeTimeout as NodeJS.Timeout);
