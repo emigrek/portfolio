@@ -9,7 +9,6 @@ import { pageInfoState } from "../atoms/pageInfo";
 import { fetchProjects } from "../utils/fetchProjects";
 import { projectsState } from "../atoms/projects";
 import Navbar from "./Navbar";
-import ScrollProgress from "./ScrollProgress";
 import Sidebar from "./Sidebar";
 import useScrollProgress from "../hooks/useScrollProgress";
 import AboutScreen from "./AboutScreen";

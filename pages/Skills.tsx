@@ -1,4 +1,3 @@
-import { SparklesIcon } from '@heroicons/react/24/solid'
 import React from 'react'
 import { useRecoilValue } from 'recoil';
 import { skillsState } from '../atoms/skills';
