@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Waves(props: {
-    className?: string
+  className?: string
 }) {
   return (
     <svg id="svg" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg" className={`${ props.className ? props.className : '' } absolute w-full bottom-0`}>

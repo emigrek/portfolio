@@ -1,13 +1,14 @@
 import React from 'react'
 
-function Screen(props: {
-    children: React.ReactNode,
-    id?: string,
-    className?: string
-}) {
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+function Screen({ children, ...props } : Props) {
   return (
-    <div id={props.id} className={`${props.className} w-full h-screen snap-start`}>
-      { props.children }
+    <div {...props} className={`${props.className} w-full h-screen snap-start`}>
+      { children }
     </div>
   )
 }

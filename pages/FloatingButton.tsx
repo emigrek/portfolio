@@ -1,15 +1,17 @@
 import React from 'react'
 
-type Props = {
-    className?: string;
-    onClick?: () => void;
-    href?: string;
+interface Props extends React.HTMLAttributes<HTMLAnchorElement> {
     children: React.ReactNode;
+    href?: string;
 }
 
-function FloatingButton({ className, onClick, children, href } : Props) {
+function FloatingButton({ href, children, ...props } : Props) {
     return (
-        <a href={href} onClick={ onClick } className={`${className} p-2 text-sm focus:outline-none flex items-center justify-center w-12 h-12 z-10 cursor-pointer`}>
+        <a 
+            {...props}
+            href={href}
+            className={`${props.className} p-2 text-sm focus:outline-none flex items-center justify-center w-12 h-12 z-10 cursor-pointer`}
+        >
             { children }
         </a>
     )
