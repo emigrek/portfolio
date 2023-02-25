@@ -33,7 +33,7 @@ function Project({ project }: Props) {
                     {project?.title}
                 </div>
                 <div className='w-full flex justify-start items-center text-left flex-row text-[0.7rem] text-white/50'>
-                    Technologies
+                    {project?.type ? project?.type : "Technologies"}
                 </div>
                 <div className="flex flex-row justify-start w-full gap-1 rounded-lg">
                     {

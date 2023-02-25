@@ -9,6 +9,11 @@ export default {
             type: "string"
         },
         {
+            name: 'type',
+            title: 'Type',
+            type: 'string'
+        },
+        {
             name: 'progress',
             title: 'Progress',
             type: "number",
