@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import { twMerge } from 'tailwind-merge';
 import { pageState } from '../atoms/page';
 import { projectIframeState } from '../atoms/projectIframe';
 import NoProjectSelected from './NoProjectSelected';
@@ -10,12 +11,12 @@ function ProjectIframe() {
   const [loading, setLoading] = useState<boolean>(true);
   const projectIframe = useRecoilValue(projectIframeState);
   const page = useRecoilValue(pageState);
-  
+
   let readmeTimeout: NodeJS.Timeout | null = null;
   useEffect(() => {
-    if(readmeTimeout)
+    if (readmeTimeout)
       clearTimeout(readmeTimeout as NodeJS.Timeout);
-    
+
     setShowReadme(true);
     readmeTimeout = setTimeout(() => {
       setShowReadme(false);
@@ -35,16 +36,14 @@ function ProjectIframe() {
 
   if (!projectIframe?.url) return (
     <div className="w-full h-[85%] lg:h-[90%]">
-      <ProjectReadme/>
+      <ProjectReadme />
     </div>
   )
 
   return (
-    <div className={`
-      transition-all aspect-video w-full ${page.nav ? 'h-[85%] lg:h-[90%]' : 'h-[100%]'}
-    `}>
+    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[85%] lg:h-[90%]' : 'h-[100%]')}>
       {showReadme || loading ? (
-        <ProjectReadme/>
+        <ProjectReadme />
       ) : null}
       <iframe onLoad={handleIframeLoad} loading={'lazy'} src={projectIframe?.url} className="relative w-full h-full bg-black"></iframe>
     </div>

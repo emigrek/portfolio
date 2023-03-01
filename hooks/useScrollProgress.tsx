@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { pageState } from "../atoms/page";
 
 type ScrollProgressProps = {
   scrollRef: React.RefObject<HTMLDivElement>
@@ -8,7 +6,6 @@ type ScrollProgressProps = {
 
 function useScrollProgress({ scrollRef } : ScrollProgressProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const setPage = useSetRecoilState(pageState);
 
   const handleScroll = () => {
     if(!scrollRef.current)
@@ -16,7 +13,6 @@ function useScrollProgress({ scrollRef } : ScrollProgressProps) {
 
     const progress = scrollRef.current.scrollTop / (scrollRef.current.scrollHeight - scrollRef.current.clientHeight);
     setScrollProgress(progress * 100);
-    setPage((prev) => ({ ...prev, scrollProgress: progress * 100 }));
   }
 
   useEffect(() => {

@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import { useRecoilValue } from 'recoil';
+import { twMerge } from 'tailwind-merge';
 import { pageState } from '../atoms/page';
 import { Screen } from '../typings'
 import { screens } from './Navbar'
 
-type Props = {
+interface Props extends HTMLAttributes<HTMLAnchorElement> {
     screen: Screen,
     href?: string,
     className?: string
-}
+} 
 
 function NavItem({ screen, href, className } : Props) {
     const Icon = screen?.Icon;
@@ -28,7 +29,7 @@ function NavItem({ screen, href, className } : Props) {
     return (
         <a 
             href={href} 
-            className={`${className} ${viewing ? 'bg-black text-neutral-200' : 'bg-black/10 text-neutral-700'} hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white hover:font-semibold`}
+            className={twMerge(className, viewing ? 'bg-black text-neutral-200' : 'bg-black/10 text-neutral-700', 'hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white hover:font-semibold')}
         >
             { Icon ? <Icon className="w-6 h-6"/> : null }
             <div>{ screen?.name }</div>

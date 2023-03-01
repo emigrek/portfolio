@@ -15,6 +15,7 @@ import AboutScreen from "./AboutScreen";
 import ProjectsScreen from "./ProjectsScreen";
 import SkillsScreen from "./SkillsScreen";
 import Head from 'next/head';
+import { pageState } from '../atoms/page';
 
 type Props = {
   skills: SkillType[],
@@ -22,10 +23,11 @@ type Props = {
   projects: Project[]
 }
 
-export default function Home({ skills, pageInfo, projects } : Props) {
+export default function Home({ skills, pageInfo, projects }: Props) {
   const setSkills = useSetRecoilState(skillsState);
   const setPageInfo = useSetRecoilState(pageInfoState);
   const setProjects = useSetRecoilState(projectsState);
+  const setPage = useSetRecoilState(pageState);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollProgress = useScrollProgress({ scrollRef });
@@ -35,6 +37,12 @@ export default function Home({ skills, pageInfo, projects } : Props) {
     setPageInfo(pageInfo);
     setProjects(projects);
   }, []);
+
+  useEffect(() => {
+    if (!scrollRef.current)
+      return;
+    setPage((prev) => ({ ...prev, scrollProgress: scrollProgress }));
+  }, [scrollProgress]);
 
   return (
     <>
@@ -47,13 +55,13 @@ export default function Home({ skills, pageInfo, projects } : Props) {
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar/>
-      <Sidebar/>
+      <Navbar />
+      <Sidebar />
       <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
         <div className="flex flex-col items-center justify-center align-middle">
-          <AboutScreen/>
-          <SkillsScreen/>
-          <ProjectsScreen/>
+          <AboutScreen />
+          <SkillsScreen />
+          <ProjectsScreen />
         </div>
       </main>
     </>

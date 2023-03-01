@@ -26,13 +26,13 @@ function ProjectReadme() {
                         remarkPlugins={[remarkGfm]} 
                         rehypePlugins={[rehypeRaw]}
                         components={{
-                            h1: ({node, ...props}) => <h1 className="text-3xl lg:text-4xl font-bold xl:pb-10 py-4" {...props}/>,
-                            h2: ({node, ...props}) => <h2 className="text-md lg:text-xl font-medium xl:py-5 py-2" {...props}/>,
-                            table: ({node, ...props}) => <table className=" text-center mx-auto w-full bg-white/20 rounded px-2 xl:p-2" {...props}/>,
+                            h1: ({node, ...props}) => <h1 className="py-4 text-3xl font-bold lg:text-4xl xl:pb-10" {...props}/>,
+                            h2: ({node, ...props}) => <h2 className="py-2 font-medium text-md lg:text-xl xl:py-5" {...props}/>,
+                            table: ({node, ...props}) => <table className="w-full px-2 mx-auto text-center rounded  bg-white/20 xl:p-2" {...props}/>,
                             tr: ({node, ...props}) => <tr className="p-1 " {...props}/>,
                             td: ({node, ...props}) => <td className="p-1" {...props}/>,
                             th: ({node, ...props}) => <th className="p-1 py-3 border-b-2 border-white/20 bg-white/10" {...props}/>,
-                            pre: ({node, ...props}) => <pre className="bg-white/20 text-sm rounded px-2 xl:p-2 whitespace-pre-wrap" {...props}/>,
+                            pre: ({node, ...props}) => <pre className="px-2 text-sm whitespace-pre-wrap rounded bg-white/20 xl:p-2" {...props}/>,
                         }}
                     >
                         {data}
