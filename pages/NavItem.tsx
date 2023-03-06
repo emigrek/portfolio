@@ -29,7 +29,7 @@ function NavItem({ screen, href, className } : Props) {
     return (
         <a 
             href={href} 
-            className={twMerge(className, viewing ? 'bg-black text-neutral-200' : 'bg-black/10 text-neutral-700', 'hover:text-black flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white hover:font-semibold')}
+            className={twMerge(className, viewing ? 'bg-black text-neutral-200' : 'bg-black/10 text-neutral-700', 'hover:text-black transition ease-out duration-300 flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:bg-white hover:font-semibold')}
         >
             { Icon ? <Icon className="w-6 h-6"/> : null }
             <div>{ screen?.name }</div>
