@@ -7,12 +7,8 @@ import { pageState } from '../atoms/page';
 import ScrollProgress from './ScrollProgress';
 import FloatingButton from './FloatingButton';
 import { Bars4Icon } from '@heroicons/react/20/solid';
+import { screens } from '../utils/screens';
 
-export const screens: Screen[] = [
-    { name: 'About', Icon: HomeIcon },
-    { name: 'Skills', Icon: SparklesIcon },
-    { name: 'Projects', Icon: BeakerIcon },
-];
 
 function Navbar() {
     const page = useRecoilValue(pageState);

@@ -18,17 +18,17 @@ function ProjectReadme() {
     );
     
     return (
-        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[85%] lg:h-[90%] z-[2] backdrop-blur-md bg-black/70">
+        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[90%] z-[2] backdrop-blur-md bg-black/70">
             {
                 data ? (
                     <ReactMarkdown 
-                        className="relative lg:w-1/3 h-[85%] lg:h-[90%] w-full text-white xl:p-8 p-2"
+                        className="relative lg:w-1/3 h-[90%] w-full text-white xl:p-8 p-2"
                         remarkPlugins={[remarkGfm]} 
                         rehypePlugins={[rehypeRaw]}
                         components={{
                             h1: ({node, ...props}) => <h1 className="py-4 text-3xl font-bold lg:text-4xl xl:pb-10" {...props}/>,
                             h2: ({node, ...props}) => <h2 className="py-2 font-medium text-md lg:text-xl xl:py-5" {...props}/>,
-                            table: ({node, ...props}) => <table className="w-full px-2 mx-auto text-center rounded  bg-white/20 xl:p-2" {...props}/>,
+                            table: ({node, ...props}) => <table className="w-full px-2 mx-auto text-center rounded bg-white/20 xl:p-2" {...props}/>,
                             tr: ({node, ...props}) => <tr className="p-1 " {...props}/>,
                             td: ({node, ...props}) => <td className="p-1" {...props}/>,
                             th: ({node, ...props}) => <th className="p-1 py-3 border-b-2 border-white/20 bg-white/10" {...props}/>,

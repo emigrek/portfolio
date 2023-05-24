@@ -8,11 +8,11 @@ function NoProjectSelected() {
     const pageInfo = useRecoilValue(pageInfoState);
 
     return (
-        <div className="aspect-video w-full h-[85%] lg:h-[90%]">
+        <div className="aspect-video w-full h-[90%]">
             <div className="relative flex flex-col items-center justify-center w-full h-full space-y-5 opacity-80">
                 <div className="absolute top-[30%] xl:top-[37%] bg-white/30 px-2 py-4 rounded-lg min-w-[200px] h-20"></div>
                 <CursorArrowRaysIcon className='w-44 h-44 text-white z-[10]' />
-                <div className="text-2xl text-white lg:text-4xl">Select project to see preview</div>
+                <div className="text-3xl text-white md:text-4xl">Select project to see preview</div>
                 {
                     pageInfo?.github ? (
                         <Button href={pageInfo?.github} className="space-x-2 transition-all border-b-2 border-transparent group text-white/60 hover:text-white backdrop-blur-lg hover:border-white">

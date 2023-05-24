@@ -24,7 +24,7 @@ function Project({ project }: Props) {
     return (
         <div
             onClick={() => handleProjectClick(project)} key={project?._id}
-            className={twMerge(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 min-w-[200px] py-1 px-3 lg:py-3 lg:px-4 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
+            className={twMerge(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 min-w-[200px] px-3 py-1 lg:px-4 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
         >
             <div className='flex flex-col items-center justify-start w-full text-white'>
                 <div className='flex flex-row items-center justify-start w-full font-semibold text-left'>

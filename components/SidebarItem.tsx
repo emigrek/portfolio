@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLAnchorElement> {
     className?: string
 }
 
-function NavItem({ screen, href, className }: Props) {
+function SidebarItem({ screen, href, className }: Props) {
     const Icon = screen?.Icon;
 
     const currentScreen = useViewingScreen();
@@ -18,7 +18,7 @@ function NavItem({ screen, href, className }: Props) {
     return (
         <a
             href={href}
-            className={twMerge(className, viewing ? 'text-neutral-200' : 'text-neutral-600', 'hover:text-neutral-200 transition ease-out duration-300 flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 w-full px-5 rounded-lg hover:font-semibold')}
+            className={twMerge(className, viewing ? 'text-neutral-200 bg-black' : 'text-neutral-600', 'hover:text-neutral-200 transition ease-out duration-300 flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 px-5 rounded-lg hover:font-semibold w-fit')}
         >
             {Icon ? <Icon className="w-6 h-6" /> : null}
             <div>{screen?.name}</div>
@@ -26,4 +26,4 @@ function NavItem({ screen, href, className }: Props) {
     )
 }
 
-export default NavItem
+export default SidebarItem
