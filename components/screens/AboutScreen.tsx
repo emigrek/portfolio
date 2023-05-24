@@ -1,8 +1,7 @@
 import React from 'react'
-import Screen from './Screen'
-
-import NavButtons from './NavButtons'
-import Landing from './Landing'
+import NavButtons from '../NavButtons'
+import Screen from '../Screen'
+import Landing from '../Landing'
 
 function AboutScreen() {
   return (

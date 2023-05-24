@@ -1,12 +1,12 @@
 import React from 'react'
-import ProjectIframe from './ProjectIframe'
-import ProjectOverlay from './ProjectOverlay'
-import Screen from './Screen'
+import ProjectIframe from '../ProjectIframe'
+import ProjectOverlay from '../ProjectOverlay'
+import Screen from '../Screen'
 
 import { ArrowDownIcon, ArrowUpIcon, Bars4Icon } from '@heroicons/react/24/solid';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { pageState } from '../atoms/page';
-import FloatingButton from './FloatingButton';
+import { pageState } from '../../atoms/page';
+import FloatingButton from '../FloatingButton';
 import { twMerge } from 'tailwind-merge';
 
 function ProjectsScreen() {
@@ -30,11 +30,7 @@ function ProjectsScreen() {
           <Bars4Icon className="w-6 h-6" />
         </FloatingButton>
         <FloatingButton className="text-white bg-blue-500 rounded-full hover:text-black hover:bg-white" onClick={handleNavToggle}>
-          {page.nav ? (
-            <ArrowUpIcon className="w-5 h-5" />
-          ) : (
-            <ArrowDownIcon className="w-5 h-5" />
-          )}
+          {page.nav ? <ArrowUpIcon className="w-5 h-5" /> : <ArrowDownIcon className="w-5 h-5" /> }
         </FloatingButton>
       </div>
       <ProjectIframe />

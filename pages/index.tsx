@@ -8,12 +8,12 @@ import { skillsState } from "../atoms/skills";
 import { pageInfoState } from "../atoms/pageInfo";
 import { fetchProjects } from "../utils/fetchProjects";
 import { projectsState } from "../atoms/projects";
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import useScrollProgress from "../hooks/useScrollProgress";
-import AboutScreen from "./AboutScreen";
-import ProjectsScreen from "./ProjectsScreen";
-import SkillsScreen from "./SkillsScreen";
+import AboutScreen from "../components/screens/AboutScreen";
+import ProjectsScreen from "../components/screens/ProjectsScreen";
+import SkillsScreen from "../components/screens/SkillsScreen";
 import Head from 'next/head';
 import { pageState } from '../atoms/page';
 

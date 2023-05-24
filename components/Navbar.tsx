@@ -26,7 +26,7 @@ function Navbar() {
         return (
             <>
                 <ScrollProgress progress={page.scrollProgress} zIndex={30} />
-                <nav className='transition-all z-[4] absolute top-0 flex flex-wrap items-center justify-between md:justify-center mx-auto right-0 left-0 text-white w-full md:h-20 h-14 bg-black/30 backdrop-blur-xl shadow-lg select-none'>
+                <nav className='transition-all z-[4] absolute top-0 flex flex-wrap items-center justify-between md:justify-center mx-auto right-0 left-0 text-white w-full md:h-20 h-14 bg-black/60 backdrop-blur-xl shadow-lg select-none'>
                     <FloatingButton onClick={ handleSidebarToggle } className="w-10 h-10 ml-3 rounded-md md:hidden hover:text-black hover:bg-white">
                         <Bars4Icon className="w-6 h-6"/>
                     </FloatingButton>

@@ -5,7 +5,7 @@ import Socials from './Socials'
 
 function NavButtons() {
   return (
-    <div className='flex flex-col items-center justify-center p-4 space-y-4 align-middle z-[3] lg:space-y-0 lg:flex-row lg:space-x-10'>
+    <div className='flex flex-col items-center justify-center p-4 space-y-4 align-middle z-[3] lg:space-y-0 lg:flex-row lg:space-x-10 mt-4 md:mt-0'>
         <div className="flex md:hidden">
             <Socials/>
         </div>
