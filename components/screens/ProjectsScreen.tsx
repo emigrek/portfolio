@@ -24,7 +24,7 @@ function ProjectsScreen() {
   return (
     <Screen id="projects" className="relative flex flex-col items-center justify-center z-[5]">
       <ProjectOverlay />
-      <div className={twMerge(page.nav ? 'top-[8%]' : 'top-[-1%]', 'transition-all absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center space-x-2 align-middle items-center')}>
+      <div className={twMerge(page.nav ? 'top-[8%]' : 'top-2', 'transition-all absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center space-x-2 align-middle items-center')}>
         <FloatingButton className="text-white bg-blue-500 rounded-full hover:text-black hover:bg-white" onClick={handleSidebarToggle}>
           <span className="sr-only">Open main menu</span>
           <Bars4Icon className="w-6 h-6" />

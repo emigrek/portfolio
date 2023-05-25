@@ -18,7 +18,7 @@ function SidebarItem({ screen, href, className }: Props) {
     return (
         <a
             href={href}
-            className={twMerge(className, viewing ? 'text-neutral-200 bg-black' : 'text-neutral-600', 'hover:text-neutral-200 transition ease-out duration-300 flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 px-5 rounded-lg hover:font-semibold w-fit')}
+            className={twMerge(viewing ? 'text-neutral-200 bg-black' : 'text-neutral-600', 'hover:text-neutral-200 transition ease-out duration-300 flex space-x-3 font-semibold items-center justify-center cursor-pointer text-xl xl:text-lg h-12 px-5 rounded-lg hover:font-semibold w-fit', className)}
         >
             {Icon ? <Icon className="w-6 h-6" /> : null}
             <div>{screen?.name}</div>

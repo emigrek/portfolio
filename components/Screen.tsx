@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 function Screen({ className, children, ...props }: Props) {
   return (
-    <div {...props} className={twMerge(className, 'w-full h-screen snap-start')}>
+    <div {...props} className={twMerge('w-full h-screen snap-start', className)}>
       {children}
     </div>
   )

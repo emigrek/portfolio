@@ -12,7 +12,7 @@ function FloatingButton({ href, className, children, ...props } : Props) {
         <a 
             {...props}
             href={href}
-            className={twMerge(className, 'p-2 text-sm focus:outline-none flex items-center justify-center w-12 h-12 z-10 cursor-pointer')}
+            className={twMerge('p-2 text-sm focus:outline-none flex items-center justify-center w-12 h-12 z-10 cursor-pointer', className)}
         >
             { children }
         </a>
