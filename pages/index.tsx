@@ -14,7 +14,6 @@ import useScrollProgress from "../hooks/useScrollProgress";
 import AboutScreen from "../components/screens/AboutScreen";
 import ProjectsScreen from "../components/screens/ProjectsScreen";
 import SkillsScreen from "../components/screens/SkillsScreen";
-import Head from 'next/head';
 import { pageState } from '../atoms/page';
 
 type Props = {
@@ -46,15 +45,6 @@ export default function Home({ skills, pageInfo, projects }: Props) {
 
   return (
     <>
-      <Head>
-        <title>{`${pageInfo?.name} - portfolio`}</title>
-        <meta name="description" content={`
-          Visit ${pageInfo?.name} portfolio, a ${pageInfo?.target} developer from ${pageInfo?.city} (${pageInfo?.country}).
-        `} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Navbar />
       <Sidebar />
       <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
