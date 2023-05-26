@@ -1,5 +1,5 @@
 import React from 'react'
-import Screen from '../Screen'
+import Screen from '../ui/Screen/Screen';
 import Skills from '../Skills'
 import Waves from '../Waves'
 

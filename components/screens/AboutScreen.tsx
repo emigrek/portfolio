@@ -1,7 +1,7 @@
 import React from 'react'
 import NavButtons from '../NavButtons'
-import Screen from '../Screen'
 import Landing from '../Landing'
+import Screen from '../ui/Screen/Screen';
 
 function AboutScreen() {
   return (

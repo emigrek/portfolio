@@ -30,18 +30,18 @@ export default function Home({ skills, pageInfo, projects }: Props) {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollProgress = useScrollProgress({ scrollRef });
+  
+  useEffect(() => {
+    if (!scrollRef.current)
+      return;
+    setPage((prev) => ({ ...prev, scrollProgress: scrollProgress }));
+  }, [scrollProgress]);
 
   useEffect(() => {
     setSkills(skills);
     setPageInfo(pageInfo);
     setProjects(projects);
   }, []);
-
-  useEffect(() => {
-    if (!scrollRef.current)
-      return;
-    setPage((prev) => ({ ...prev, scrollProgress: scrollProgress }));
-  }, [scrollProgress]);
 
   return (
     <>
