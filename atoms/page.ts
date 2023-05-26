@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Page } from "../typings";
+import { Page } from "@/typings";
 
 export const pageState = atom<Page>({
     key: 'page',

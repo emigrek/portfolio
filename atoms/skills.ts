@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Skill } from "../typings";
+import { Skill } from "@/typings";
 
 export const skillsState = atom<Skill[] | null>({
     key: 'skills',

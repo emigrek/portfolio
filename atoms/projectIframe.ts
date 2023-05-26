@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Project } from "../typings";
+import { Project } from "@/typings";
 
 export const projectIframeState = atom<Project | null>({
     key: 'projectIframe',

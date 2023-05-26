@@ -1,9 +1,9 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import React from 'react'
-import { urlFor } from '../sanity'
-import { Social } from '../typings'
-import { openInNewTab } from '../utils/openInNewTab'
+import { urlFor } from '@/sanity'
+import { Social } from '@/typings'
+import { openInNewTab } from '@/utils/openInNewTab'
 
 type Props = {
     social: Social

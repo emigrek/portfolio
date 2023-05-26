@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil';
-import { skillsState } from '../atoms/skills';
-import Skill from './Skill'
+import { skillsState } from '@/atoms/skills';
+import Skill from '@/components/Skill'
 
 function Skills() {
   const skills = useRecoilValue(skillsState);

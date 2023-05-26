@@ -1,7 +1,7 @@
 import React from 'react'
-import Progress from './Progress';
-import { Skill as SkillType } from '../typings';
-import SkillImage from './SkillImage';
+import Progress from '@/components/Progress';
+import { Skill as SkillType } from '@/typings';
+import SkillImage from '@/components/SkillImage';
 
 type Props = {
   skill: SkillType

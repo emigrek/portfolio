@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { urlFor } from '../sanity'
-import { Skill } from '../typings'
+import { urlFor } from '@/sanity'
+import { Skill } from '@/typings'
 
 type Props = {
     skill: Skill,

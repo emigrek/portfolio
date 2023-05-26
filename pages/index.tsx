@@ -1,20 +1,20 @@
 import { GetServerSideProps } from 'next'
-import { PageInfo, Project, Skill as SkillType } from '../typings'
-import { fetchSkills } from '../utils/fetchSkills'
-import { fetchPageInfo } from "../utils/fetchPageInfo";
+import { PageInfo, Project, Skill as SkillType } from '@/typings'
+import { fetchSkills } from '@/utils/fetchSkills'
+import { fetchPageInfo } from "@/utils/fetchPageInfo";
 import { useEffect, useRef } from "react";
 import { useSetRecoilState } from "recoil";
-import { skillsState } from "../atoms/skills";
-import { pageInfoState } from "../atoms/pageInfo";
-import { fetchProjects } from "../utils/fetchProjects";
-import { projectsState } from "../atoms/projects";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import useScrollProgress from "../hooks/useScrollProgress";
-import AboutScreen from "../components/screens/AboutScreen";
-import ProjectsScreen from "../components/screens/ProjectsScreen";
-import SkillsScreen from "../components/screens/SkillsScreen";
-import { pageState } from '../atoms/page';
+import { skillsState } from "@/atoms/skills";
+import { pageInfoState } from "@/atoms/pageInfo";
+import { fetchProjects } from "@/utils/fetchProjects";
+import { projectsState } from "@/atoms/projects";
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
+import useScrollProgress from "@/hooks/useScrollProgress";
+import AboutScreen from "@/components/screens/AboutScreen";
+import ProjectsScreen from "@/components/screens/ProjectsScreen";
+import SkillsScreen from "@/components/screens/SkillsScreen";
+import { pageState } from '@/atoms/page';
 
 type Props = {
   skills: SkillType[],

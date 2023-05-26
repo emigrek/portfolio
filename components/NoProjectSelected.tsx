@@ -1,9 +1,9 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil';
-import { pageInfoState } from '../atoms/pageInfo';
-import { Button } from './ui/Button/Button';
+import { pageInfoState } from '@/atoms/pageInfo';
+import { Button } from '@/components/ui/Button/Button';
 import { AiFillGithub } from 'react-icons/ai';
-import ProjectClickIllustration from './ProjectClickIllustration';
+import ProjectClickIllustration from '@/components/ProjectClickIllustration';
 
 function NoProjectSelected() {
     const pageInfo = useRecoilValue(pageInfoState);

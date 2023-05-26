@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge';
-import { pageState } from '../atoms/page';
-import { projectsState } from '../atoms/projects'
-import Project from './Project';
+import { pageState } from '@/atoms/page';
+import { projectsState } from '@/atoms/projects'
+import Project from '@/components/Project';
 
 function ProjectOverlay() {
   const projects = useRecoilValue(projectsState);

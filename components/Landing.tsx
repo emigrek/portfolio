@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { pageInfoState } from '../atoms/pageInfo';
-import { urlFor } from '../sanity';
-import Socials from './Socials'
+import { pageInfoState } from '@/atoms/pageInfo';
+import { urlFor } from '@/sanity';
+import Socials from '@/components/Socials'
 
 function Landing() {
   const pageInfo = useRecoilValue(pageInfoState);
@@ -29,9 +29,7 @@ function Landing() {
           <span className='inline-block md:hidden'>👇</span>
         </div>
       </div>
-      <div className="relative hidden md:flex">
-        <Socials />
-      </div>
+      <Socials />
     </div>
   )
 }

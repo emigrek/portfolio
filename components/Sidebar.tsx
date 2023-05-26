@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { pageState } from '../atoms/page';
-import { screens } from "../utils/screens";
-import SidebarItem from './SidebarItem';
+import { pageState } from '@/atoms/page';
+import { screens } from "@/utils/screens";
+import SidebarItem from '@/components/SidebarItem';
 
 function Sidebar() {
     const page = useRecoilValue(pageState);

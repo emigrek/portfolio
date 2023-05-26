@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from 'react'
-import cn from '../../../utils/cn';
+import cn from '@/utils/cn';
 
 type ScreenProps = HTMLAttributes<HTMLDivElement>
 

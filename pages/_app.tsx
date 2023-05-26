@@ -1,7 +1,7 @@
-import '../styles/globals.css'
+import '@/styles/globals.css'
 import { RecoilRoot } from 'recoil';
 import type { AppProps } from 'next/app'
-import GAScript from '../components/GAScript';
+import GAScript from '@/components/GAScript';
 import { NextSeo } from 'next-seo';
 
 export default function App({ Component, pageProps }: AppProps) {

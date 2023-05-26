@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge';
-import { pageState } from '../atoms/page';
-import { projectIframeState } from '../atoms/projectIframe';
-import NoProjectSelected from './NoProjectSelected';
-import ProjectReadme from './ProjectReadme';
+import { pageState } from '@/atoms/page';
+import { projectIframeState } from '@/atoms/projectIframe';
+import NoProjectSelected from '@/components/NoProjectSelected';
+import ProjectReadme from '@/components/ProjectReadme';
 
 function ProjectIframe() {
   const [showReadme, setShowReadme] = useState<boolean>(true);

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Project as ProjectType } from '../typings'
+import { Project as ProjectType } from '@/typings'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { projectIframeState } from '../atoms/projectIframe'
-import { openInNewTab } from '../utils/openInNewTab';
+import { projectIframeState } from '@/atoms/projectIframe'
+import { openInNewTab } from '@/utils/openInNewTab';
 import { StarIcon } from '@heroicons/react/24/solid';
-import SkillImage from './SkillImage';
+import SkillImage from '@/components/SkillImage';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {

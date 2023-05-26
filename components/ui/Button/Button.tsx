@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 import { HTMLAttributes, forwardRef } from 'react'
 import { VariantProps } from 'class-variance-authority'
-import cn from "../../../utils/cn";
+import cn from "@/utils/cn";
 import { IconType } from "react-icons";
 
 const buttonVariants = cva(
@@ -19,9 +19,9 @@ const buttonVariants = cva(
                 transparent: "bg-transparent hover:bg-neutral-500/20 focus:ring-2 focus:ring-neutral-500/50",
             },
             size: {
-                small: "px-4 h-8 text-sm gap-2",
-                medium: "px-4 h-12 text-base gap-2",
-                large: "px-6 h-16 text-lg gap-2"
+                small: "p-2 h-8 text-sm gap-2",
+                medium: "p-4 h-12 text-base gap-2",
+                large: "p-6 h-16 text-lg gap-2"
             }
         },
         defaultVariants: {

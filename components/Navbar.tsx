@@ -1,12 +1,12 @@
 import React from 'react'
-import NavItem from './NavItem'
-import { Screen } from '../typings';
+import NavItem from '@/components/NavItem'
+import { Screen } from '@/typings';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { pageState } from '../atoms/page';
-import ScrollProgress from './ScrollProgress';
-import { screens } from '../utils/screens';
+import { pageState } from '@/atoms/page';
+import ScrollProgress from '@/components/ScrollProgress';
+import { screens } from '@/utils/screens';
 import { twMerge } from 'tailwind-merge';
-import { Button } from './ui/Button/Button';
+import { Button } from '@/components/ui/Button/Button';
 import { GoThreeBars } from 'react-icons/go';
 
 function Navbar() {

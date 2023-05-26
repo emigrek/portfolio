@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { projectIframeState } from '../atoms/projectIframe'
+import { projectIframeState } from '@/atoms/projectIframe'
 
 import useSWR from 'swr'
 

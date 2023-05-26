@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge';
-import { Screen } from '../typings'
-import useViewingScreen from '../utils/useViewingScreen';
+import { Screen } from '@/typings'
+import useViewingScreen from '@/utils/useViewingScreen';
 
 interface Props extends HTMLAttributes<HTMLAnchorElement> {
     screen: Screen,

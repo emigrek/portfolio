@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
-import { pageState } from "../atoms/page";
-import { screens } from "../utils/screens";
+import { pageState } from "@/atoms/page";
+import { screens } from "@/utils/screens";
 import { useCallback } from "react";
 
 const useViewingScreen = () => {
