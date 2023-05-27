@@ -35,13 +35,13 @@ export default function Home({ skills, pageInfo, projects }: Props) {
     if (!scrollRef.current)
       return;
     setPage((prev) => ({ ...prev, scrollProgress: scrollProgress }));
-  }, [scrollProgress]);
+  }, [scrollProgress, setPage]);
 
   useEffect(() => {
     setSkills(skills);
     setPageInfo(pageInfo);
     setProjects(projects);
-  }, []);
+  }, [skills, pageInfo, projects, setSkills, setPageInfo, setProjects]);
 
   return (
     <>

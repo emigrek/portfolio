@@ -7,16 +7,14 @@ function Progress(props: {
   zIndex: number
 }) {
   const color = chroma(props.color || '#ffffff');
-  const colorLuminance = color.luminance() > 0.5 ? 'black' : 'white';
-  const textColor = colorLuminance == 'white' ? color.brighten(1).hex() : color.darken(1).hex();
-  
+
   return (
-    <div className={`flex justify-end items-center align-middle absolute h-full opacity-50 left-0 z-0 rounded-lg`} style={{ background: props?.color,width: `${props?.progress}%`, zIndex: props?.zIndex }}>
-      <div className="lg:text-4xl text-3xl font-black mx-2" style={{color: textColor }}>
+    <div className={`flex justify-end items-center align-middle absolute h-full left-0 z-0 rounded-lg`} style={{ background: color.darken(1.55).css(), width: `${props?.progress}%`, zIndex: props?.zIndex }}>
+      <div className="mx-2 text-3xl font-black lg:text-4xl" style={{ color: color.darken(0.8).css() }}>
         {props?.progress}%
       </div>
     </div>
   )
 }
 
-export default Progress
+export default Progress;

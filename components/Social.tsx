@@ -4,6 +4,8 @@ import React from 'react'
 import { urlFor } from '@/sanity'
 import { Social } from '@/typings'
 import { openInNewTab } from '@/utils/openInNewTab'
+import Sheet from './ui/Sheet/Sheet'
+import { BiLinkExternal } from 'react-icons/bi'
 
 type Props = {
     social: Social
@@ -17,15 +19,15 @@ function Social({ social }: Props) {
     }
 
     return (
-        <a onClick={handleSocialClick} className="flex items-center justify-between w-full p-3 transition-all duration-300 rounded-lg shadow-lg cursor-pointer group text-neutral-400 bg-neutral-200/5 hover:bg-neutral-200/10 backdrop-blur-xl" key={social?._id}>
-            <Image alt={`social-image-${social?.title}`} src={src} width={128} height={128} className="relative w-10" />
-            <div className='hidden mx-4 font-bold transition-all duration-300 md:block group-hover:text-white'>
-                { social?.title }
+        <Sheet className='flex items-center justify-between w-full transition-all duration-300 cursor-pointer group hover:bg-neutral-700/50' onClick={handleSocialClick}>
+            <Image alt={`social-image-${social?.title}`} src={src} width={128} height={128} className="w-10 h-10" />
+            <div className='hidden mx-4 font-medium transition-all duration-300 md:block text-neutral-300 group-hover:text-neutral-100'>
+                {social?.title}
             </div>
-            <div className='hidden font-bold md:block'>
-                <ArrowTopRightOnSquareIcon className='w-5' />
+            <div className='hidden md:block'>
+                <BiLinkExternal className='fill-white' />
             </div>
-        </a>
+        </Sheet>
     )
 }
 

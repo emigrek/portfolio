@@ -18,7 +18,7 @@ function ProjectReadme() {
     );
     
     return (
-        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[90%] z-[2] backdrop-blur-md bg-black/70">
+        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[89%] z-[2] backdrop-blur-md bg-black/70">
             {
                 data ? (
                     <ReactMarkdown 

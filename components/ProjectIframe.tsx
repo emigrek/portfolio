@@ -12,8 +12,10 @@ function ProjectIframe() {
   const projectIframe = useRecoilValue(projectIframeState);
   const page = useRecoilValue(pageState);
 
-  let readmeTimeout: NodeJS.Timeout | null = null;
+
   useEffect(() => {
+    let readmeTimeout: NodeJS.Timeout | null = null;
+    
     if (readmeTimeout)
       clearTimeout(readmeTimeout as NodeJS.Timeout);
 
@@ -41,7 +43,7 @@ function ProjectIframe() {
   )
 
   return (
-    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[90%]' : 'h-[100%]')}>
+    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[89%]' : 'h-[100%]')}>
       {showReadme || loading ? (
         <ProjectReadme />
       ) : null}

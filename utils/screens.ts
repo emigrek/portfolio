@@ -1,8 +1,8 @@
-import { BeakerIcon, HomeIcon, SparklesIcon } from "@heroicons/react/24/solid";
 import { Screen } from "@/typings";
+import { HiHome, HiSparkles, HiBeaker } from "react-icons/hi";
 
 export const screens: Screen[] = [
-    { name: 'About', Icon: HomeIcon },
-    { name: 'Skills', Icon: SparklesIcon },
-    { name: 'Projects', Icon: BeakerIcon },
+    { name: 'About', Icon: HiHome },
+    { name: 'Skills', Icon: HiSparkles },
+    { name: 'Projects', Icon: HiBeaker },
 ];

@@ -1,5 +1,5 @@
+import cn from '@/utils/cn'
 import React from 'react'
-import { twMerge } from 'tailwind-merge'
 
 type Props = {
   className?: string
@@ -7,7 +7,7 @@ type Props = {
 
 function Waves({ className }: Props) {
   return (
-    <svg className={twMerge(className, 'absolute w-full bottom-0')} id="svg" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
+    <svg className={cn(className, 'absolute w-full bottom-0')} id="svg" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%">
           <stop offset="5%" stopColor="#3b82f6"></stop>

@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
-import { twMerge } from 'tailwind-merge'
 import { urlFor } from '@/sanity'
 import { Skill } from '@/typings'
+import chroma from 'chroma-js'
+import cn from '@/utils/cn'
 
 type Props = {
     skill: Skill,
-    mini: boolean
+    mini?: boolean
 }
 
 function SkillImage({ skill, mini } : Props) {
@@ -14,8 +15,11 @@ function SkillImage({ skill, mini } : Props) {
 
     return (
         <div 
-            style={ { backgroundColor: skill?.color ? `${skill?.color}50` as string : '#ffffff50' } } 
-            className={twMerge(mini ? 'w-6 h-6 lg:w-6 lg:h-6' : 'w-10 h-10 lg:w-14 lg:h-14', 'relative rounded-full backdrop-blur-lg')}
+            style={ { backgroundColor: skill?.color ? chroma(skill?.color).alpha(0.3).css() : '#ffffff50' } } 
+            className={cn(
+                mini ? 'w-6 h-6 lg:w-6 lg:h-6' : 'w-10 h-10 lg:w-14 lg:h-14', 
+                'relative rounded-full backdrop-blur-lg'
+            )}
         >
             <Image 
                 alt={`skill-image-${skill?.title}`}

@@ -1,6 +1,8 @@
+import { IconType } from "react-icons";
+
 export type Screen = {
     name: string,
-    Icon?: SVGProps<SVGSVGElement> | null
+    Icon?: IconType
 }
 
 export interface Page {
