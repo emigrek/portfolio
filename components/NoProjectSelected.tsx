@@ -12,7 +12,7 @@ function NoProjectSelected() {
         <div className="aspect-video w-full h-[90%]">
             <div className="relative flex flex-col items-center justify-center w-full h-full space-y-5 opacity-80">
                 <ProjectClickIllustration />
-                <div className="text-3xl text-white md:text-4xl">Select project to see preview</div>
+                <div className="text-2xl text-white md:text-3xl">Select project to see preview</div>
                 {
                     pageInfo?.github ? (
                         <Button href={pageInfo?.github} iconRight={AiFillGithub}>

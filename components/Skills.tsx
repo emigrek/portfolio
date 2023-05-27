@@ -8,7 +8,7 @@ function Skills() {
 
   return (
     <div className="container flex flex-col z-[3] gap-5 md:gap-10 items-center justify-center h-full">
-      <div className='flex flex-row items-center justify-center text-5xl font-medium'>
+      <div className='flex flex-row items-center justify-center text-4xl font-medium md:text-5xl'>
         Skills
       </div>
       <div className='flex flex-row flex-wrap items-center justify-center gap-2 align-middle'>

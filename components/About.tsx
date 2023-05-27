@@ -17,7 +17,7 @@ function About() {
       <div className='flex flex-row items-center gap-8 mx-auto md:gap-0 lg:items-start md:flex-col'>
         <Image priority className='relative mx-auto rounded-full shadow-xl w-36 lg:w-44' src={avatarSrc} width={500} height={500} alt="Face" />
         <div className="flex flex-col text-left">
-          <h1 className='mt-4 text-xl font-bold text-white md:text-lg'>{pageInfo?.name?.toUpperCase()}</h1>
+          <h1 className='mt-4 text-lg font-medium text-white md:text-xl'>{pageInfo?.name}</h1>
           <h2 className='text-sm text-neutral-400'>{birthdayFormatted}</h2>
         </div>
       </div>
@@ -25,7 +25,7 @@ function About() {
         <div className='text-neutral-300'>
           <span className={`p-2 md:text-xl`}>👋</span>{pageInfo?.description}
         </div>
-        <div className='text-lg font-semibold text-center'>
+        <div className='text-lg font-medium text-center'>
           Reach me anytime!
           <span className="hidden md:inline-block">👉</span>
           <span className='inline-block md:hidden'>👇</span>

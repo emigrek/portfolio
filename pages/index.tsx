@@ -48,7 +48,7 @@ export default function Home({ skills, pageInfo, projects }: Props) {
       <Navbar />
       <Sidebar />
       <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
-        <div className="flex flex-col items-center justify-center align-middle">
+        <div className="flex flex-col items-center justify-center align-middle"> 
           <AboutScreen />
           <SkillsScreen />
           <ProjectsScreen />

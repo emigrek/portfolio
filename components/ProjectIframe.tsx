@@ -37,13 +37,13 @@ function ProjectIframe() {
   if (!projectIframe) return <NoProjectSelected />
 
   if (!projectIframe?.url) return (
-    <div className="w-full h-[90%]">
+    <div className="w-full h-[88%] md:h-[90%]">
       <ProjectReadme />
     </div>
   )
 
   return (
-    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[89%]' : 'h-[100%]')}>
+    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[88%] md:h-[90%]' : 'h-[100%]')}>
       {showReadme || loading ? (
         <ProjectReadme />
       ) : null}
