@@ -13,7 +13,7 @@ function About() {
   const avatarSrc = pageInfo?.avatar ? urlFor(pageInfo.avatar).width(500).height(500).url() : `https://ui-avatars.com/api/?name=${pageInfo?.name}&size=500&bold=true&background=000000&color=ffffff`;
 
   return (
-    <div className='z-[3] flex flex-col items-center justify-center md:flex-row gap-8'>
+    <div className='z-[2] flex flex-col items-center justify-center gap-8 md:flex-row'>
       <div className='flex flex-row items-center gap-8 mx-auto md:gap-0 lg:items-start md:flex-col'>
         <Image priority className='relative mx-auto rounded-full shadow-xl w-36 lg:w-44' src={avatarSrc} width={500} height={500} alt="Face" />
         <div className="flex flex-col text-left">

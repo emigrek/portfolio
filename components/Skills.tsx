@@ -7,7 +7,7 @@ function Skills() {
   const skills = useRecoilValue(skillsState);
 
   return (
-    <div className="container flex flex-col z-[3] gap-5 md:gap-10 items-center justify-center h-full">
+    <div className="container flex flex-col items-center justify-center h-full gap-5 md:gap-10 z-[1]">
       <div className='flex flex-row items-center justify-center text-4xl font-medium md:text-5xl'>
         Skills
       </div>

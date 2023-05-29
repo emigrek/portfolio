@@ -1,6 +1,6 @@
 import React from 'react'
-import ProjectIframe from '@/components/ProjectIframe'
-import ProjectOverlay from '@/components/ProjectOverlay'
+import ProjectsIframe from '@/components/ProjectsIframe'
+import ProjectsNavbar from '@/components/ProjectsNavbar'
 import Screen from '@/components/ui/Screen/Screen';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { pageState } from '@/atoms/page';
@@ -14,17 +14,17 @@ function ProjectsScreen() {
   const setPage = useSetRecoilState(pageState);
 
   const handleNavToggle = () => {
-    setPage({ ...page, nav: !page.nav });
+    setPage(state => ({ ...state, nav: !state.nav }));
   }
 
   const handleSidebarToggle = () => {
-    setPage({ ...page, sidebar: !page.sidebar });
+    setPage(state => ({ ...state, sidebar: !state.sidebar }));
   }
 
   return (
-    <Screen id="projects" className="relative flex flex-col items-center justify-center z-[5]">
-      <ProjectOverlay />
-      <div className={twMerge(page.nav ? 'top-[9%] md:top-[8%]' : 'top-2', 'transition-all absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center space-x-2 align-middle items-center z-10')}>
+    <Screen id="projects" className="relative flex flex-col items-center justify-center">
+      <ProjectsNavbar />
+      <div className={twMerge(page.nav ? 'top-[9%] md:top-[8%]' : 'top-2', 'transition-all z-[2] absolute left-0 right-0 bottom-0 w-full h-10 flex flex-row justify-center space-x-2 align-middle items-center')}>
         <Button className='text-white bg-blue-500 cursor-pointer hover:text-black hover:bg-white' onClick={handleSidebarToggle}>
           <GoThreeBars className="w-6 h-6" />
         </Button>
@@ -32,7 +32,7 @@ function ProjectsScreen() {
           {page.nav ? <AiOutlineArrowUp className="w-5 h-5" /> : <AiOutlineArrowDown className="w-5 h-5" /> }
         </Button>
       </div>
-      <ProjectIframe />
+      <ProjectsIframe />
     </Screen>
   )
 }

@@ -14,7 +14,7 @@ function Sidebar() {
     const currentViewing = useViewingScreen();
 
     const handleClickOutside = () => {
-        setPage({ ...page, sidebar: false });
+        setPage(state => ({ ...state, sidebar: false }));
     }
 
     return (

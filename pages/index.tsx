@@ -30,7 +30,7 @@ export default function Home({ skills, pageInfo, projects }: Props) {
 
   const scrollRef = useRef<HTMLDivElement>(null);
   useScrollProgress({ scrollRef, onScroll: (progress) => {
-    setPage((prev) => ({ ...prev, scrollProgress: progress }));
+    setPage((state) => ({ ...state, scrollProgress: progress }));
   } });
   
   useEffect(() => {

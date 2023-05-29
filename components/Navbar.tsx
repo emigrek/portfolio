@@ -18,7 +18,7 @@ function Navbar() {
     const currentViewing = useViewingScreen();
 
     const handleSidebarToggle = () => {
-        setPage({ ...page, sidebar: !page.sidebar });
+        setPage(state => ({ ...state, sidebar: !state.sidebar }));
     }
 
     if (page.sidebar || page.scrollProgress >= 90) return null;
@@ -27,7 +27,7 @@ function Navbar() {
         <>
             <ScrollProgress progress={page.scrollProgress} zIndex={30} />
             <Nav className={cn(
-                'transition-all duration-300 flex items-center justify-start shadow-lg md:justify-center backdrop-blur-sm border-neutral-800',
+                'transition-all duration-300 flex items-center justify-between shadow-lg md:justify-center backdrop-blur-sm border-neutral-800',
                 page.scrollProgress > 15 && 'border-b bg-neutral-900/90'
             )}>
                 <Button className='ml-3 cursor-pointer md:hidden' onClick={handleSidebarToggle} iconRight={GoThreeBars} variant={'transparent'} />

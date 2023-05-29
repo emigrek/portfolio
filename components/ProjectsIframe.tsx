@@ -4,9 +4,9 @@ import { twMerge } from 'tailwind-merge';
 import { pageState } from '@/atoms/page';
 import { projectIframeState } from '@/atoms/projectIframe';
 import NoProjectSelected from '@/components/NoProjectSelected';
-import ProjectReadme from '@/components/ProjectReadme';
+import ProjectsReadme from '@/components/ProjectsReadme';
 
-function ProjectIframe() {
+function ProjectsIframe() {
   const [showReadme, setShowReadme] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
   const projectIframe = useRecoilValue(projectIframeState);
@@ -38,18 +38,18 @@ function ProjectIframe() {
 
   if (!projectIframe?.url) return (
     <div className="w-full h-[88%] md:h-[90%]">
-      <ProjectReadme />
+      <ProjectsReadme />
     </div>
   )
 
   return (
     <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[88%] md:h-[90%]' : 'h-[100%]')}>
       {showReadme || loading ? (
-        <ProjectReadme />
+        <ProjectsReadme />
       ) : null}
       <iframe onLoad={handleIframeLoad} loading={'lazy'} src={projectIframe?.url} className="relative w-full h-full bg-black"></iframe>
     </div>
   )
 }
 
-export default ProjectIframe
+export default ProjectsIframe

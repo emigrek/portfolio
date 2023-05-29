@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 
-function ProjectReadme() {
+function ProjectsReadme() {
     const projectIframe = useRecoilValue(projectIframeState);
     const partialUrl = projectIframe?.repo?.replace('https://github.com/', '');
     
@@ -18,7 +18,7 @@ function ProjectReadme() {
     );
     
     return (
-        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[88%] md:h-[90%] z-[2] backdrop-blur-md bg-black/70">
+        <div className="transition-all absolute flex items-center align-middle justify-center w-full h-[88%] md:h-[90%] z-[1] backdrop-blur-md bg-black/70">
             {
                 data ? (
                     <ReactMarkdown 
@@ -48,4 +48,4 @@ function ProjectReadme() {
     )
 }
 
-export default ProjectReadme
+export default ProjectsReadme

@@ -4,7 +4,7 @@ import { pageState } from '@/atoms/page';
 import { projectsState } from '@/atoms/projects'
 import Project from '@/components/Project';
 
-function ProjectOverlay() {
+function ProjectsNavbar() {
   const projects = useRecoilValue(projectsState);
   const page = useRecoilValue(pageState);
 
@@ -29,4 +29,4 @@ function ProjectOverlay() {
   )
 }
 
-export default ProjectOverlay
+export default ProjectsNavbar
