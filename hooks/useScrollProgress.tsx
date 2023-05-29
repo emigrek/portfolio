@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 
 type ScrollProgressProps = {
   scrollRef: React.RefObject<HTMLDivElement>,
-  throttling?: number
+  throttling?: number,
+  onScroll?: (progress: number) => void
 }
 
-function useScrollProgress({ scrollRef, throttling }: ScrollProgressProps) {
+function useScrollProgress({ scrollRef, throttling, onScroll }: ScrollProgressProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleScroll = throttle(() => {
@@ -22,8 +23,11 @@ function useScrollProgress({ scrollRef, throttling }: ScrollProgressProps) {
       return;
 
     scrollRef.current?.addEventListener("scroll", handleScroll);
+
+    onScroll && onScroll(scrollProgress);
+    
     return () => scrollRef.current?.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrollRef, onScroll]);
 
   return scrollProgress;
 }

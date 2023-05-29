@@ -17,31 +17,27 @@ import SkillsScreen from "@/components/screens/SkillsScreen";
 import { pageState } from '@/atoms/page';
 
 type Props = {
-  skills: SkillType[],
   pageInfo: PageInfo,
+  skills: SkillType[],
   projects: Project[]
 }
 
 export default function Home({ skills, pageInfo, projects }: Props) {
-  const setSkills = useSetRecoilState(skillsState);
   const setPageInfo = useSetRecoilState(pageInfoState);
+  const setSkills = useSetRecoilState(skillsState);
   const setProjects = useSetRecoilState(projectsState);
   const setPage = useSetRecoilState(pageState);
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scrollProgress = useScrollProgress({ scrollRef });
+  useScrollProgress({ scrollRef, onScroll: (progress) => {
+    setPage((prev) => ({ ...prev, scrollProgress: progress }));
+  } });
   
   useEffect(() => {
-    if (!scrollRef.current)
-      return;
-    setPage((prev) => ({ ...prev, scrollProgress: scrollProgress }));
-  }, [scrollProgress, setPage]);
-
-  useEffect(() => {
-    setSkills(skills);
     setPageInfo(pageInfo);
+    setSkills(skills);
     setProjects(projects);
-  }, [skills, pageInfo, projects, setSkills, setPageInfo, setProjects]);
+  }, [pageInfo, skills, projects, setPageInfo, setSkills, setProjects]);
 
   return (
     <>
@@ -59,14 +55,16 @@ export default function Home({ skills, pageInfo, projects }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const skills: SkillType[] = await fetchSkills();
-  const pageInfo: PageInfo = await fetchPageInfo();
-  const projects: Project[] = await fetchProjects();
+  const [pageInfo, skills, projects] = await Promise.all([
+    fetchPageInfo(),
+    fetchSkills(),
+    fetchProjects()
+  ]);
 
   return {
     props: {
-      skills,
       pageInfo,
+      skills,
       projects,
       fallback: false
     }
