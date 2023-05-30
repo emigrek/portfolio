@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil';
 import { pageInfoState } from '@/atoms/pageInfo';
-import Social from '@/components/Social';
+import Social from '@/components/screens/about/Social';
 
 function Socials() {
     const pageInfo = useRecoilValue(pageInfoState);

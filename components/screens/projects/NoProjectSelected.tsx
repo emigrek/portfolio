@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import { pageInfoState } from '@/atoms/pageInfo';
 import { Button } from '@/components/ui/Button/Button';
 import { AiFillGithub } from 'react-icons/ai';
-import ProjectClickIllustration from '@/components/ProjectClickIllustration';
+import ProjectClickIllustration from '@/components/screens/projects/ProjectClickIllustration';;
 
 function NoProjectSelected() {
     const pageInfo = useRecoilValue(pageInfoState);

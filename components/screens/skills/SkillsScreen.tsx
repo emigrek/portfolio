@@ -1,7 +1,7 @@
 import React from 'react'
 import Screen from '@/components/ui/Screen/Screen';
-import Skills from '@/components/Skills'
-import Waves from '@/components/Waves'
+import Skills from '@/components/screens/skills/Skills'
+import Waves from '@/components/screens/projects/Waves'
 
 function SkillsScreen() {
   return (

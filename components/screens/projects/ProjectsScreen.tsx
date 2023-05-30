@@ -1,6 +1,6 @@
 import React from 'react'
-import ProjectsIframe from '@/components/ProjectsIframe'
-import ProjectsNavbar from '@/components/ProjectsNavbar'
+import ProjectsIframe from '@/components/screens/projects/ProjectsIframe'
+import ProjectsNavbar from '@/components/screens/projects/ProjectsNavbar'
 import Screen from '@/components/ui/Screen/Screen';
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { pageState } from '@/atoms/page';

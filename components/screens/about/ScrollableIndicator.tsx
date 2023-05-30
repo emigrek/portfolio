@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { CgScrollV } from 'react-icons/cg'
-import { Button } from './ui/Button/Button'
+import { Button } from '@/components/ui/Button/Button'
 
 const ScrollableIndicator: FC = () => {
     return (

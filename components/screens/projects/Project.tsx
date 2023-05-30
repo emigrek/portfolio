@@ -3,7 +3,7 @@ import { Project as ProjectType } from '@/typings'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { projectIframeState } from '@/atoms/projectIframe'
 import { openInNewTab } from '@/utils/openInNewTab';
-import SkillImage from '@/components/SkillImage';
+import SkillImage from '@/components/screens/skills/SkillImage';
 import { AiFillGithub, AiFillPushpin } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import cn from '@/utils/cn';
@@ -24,10 +24,10 @@ function Project({ project }: Props) {
     return (
         <div
             onClick={() => handleProjectClick(project)} key={project?._id}
-            className={cn(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 min-w-[200px] px-3 py-1 lg:px-4 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
+            className={cn(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 px-3 py-1 lg:px-4 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
         >
-            <div className='flex flex-col items-center justify-start w-full text-white'>
-                <div className='flex flex-row items-center justify-start w-full font-semibold text-left'>
+            <div className='flex flex-col items-center justify-start flex-grow w-full text-white'>
+                <div className='flex flex-row items-center justify-start w-full text-sm font-semibold text-left'>
                     {project.title}
                 </div>
                 <div className='w-full flex justify-start items-center text-left flex-row text-[0.7rem] text-white/50'>
@@ -36,7 +36,7 @@ function Project({ project }: Props) {
                 <div className="flex flex-row justify-start w-full gap-1 rounded-lg">
                     {
                         project.skills.map(skill => {
-                            return (<SkillImage key={skill._id} skill={skill} mini={true} />)
+                            return (<SkillImage key={skill._id} image={skill.image} color={skill.color} mini/>)
                         })
                     }
                 </div>

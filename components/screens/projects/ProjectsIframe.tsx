@@ -3,8 +3,8 @@ import { useRecoilValue } from 'recoil'
 import { twMerge } from 'tailwind-merge';
 import { pageState } from '@/atoms/page';
 import { projectIframeState } from '@/atoms/projectIframe';
-import NoProjectSelected from '@/components/NoProjectSelected';
-import ProjectsReadme from '@/components/ProjectsReadme';
+import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
+import ProjectsReadme from '@/components/screens/projects/ProjectsReadme';
 
 function ProjectsIframe() {
   const [showReadme, setShowReadme] = useState<boolean>(true);

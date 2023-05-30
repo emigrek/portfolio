@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { pageInfoState } from '@/atoms/pageInfo';
 import { urlFor } from '@/sanity';
 
-import Socials from '@/components/Socials'
+import Socials from '@/components/screens/about/Socials';
 import Sheet from '@/components/ui/Sheet/Sheet';
 
 function About() {

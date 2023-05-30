@@ -11,9 +11,9 @@ import { projectsState } from "@/atoms/projects";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import useScrollProgress from "@/hooks/useScrollProgress";
-import AboutScreen from "@/components/screens/AboutScreen";
-import ProjectsScreen from "@/components/screens/ProjectsScreen";
-import SkillsScreen from "@/components/screens/SkillsScreen";
+import AboutScreen from "@/components/screens/about/AboutScreen";
+import ProjectsScreen from "@/components/screens/projects/ProjectsScreen";
+import SkillsScreen from "@/components/screens/skills/SkillsScreen";
 import { pageState } from '@/atoms/page';
 
 type Props = {

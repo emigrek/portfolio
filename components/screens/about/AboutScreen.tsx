@@ -1,7 +1,7 @@
 import React from 'react'
-import About from '@/components/About'
+import About from '@/components/screens/about/About'
 import Screen from '@/components/ui/Screen/Screen';
-import ScrollableIndicator from '@/components/ScrollableIndicator';
+import ScrollableIndicator from '@/components/screens/about/ScrollableIndicator';
 
 function AboutScreen() {
   return (

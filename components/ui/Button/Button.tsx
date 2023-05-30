@@ -5,7 +5,7 @@ import cn from "@/utils/cn";
 import { IconType } from "react-icons";
 
 const buttonVariants = cva(
-    "relative w-fit flex items-center justify-center rounded-full text-white font-semibold tracking-wide transition duration-200 ease-in-out focus:outline-none disabled:cursor-not-allowed disabled:opacity-90",
+    "cursor-pointer relative w-fit flex items-center justify-center rounded-full text-white font-semibold tracking-wide transition duration-200 ease-in-out focus:outline-none disabled:cursor-not-allowed disabled:opacity-90",
     {
         variants: {
             variant: {
