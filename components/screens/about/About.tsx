@@ -6,11 +6,15 @@ import { urlFor } from '@/sanity';
 
 import Socials from '@/components/screens/about/Socials';
 import Sheet from '@/components/ui/Sheet/Sheet';
+import Spinner from '@/components/ui/Spinner/Spinner';
 
 function About() {
   const pageInfo = useRecoilValue(pageInfoState);
   const birthdayFormatted = new Date(pageInfo?.birthday!).toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' });
   const avatarSrc = pageInfo?.avatar ? urlFor(pageInfo.avatar).width(500).height(500).url() : `https://ui-avatars.com/api/?name=${pageInfo?.name}&size=500&bold=true&background=000000&color=ffffff`;
+
+  if(!pageInfo)
+    return <Spinner className='w-10 h-10' />;
 
   return (
     <div className='z-[2] flex flex-col items-center justify-center gap-8 md:flex-row'>
