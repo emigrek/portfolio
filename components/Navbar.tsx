@@ -8,7 +8,7 @@ import { screens } from '@/utils/screens';
 import { Button } from '@/components/ui/Button/Button';
 import { GoThreeBars } from 'react-icons/go';
 import NavItem from '@/components/ui/Navbar/NavbarItem';
-import useViewingScreen from '@/utils/useViewingScreen';
+import useViewingScreen from '@/hooks/useViewingScreen';
 import cn from '@/utils/cn';
 
 function Navbar() {

@@ -5,7 +5,7 @@ import { screens } from "@/utils/screens";
 import { Drawer } from '@/components/ui/Drawer/Drawer';
 import { Screen } from '@/typings';
 import DrawerItem from '@/components/ui/Drawer/DrawerItem';
-import useViewingScreen from '@/utils/useViewingScreen';
+import useViewingScreen from '@/hooks/useViewingScreen';
 
 function Sidebar() {
     const page = useRecoilValue(pageState);
