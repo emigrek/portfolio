@@ -29,7 +29,7 @@ function Skills() {
   }
 
   return (
-    <div className="max-w-5xl w-full mt-20 md:mt-28 z-[1] flex flex-col gap-2 md:gap-8">
+    <div className="max-w-5xl w-full mt-24 md:mt-28 z-[1] flex flex-col gap-2 md:gap-8">
       <div className='flex flex-col items-center w-full gap-1 px-4 md:gap-0 md:flex-row md:justify-between'>
         <div className='flex items-center text-5xl font-medium'>
           Skills
