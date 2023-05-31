@@ -1,23 +1,15 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import Category from '@/components/screens/skills/Category';
-import { useState } from 'react';
 import useSkillCategories from '@/hooks/useSkillCategories';
 import { useRecoilValue } from 'recoil';
 import { skillsState } from '@/atoms/skills';
 import Skill from '@/components/screens/skills/Skill';
+import useSkillCategoriesFilter from '@/hooks/useSkillCategoriesFilter';
 
 function Skills() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const skills = useRecoilValue(skillsState);
   const skillCategories = useSkillCategories();
-
-  const categoryFilteredSkills = useCallback(() => {
-    if (!skills) return [];
-
-    if (!activeCategory) return skills;
-
-    return skills.filter(skill => skill.category === activeCategory);
-  }, [skills, activeCategory]);
+  const { activeCategory, setActiveCategory, categoryFilteredSkills } = useSkillCategoriesFilter(skills, skillCategories);
 
   const handleCategoryClick = (category: string | null) => {
     if (category == activeCategory) {
@@ -39,16 +31,16 @@ function Skills() {
           <div className='flex items-center w-full gap-1 px-1 py-3 overflow-x-auto md:px-0 md:justify-end scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent'>
             <Category active={activeCategory === null} onClick={() => handleCategoryClick(null)}>All</Category>
             {
-              skillCategories().map((category) => (
+              skillCategories.map((category) => (
                 <Category key={category} active={activeCategory === category} onClick={() => handleCategoryClick(category)}>{category}</Category>
               ))
             }
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-3 gap-2 px-3 md:grid-cols-5 lg:grid-cols-6'>
+      <div className='grid grid-cols-4 gap-2 px-3 md:grid-cols-6'>
         {
-          categoryFilteredSkills().map((skill) => (
+          categoryFilteredSkills.map((skill) => (
             <Skill key={skill.title} skill={skill} />
           ))
         }

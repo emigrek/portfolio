@@ -8,7 +8,7 @@ interface CategoryProps extends HTMLAttributes<HTMLAnchorElement> {
 
 const Category: FC<CategoryProps> = ({ active, ...props }) => {
   return (
-    <Button className={cn(active ? "bg-neutral-700" : "bg-neutral-300/5", 'hover:bg-neutral-700 font-normal text-neutral-200 backdrop-blur-xl')} {...props}/>
+    <Button size={"medium"} className={cn(active ? "bg-neutral-700" : "bg-neutral-300/5", 'hover:bg-neutral-700 font-normal text-neutral-200 backdrop-blur-xl')} {...props}/>
   )
 }
 

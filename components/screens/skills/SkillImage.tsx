@@ -13,12 +13,13 @@ interface SkillImageProps extends HTMLAttributes<HTMLDivElement> {
 
 const SkillImage: FC<SkillImageProps> = ({ image, color, mini }) => {
     const src = image && urlFor(image).url();
+    const backgroundColor = color ? chroma(color).alpha(0.25).css() : '#ffffff50';
 
     return (
         <div
-            style={{ backgroundColor: color ? chroma(color).alpha(0.3).css() : '#ffffff50' }}
+            style={{ backgroundColor: backgroundColor }}
             className={cn(
-                mini ? 'w-6 h-6 lg:w-6 lg:h-6' : 'w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14',
+                mini ? 'w-6 h-6 lg:w-6 lg:h-6' : 'w-12 h-12 md:w-12 md:h-12 lg:w-14 lg:h-14',
                 'relative rounded-full backdrop-blur-lg'
             )}
         >
