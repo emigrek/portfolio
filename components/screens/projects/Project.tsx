@@ -24,7 +24,7 @@ function Project({ project }: Props) {
     return (
         <div
             onClick={() => handleProjectClick(project)} key={project?._id}
-            className={cn(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 px-3 py-1 lg:px-4 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
+            className={cn(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 px-3 py-1 lg:px-4 w-56 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
         >
             <div className='flex flex-col items-center justify-start flex-grow w-full text-white'>
                 <div className='flex flex-row items-center justify-start w-full text-sm font-semibold text-left'>

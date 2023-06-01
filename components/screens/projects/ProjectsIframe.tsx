@@ -5,6 +5,7 @@ import { pageState } from '@/atoms/page';
 import { projectIframeState } from '@/atoms/projectIframe';
 import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import ProjectsReadme from '@/components/screens/projects/ProjectsReadme';
+import cn from '@/utils/cn';
 
 function ProjectsIframe() {
   const [showReadme, setShowReadme] = useState<boolean>(true);
@@ -43,7 +44,7 @@ function ProjectsIframe() {
   )
 
   return (
-    <div className={twMerge('transition-all aspect-video w-full', page.nav ? 'h-[88%] md:h-[90%]' : 'h-[100%]')}>
+    <div className={cn('transition-all aspect-video w-full', page.nav ? 'h-[88%] md:h-[90%]' : 'h-[100%]')}>
       {showReadme || loading ? (
         <ProjectsReadme />
       ) : null}
