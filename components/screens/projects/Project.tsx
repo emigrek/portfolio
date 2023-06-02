@@ -20,7 +20,7 @@ const Project: FC<ProjectProps> = ({ project }) => {
     const projectIframe = useRecoilValue(projectIframeState);
     const active = project?._id == projectIframe?._id;
 
-    const handleProjectClick = (project: ProjectType) => {
+    const handleProjectClick = () => {
         setPage(state => ({ ...state, projectsDrawer: false }));
         setProjectIframeUrl(project);
     };
@@ -28,7 +28,7 @@ const Project: FC<ProjectProps> = ({ project }) => {
     return (
         <button
             key={project?._id}
-            onClick={() => handleProjectClick(project)}
+            onClick={handleProjectClick}
             className={
                 cn(
                     active ? 'bg-black/50' : 'bg-black/40',
