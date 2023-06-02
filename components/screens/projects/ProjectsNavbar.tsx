@@ -29,14 +29,14 @@ function ProjectsNavbar() {
       <div className='flex gap-2'>
         {
           projectIframe?.url && (
-            <a href={projectIframe.url} target="_blank" className='cursor-pointer text-white/50'>
+            <a href={projectIframe.url} target="_blank" rel="noreferrer" className='cursor-pointer text-white/50'>
               <BiLinkExternal className='text-white w-7 h-7' />
             </a>
           )
         }
         {
           projectIframe?.repo && (
-            <a href={projectIframe.repo} target="_blank" className='cursor-pointer text-white/50'>
+            <a href={projectIframe.repo} target="_blank" rel="noreferrer" className='cursor-pointer text-white/50'>
               <AiFillGithub className='text-white w-7 h-7' />
             </a>
           )

@@ -51,14 +51,14 @@ const Project: FC<ProjectProps> = ({ project }) => {
             <div className='flex items-center gap-1'>
                 {
                     project.url && (
-                        <a href={project.url} target="_blank" className='cursor-pointer text-white/50'>
+                        <a href={project.url} rel="noreferrer" target="_blank" className='cursor-pointer text-white/50'>
                             <BiLinkExternal className='w-6 h-6 text-white' />
                         </a>
                     )
                 }
                 {
                     project.repo && (
-                        <a href={project.repo} target="_blank" className='cursor-pointer text-white/50'>
+                        <a href={project.repo} rel="noreferrer" target="_blank" className='cursor-pointer text-white/50'>
                             <AiFillGithub className='w-6 h-6 text-white' />
                         </a>
                     )

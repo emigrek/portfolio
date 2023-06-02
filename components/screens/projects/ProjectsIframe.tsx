@@ -18,7 +18,7 @@ function ProjectsIframe() {
     if (!sortedProjects || !sortedProjects.length) return;
 
     setProjectIframe(sortedProjects.at(0)!);
-  }, [sortedProjects]);
+  }, [sortedProjects, setProjectIframe]);
 
   useEffect(() => {
     if (!projectIframe) return;
@@ -26,7 +26,7 @@ function ProjectsIframe() {
     if (!projectIframe?.url) return;
 
     setIframeLoading(true);
-  }, [projectIframe]);
+  }, [projectIframe, setIframeLoading]);
 
   if (!projectIframe)
     return <NoProjectSelected />
