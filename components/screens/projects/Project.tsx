@@ -7,18 +7,21 @@ import { BiLinkExternal } from 'react-icons/bi';
 import cn from '@/utils/cn';
 import PinIndicator from '@/components/screens/projects/PinIndicator';
 import SkillImage from '@/components/screens/skills/SkillImage';
+import { pageState } from '@/atoms/page';
 
 type ProjectProps = {
     project: ProjectType
 }
 
 const Project: FC<ProjectProps> = ({ project }) => {
+    const setPage = useSetRecoilState(pageState);
     const setProjectIframeUrl = useSetRecoilState(projectIframeState);
 
     const projectIframe = useRecoilValue(projectIframeState);
     const active = project?._id == projectIframe?._id;
 
     const handleProjectClick = (project: ProjectType) => {
+        setPage(state => ({ ...state, projectsDrawer: false }));
         setProjectIframeUrl(project);
     };
 
