@@ -4,8 +4,8 @@ import { Page } from "@/typings";
 export const pageState = atom<Page>({
     key: 'page',
     default: {
-        sidebar: false,
-        nav: true,
+        navigationDrawer: false,
+        projectsDrawer: false,
         scrollProgress: 0
     }
 }); 

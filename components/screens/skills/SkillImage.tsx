@@ -13,7 +13,7 @@ interface SkillImageProps extends HTMLAttributes<HTMLDivElement> {
 
 const SkillImage: FC<SkillImageProps> = ({ image, color, mini }) => {
     const src = image && urlFor(image).url();
-    const backgroundColor = color ? chroma(color).alpha(0.25).css() : '#ffffff50';
+    const backgroundColor = color ? chroma(color).alpha(0.2).css() : '#ffffff50';
 
     return (
         <div

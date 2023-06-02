@@ -9,12 +9,12 @@ import { fetchProjects } from "@/services/fetchProjects";
 import { pageInfoState } from "@/atoms/pageInfo";
 import { projectsState } from "@/atoms/projects";
 import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
 import useScrollProgress from "@/hooks/useScrollProgress";
 import AboutScreen from "@/components/screens/about/AboutScreen";
 import ProjectsScreen from "@/components/screens/projects/ProjectsScreen";
 import SkillsScreen from "@/components/screens/skills/SkillsScreen";
 import { pageState } from '@/atoms/page';
+import NavigationDrawer from '@/components/NavigationDrawer';
 
 type Props = {
   pageInfo: PageInfo,
@@ -42,7 +42,7 @@ export default function Home({ skills, pageInfo, projects }: Props) {
   return (
     <>
       <Navbar />
-      <Sidebar />
+      <NavigationDrawer />
       <main ref={scrollRef} className='w-full h-screen overflow-x-hidden overflow-y-scroll bg-black select-none scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent snap-y snap-proximity scroll-smooth'>
         <div className="flex flex-col items-center justify-center align-middle"> 
           <AboutScreen />

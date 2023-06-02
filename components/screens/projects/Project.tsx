@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Project as ProjectType } from '@/typings'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { projectIframeState } from '@/atoms/projectIframe'
-import { openInNewTab } from '@/utils/openInNewTab';
-import SkillImage from '@/components/screens/skills/SkillImage';
-import { AiFillGithub, AiFillPushpin } from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import cn from '@/utils/cn';
+import PinIndicator from '@/components/screens/projects/PinIndicator';
+import SkillImage from '@/components/screens/skills/SkillImage';
 
-type Props = {
+type ProjectProps = {
     project: ProjectType
 }
 
-function Project({ project }: Props) {
+const Project: FC<ProjectProps> = ({ project }) => {
     const setProjectIframeUrl = useSetRecoilState(projectIframeState);
+
     const projectIframe = useRecoilValue(projectIframeState);
     const active = project?._id == projectIframe?._id;
 
@@ -22,43 +23,53 @@ function Project({ project }: Props) {
     };
 
     return (
-        <div
-            onClick={() => handleProjectClick(project)} key={project?._id}
-            className={cn(active ? 'bg-black/60' : 'bg-black/40', 'cursor-pointer relative flex gap-4 px-3 py-1 lg:px-4 w-56 hover:bg-black/30 shadow-md backdrop-blur-3xl rounded-lg justify-around align-middle items-center transition-all')}
+        <button
+            key={project?._id}
+            onClick={() => handleProjectClick(project)}
+            className={
+                cn(
+                    active ? 'bg-black/50' : 'bg-black/40',
+                    'cursor-pointer relative flex px-2 py-1 w-full hover:bg-black/30 rounded-lg items-center transition-all justify-between'
+                )
+            }
         >
-            <div className='flex flex-col items-center justify-start flex-grow w-full text-white'>
-                <div className='flex flex-row items-center justify-start w-full text-sm font-semibold text-left'>
+            <div className='flex flex-col justify-start text-white'>
+                <div className='font-medium text-left'>
                     {project.title}
                 </div>
-                <div className='w-full flex justify-start items-center text-left flex-row text-[0.7rem] text-white/50'>
+                <div className='text-xs text-left text-white/50'>
                     {project.type ? project.type : "Technologies"}
                 </div>
-                <div className="flex flex-row justify-start w-full gap-1 rounded-lg">
+                <div className="flex flex-row justify-start gap-1 mt-1">
                     {
-                        project.skills.map(skill => {
-                            return (<SkillImage key={skill._id} image={skill.image} color={skill.color} mini/>)
-                        })
+                        project.skills.map(skill => (
+                            <SkillImage key={skill._id} image={skill.image} color={skill.color} mini />
+                        ))
                     }
                 </div>
             </div>
             <div className='flex items-center gap-1'>
-                {project.url ? (
-                    <a onClick={() => openInNewTab(project.url!)} className='font-medium cursor-pointer text-white/50'>
-                        <BiLinkExternal className='w-6 h-6 text-white' />
-                    </a>
-                ) : null}
-                {project.repo ? (
-                    <a onClick={() => openInNewTab(project.repo!)} className='font-medium cursor-pointer text-white/50'>
-                        <AiFillGithub className='w-6 h-6 text-white' />
-                    </a>
-                ) : null}
+                {
+                    project.url && (
+                        <a href={project.url} target="_blank" className='cursor-pointer text-white/50'>
+                            <BiLinkExternal className='w-6 h-6 text-white' />
+                        </a>
+                    )
+                }
+                {
+                    project.repo && (
+                        <a href={project.repo} target="_blank" className='cursor-pointer text-white/50'>
+                            <AiFillGithub className='w-6 h-6 text-white' />
+                        </a>
+                    )
+                }
             </div>
-            {project.pinned ? (
-                <div className='absolute top-[-5%] right-[-3%] flex items-center justify-center rounded-full bg-fuchsia-500 p-1 shadow-lg'>
-                    <AiFillPushpin className='w-4 h-4 text-white rounded-full' />
-                </div>
-            ) : null}
-        </div>
+            {
+                project.pinned && (
+                    <PinIndicator />
+                )
+            }
+        </button>
     )
 }
 

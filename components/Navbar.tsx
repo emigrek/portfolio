@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navbar as Nav } from '@/components/ui/Navbar/Navbar';
 import { Screen } from '@/typings';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -17,11 +17,15 @@ function Navbar() {
 
     const currentViewing = useViewingScreen();
 
-    const handleSidebarToggle = () => {
-        setPage(state => ({ ...state, sidebar: !state.sidebar }));
+    const handleNavigationDrawerToggle = () => {
+        setPage(state => ({ ...state, navigationDrawer: !state.navigationDrawer }));
     }
 
-    if (page.sidebar || page.scrollProgress >= 90) return null;
+    useEffect(() => {
+        console.log(page.scrollProgress);
+    }, [page.scrollProgress])
+
+    if (page.navigationDrawer || page.scrollProgress >= 90) return null;
 
     return (
         <>
@@ -30,7 +34,7 @@ function Navbar() {
                 'transition-all duration-300 flex items-center justify-between shadow-lg md:justify-center backdrop-blur-sm border-neutral-800',
                 page.scrollProgress > 15 && 'border-b bg-neutral-900/90'
             )}>
-                <Button className='ml-3 cursor-pointer md:hidden' onClick={handleSidebarToggle} iconRight={GoThreeBars} variant={'transparent'} />
+                <Button className='ml-3 cursor-pointer md:hidden' onClick={handleNavigationDrawerToggle} iconRight={GoThreeBars} variant={'transparent'} />
                 <div className="flex-row items-center justify-center hidden w-full space-x-10 text-lg xl:space-x-20 md:flex md:w-auto">
                     {
                         screens.map((screen: Screen) =>

@@ -4,11 +4,12 @@ import { VariantProps } from 'class-variance-authority'
 import cn from '@/utils/cn';
 
 const navbarVariants = cva(
-    "w-full absolute top-0 md:h-20 h-16 z-10 shadow-xl",
+    "w-full absolute top-0 md:h-20 h-16 z-10 shadow-xl text-neutral-200",
     {
         variants: {
             variant: {
-                transparent: "bg-transparent text-neutral-200"
+                transparent: "bg-transparent",
+                blue: "bg-blue-500",
             }
         },
         defaultVariants: {

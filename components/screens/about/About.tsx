@@ -26,7 +26,7 @@ function About() {
         </div>
       </div>
       <Sheet className='flex flex-col max-w-md gap-3 mx-4 text-center md:mx-0'>
-        <div className='text-neutral-300'>
+        <div className='text-neutral-200'>
           <span className={`p-2 md:text-xl`}>👋</span>{pageInfo?.description}
         </div>
         <div className='text-lg font-medium text-center'>

@@ -6,8 +6,8 @@ export type Screen = {
 }
 
 export interface Page {
-    sidebar: boolean;
-    nav: boolean;
+    navigationDrawer: boolean;
+    projectsDrawer: boolean;
     scrollProgress: number;
 }
 

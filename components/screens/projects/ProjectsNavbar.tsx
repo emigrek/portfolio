@@ -1,31 +1,48 @@
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { pageState } from '@/atoms/page';
-import { projectsState } from '@/atoms/projects'
-import Project from '@/components/screens/projects/Project';
-import cn from '@/utils/cn';
+import { Navbar } from '@/components/ui/Navbar/Navbar';
+import { Button } from '@/components/ui/Button/Button';
+import { GoThreeBars } from 'react-icons/go';
+import { projectIframeState } from '@/atoms/projectIframe';
+import { AiFillGithub } from 'react-icons/ai';
+import { BiLinkExternal } from 'react-icons/bi';
 
 function ProjectsNavbar() {
-  const projects = useRecoilValue(projectsState);
-  const page = useRecoilValue(pageState);
+  const setPage = useSetRecoilState(pageState);
+  const projectIframe = useRecoilValue(projectIframeState);
+
+  const handleProjectsDrawerToggle = () => {
+    setPage(state => ({ ...state, projectsDrawer: !state.projectsDrawer }));
+  }
 
   return (
-    <div className={cn('w-full relative bg-blue-500 transition duration-500 ease-in-out', page.nav ? 'h-[12%] md:h-[10%]' : 'h-[0%]')}>
-      <div className="absolute top-0 bottom-0 right-0 z-10 w-5 h-full bg-gradient-to-r from-transparent to-blue-500"></div>
-      <div className="flex items-center w-full h-full overflow-x-auto scrollbar-thin scrollbar-thumb-white/60 scrollbar-track-transparent">
-        <div className='flex flex-row gap-3 px-2 select-none'>
-          {
-            projects?.filter(project => project.pinned).map(project => (
-              <Project key={project?._id} project={project} />
-            ))
-          }
-          {
-            projects?.filter(project => !project.pinned).map(project => (
-              <Project key={project?._id} project={project} />
-            ))
-          }
+    <Navbar variant={'blue'} className='sticky z-0 flex items-center justify-between gap-3 px-3 lg:hidden'>
+      <div className='flex items-center gap-3'>
+        <Button className='cursor-pointer bg-black/20 hover:bg-black/30' onClick={handleProjectsDrawerToggle} iconRight={GoThreeBars} />
+        <div className='flex flex-col'>
+          <div className='text-xl font-medium text-white'>
+            {projectIframe?.title}
+          </div>
+          <div className='text-sm text-neutral-300'>{projectIframe?.type ? projectIframe?.type : "Technologies"}</div>
         </div>
       </div>
-    </div>
+      <div className='flex gap-2'>
+        {
+          projectIframe?.url && (
+            <a href={projectIframe.url} target="_blank" className='cursor-pointer text-white/50'>
+              <BiLinkExternal className='text-white w-7 h-7' />
+            </a>
+          )
+        }
+        {
+          projectIframe?.repo && (
+            <a href={projectIframe.repo} target="_blank" className='cursor-pointer text-white/50'>
+              <AiFillGithub className='text-white w-7 h-7' />
+            </a>
+          )
+        }
+      </div>
+    </Navbar>
   )
 }
 

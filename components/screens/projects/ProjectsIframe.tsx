@@ -1,56 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { twMerge } from 'tailwind-merge';
-import { pageState } from '@/atoms/page';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { projectIframeState } from '@/atoms/projectIframe';
+
 import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import ProjectsReadme from '@/components/screens/projects/ProjectsReadme';
-import cn from '@/utils/cn';
+import useSortedProjects from '@/hooks/useSortedProjects';
+import ProjectsIframeLoader from './ProjectsIframeLoader';
 
 function ProjectsIframe() {
-  const [showReadme, setShowReadme] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(true);
-  const projectIframe = useRecoilValue(projectIframeState);
-  const page = useRecoilValue(pageState);
+  const [iframeLoading, setIframeLoading] = useState(true);
+  const sortedProjects = useSortedProjects();
 
+  const projectIframe = useRecoilValue(projectIframeState);
+  const setProjectIframe = useSetRecoilState(projectIframeState);
 
   useEffect(() => {
-    let readmeTimeout: NodeJS.Timeout | null = null;
-    
-    if (readmeTimeout)
-      clearTimeout(readmeTimeout as NodeJS.Timeout);
+    if (!sortedProjects || !sortedProjects.length) return;
 
-    setShowReadme(true);
-    readmeTimeout = setTimeout(() => {
-      setShowReadme(false);
-      setLoading(false);
-    }, 3000);
+    setProjectIframe(sortedProjects.at(0)!);
+  }, [sortedProjects]);
 
-    return () => {
-      clearTimeout(readmeTimeout as NodeJS.Timeout);
-    };
+  useEffect(() => {
+    if (!projectIframe) return;
+
+    if (!projectIframe?.url) return;
+
+    setIframeLoading(true);
   }, [projectIframe]);
 
-  const handleIframeLoad = () => {
-    setLoading(false);
-  }
+  if (!projectIframe)
+    return <NoProjectSelected />
 
-  if (!projectIframe) return <NoProjectSelected />
+  if (!projectIframe?.url)
+    return <ProjectsReadme />
 
-  if (!projectIframe?.url) return (
-    <div className="w-full h-[88%] md:h-[90%]">
-      <ProjectsReadme />
-    </div>
-  )
-
-  return (
-    <div className={cn('transition-all aspect-video w-full', page.nav ? 'h-[88%] md:h-[90%]' : 'h-[100%]')}>
-      {showReadme || loading ? (
-        <ProjectsReadme />
-      ) : null}
-      <iframe onLoad={handleIframeLoad} loading={'lazy'} src={projectIframe?.url} className="relative w-full h-full bg-black"></iframe>
-    </div>
-  )
+  return <>
+    { iframeLoading && <ProjectsIframeLoader /> }
+    <iframe onLoad={() => setIframeLoading(false)} loading={'lazy'} src={projectIframe?.url} className="w-full h-full bg-black" />
+  </>
 }
 
 export default ProjectsIframe
