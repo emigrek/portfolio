@@ -9,18 +9,24 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import Spinner from '@/components/ui/Spinner/Spinner'
 
-const ProjectsReadme: FC = () => {
+const Readme: FC = () => {
     const projectIframe = useRecoilValue(projectIframeState);
     const partialUrl = projectIframe?.repo?.replace('https://github.com/', '');
 
-    const { data, error } = useSWR(
+    const { data, error, isLoading } = useSWR(
         `https://raw.githubusercontent.com/${partialUrl}/main/README.md`,
         (url) => fetch(url).then((res) => res.text())
     );
 
+    if (isLoading) return (
+        <div className="flex items-center justify-center w-full h-full bg-neutral-900">
+           <Spinner className='w-10 h-10' />
+        </div>
+    )
+
     return (
         <div className="w-full h-full overflow-y-auto bg-neutral-900">
-            <div className='flex items-center justify-center max-w-3xl mx-auto'>
+            <div className='flex items-center justify-center max-w-4xl mx-auto'>
                 {
                     error && (
                         <div className="text-white">Error loading README.md</div>
@@ -44,13 +50,11 @@ const ProjectsReadme: FC = () => {
                         >
                             {data}
                         </ReactMarkdown>
-                    ) : (
-                        <Spinner />
-                    )
+                    ) : null
                 }
             </div>
         </div>
     )
 }
 
-export default ProjectsReadme
+export default Readme

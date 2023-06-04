@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { projectIframeState } from '@/atoms/projectIframe';
+import useSortedProjects from '@/hooks/useSortedProjects';
 
 import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
-import ProjectsReadme from '@/components/screens/projects/ProjectsReadme';
-import useSortedProjects from '@/hooks/useSortedProjects';
-import ProjectsIframeLoader from './ProjectsIframeLoader';
+import Readme from '@/components/screens/projects/Readme';
+import IframeOverlay from '@/components/screens/projects/IframeOverlay';
+import Spinner from '@/components/ui/Spinner/Spinner';
 
-function ProjectsIframe() {
+function Iframe() {
   const [iframeLoading, setIframeLoading] = useState(true);
   const sortedProjects = useSortedProjects();
 
@@ -32,12 +33,18 @@ function ProjectsIframe() {
     return <NoProjectSelected />
 
   if (!projectIframe?.url)
-    return <ProjectsReadme />
+    return <Readme />
 
   return <>
-    { iframeLoading && <ProjectsIframeLoader /> }
-    <iframe onLoad={() => setIframeLoading(false)} loading={'lazy'} src={projectIframe?.url} className="w-full h-full bg-black" />
+    {iframeLoading &&
+      (
+        <IframeOverlay>
+          <Spinner className='w-10 h-10' />
+        </IframeOverlay>
+      )
+    }
+    <iframe onLoad={() => setIframeLoading(false)} loading={'lazy'} src={projectIframe?.url} className="w-full h-full" />
   </>
 }
 
-export default ProjectsIframe
+export default Iframe

@@ -4,7 +4,7 @@ import { VariantProps } from 'class-variance-authority'
 import cn from '@/utils/cn';
 
 const drawerVariants = cva(
-    "absolute left-0 top-0 bottom-0 h-full z-10 shadow-lg transition-all duration-300 ease-in-out overflow-hidden text-neutral-200",
+    "absolute left-0 top-0 bottom-0 h-screen z-10 shadow-lg transition-all duration-300 ease-in-out overflow-hidden text-neutral-200",
     {
         variants: {
             open: {

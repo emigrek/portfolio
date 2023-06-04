@@ -4,7 +4,7 @@ import { VariantProps } from 'class-variance-authority'
 import cn from '@/utils/cn';
 
 const sidebarVariants = cva(
-    "h-full bg-neutral-900 shadow-lg transition-all duration-300 ease-in-out overflow-hidden text-neutral-200",
+    "h-screen bg-neutral-900 shadow-lg transition-all duration-300 ease-in-out overflow-hidden text-neutral-200",
     {
         variants: {
             variant: {
