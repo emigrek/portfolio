@@ -7,8 +7,12 @@ import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import Readme from '@/components/screens/projects/Readme';
 import IframeOverlay from '@/components/screens/projects/IframeOverlay';
 import Spinner from '@/components/ui/Spinner/Spinner';
+import { Button } from '@/components/ui/Button/Button';
+import { FaReadme } from 'react-icons/fa';
+import ToggleReadmeButton from './ToggleReadmeButton';
 
 function Iframe() {
+  const [readmeVisible, setReadmeVisible] = useState(true);
   const [iframeLoading, setIframeLoading] = useState(true);
   const sortedProjects = useSortedProjects();
 
@@ -36,6 +40,13 @@ function Iframe() {
     return <Readme />
 
   return <>
+    {readmeVisible &&
+      (
+        <IframeOverlay>
+          <Readme />
+        </IframeOverlay>
+      )
+    }
     {iframeLoading &&
       (
         <IframeOverlay>
@@ -43,6 +54,7 @@ function Iframe() {
         </IframeOverlay>
       )
     }
+    <ToggleReadmeButton active={readmeVisible} onClick={() => setReadmeVisible(!readmeVisible)} />
     <iframe onLoad={() => setIframeLoading(false)} loading={'lazy'} src={projectIframe?.url} className="w-full h-full" />
   </>
 }
