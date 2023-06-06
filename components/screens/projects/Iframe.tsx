@@ -7,13 +7,12 @@ import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import Readme from '@/components/screens/projects/Readme';
 import IframeOverlay from '@/components/screens/projects/IframeOverlay';
 import Spinner from '@/components/ui/Spinner/Spinner';
-import { Button } from '@/components/ui/Button/Button';
-import { FaReadme } from 'react-icons/fa';
 import ToggleReadmeButton from './ToggleReadmeButton';
 
 function Iframe() {
-  const [readmeVisible, setReadmeVisible] = useState(true);
+  const [readmeVisible, setReadmeVisible] = useState(false);
   const [iframeLoading, setIframeLoading] = useState(true);
+  const [readmeTimeout, setReadmeTimeout] = useState<number | null>(null);
   const sortedProjects = useSortedProjects();
 
   const projectIframe = useRecoilValue(projectIframeState);
@@ -27,10 +26,20 @@ function Iframe() {
 
   useEffect(() => {
     if (!projectIframe) return;
-
     if (!projectIframe?.url) return;
+    if (readmeTimeout) window.clearTimeout(readmeTimeout);
 
     setIframeLoading(true);
+    setReadmeVisible(true);
+
+    const timeout = window.setTimeout(() => {
+      setReadmeVisible(false);
+    }, 5000);
+    setReadmeTimeout(timeout);
+
+    return () => {
+      if (timeout) window.clearTimeout(timeout);
+    }
   }, [projectIframe, setIframeLoading]);
 
   if (!projectIframe)
