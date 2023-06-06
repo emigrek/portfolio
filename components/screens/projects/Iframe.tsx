@@ -7,7 +7,7 @@ import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import Readme from '@/components/screens/projects/Readme';
 import IframeOverlay from '@/components/screens/projects/IframeOverlay';
 import Spinner from '@/components/ui/Spinner/Spinner';
-import ToggleReadmeButton from './ToggleReadmeButton';
+import ToggleReadmeButton from '@/components/screens/projects/ToggleReadmeButton';
 
 function Iframe() {
   const [readmeVisible, setReadmeVisible] = useState(false);
@@ -40,7 +40,7 @@ function Iframe() {
     return () => {
       if (timeout) window.clearTimeout(timeout);
     }
-  }, [projectIframe, setIframeLoading]);
+  }, [projectIframe, setIframeLoading, readmeTimeout, setReadmeTimeout, setReadmeVisible]);
 
   if (!projectIframe)
     return <NoProjectSelected />
