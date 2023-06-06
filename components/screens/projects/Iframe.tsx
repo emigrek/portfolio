@@ -20,7 +20,10 @@ function Iframe() {
   useEffect(() => {
     if (!sortedProjects || !sortedProjects.length) return;
 
-    setProjectIframe(sortedProjects.at(0)!);
+    const valid = sortedProjects.filter(project => project.url);
+    if (!valid.length) return;
+
+    setProjectIframe(valid.at(0)!);
   }, [sortedProjects, setProjectIframe]);
 
   useEffect(() => {
