@@ -12,7 +12,6 @@ import ToggleReadmeButton from '@/components/screens/projects/ToggleReadmeButton
 function Iframe() {
   const [readmeVisible, setReadmeVisible] = useState(false);
   const [iframeLoading, setIframeLoading] = useState(true);
-  const [readmeTimeout, setReadmeTimeout] = useState<number | null>(null);
   const sortedProjects = useSortedProjects();
 
   const projectIframe = useRecoilValue(projectIframeState);
@@ -27,7 +26,6 @@ function Iframe() {
   useEffect(() => {
     if (!projectIframe) return;
     if (!projectIframe?.url) return;
-    if (readmeTimeout) window.clearTimeout(readmeTimeout);
 
     setIframeLoading(true);
     setReadmeVisible(true);
@@ -35,12 +33,12 @@ function Iframe() {
     const timeout = window.setTimeout(() => {
       setReadmeVisible(false);
     }, 5000);
-    setReadmeTimeout(timeout);
 
     return () => {
-      if (timeout) window.clearTimeout(timeout);
+      if (timeout)
+        window.clearTimeout(timeout);
     }
-  }, [projectIframe, setIframeLoading, readmeTimeout, setReadmeTimeout, setReadmeVisible]);
+  }, [projectIframe, setIframeLoading]);
 
   if (!projectIframe)
     return <NoProjectSelected />
