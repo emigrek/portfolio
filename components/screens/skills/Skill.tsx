@@ -9,9 +9,16 @@ interface SkillProps extends HTMLAttributes<HTMLDivElement> {
 
 const Skill: FC<SkillProps> = ({ skill, className, ...props }) => {
   return (
-    <div className={cn('flex flex-col items-center justify-center w-full gap-4 border rounded-lg shadow-lg h-28 md:h-40 bg-neutral-900/60 backdrop-blur-sm border-neutral-800', className)} {...props}>
+    <div
+      className={cn(`flex flex-col items-center justify-center w-full gap-2 md:gap-4 rounded-md shadow-md h-28 md:h-40 bg-neutral-900/70 backdrop-blur-sm border-b-4`, className)}
+      style={{ borderColor: skill.color }}
+      {...props}
+    >
       <SkillImage image={skill.image} color={skill.color} />
-      <div className='text-[0.7rem] font-medium sm:text-base md:text-lg text-neutral-200'>{skill?.title}</div>
+      <div className='flex flex-col text-center'>
+        <div className='text-[0.7rem] font-medium sm:text-sm md:text-base text-neutral-200'>{skill?.title}</div>
+        <div className='text-[0.65rem] md:text-sm text-neutral-400'>{skill?.category}</div>
+      </div>
     </div>
   )
 }

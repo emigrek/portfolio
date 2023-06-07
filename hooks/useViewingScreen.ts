@@ -1,12 +1,12 @@
 import { useRecoilValue } from "recoil";
 import { pageState } from "@/atoms/page";
 import { screens } from "@/utils/screens";
-import { useCallback } from "react";
+import { useMemo } from "react";
 
 const useViewingScreen = () => {
   const page = useRecoilValue(pageState);
 
-  const getCurrentViewingScreen = useCallback(
+  return useMemo(
     () => {
       if (page.scrollProgress >= 0 && page.scrollProgress < 50)
         return screens[0];
@@ -18,8 +18,6 @@ const useViewingScreen = () => {
     },
     [page.scrollProgress],
   );
-
-  return getCurrentViewingScreen();
 }
 
 export default useViewingScreen

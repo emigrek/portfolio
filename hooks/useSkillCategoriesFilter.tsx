@@ -7,9 +7,13 @@ const useSkillCategoriesFilter = (skills: Skill[] | null, categories: string[]) 
     const categoryFilteredSkills = useMemo(() => {
         if (!skills) return [];
 
-        if (!activeCategory) return skills;
-
-        return skills.filter(skill => skill.category === activeCategory);
+        return skills
+            .filter((skill) => {
+                if (activeCategory === null) return true;
+                return skill.category === activeCategory;
+            })
+            .sort((a, b) => a.title.localeCompare(b.title))
+            .sort((a, b) => a.category.localeCompare(b.category));
     }, [skills, activeCategory]);
 
     return {
