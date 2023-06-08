@@ -36,7 +36,6 @@ export interface Social extends SanityBody {
 export interface Skill extends SanityBody {
     _type: "skill";
     title: string;
-    progress: number;
     color: string;
     category: string;
     image: Image;
@@ -48,7 +47,6 @@ export interface Project extends SanityBody {
     type: string;
     url: string | null;
     repo: string | null;
-    progress: number;
     skills: Skill[];
     pinned: boolean;
 }

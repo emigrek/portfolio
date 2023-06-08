@@ -9,13 +9,6 @@ export default {
             type: "string"
         },
         {
-            name: 'progress',
-            title: 'Progress',
-            type: "number",
-            description: 'Progress in percentage',
-            validation: (Rule) => Rule.min(0).max(100)
-        },
-        {
             name: 'image',
             title: 'Image',
             type: 'image',
