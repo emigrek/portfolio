@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Navbar as Nav } from '@/components/ui/Navbar/Navbar';
 import { Screen } from '@/typings';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -20,10 +20,6 @@ function Navbar() {
     const handleNavigationDrawerToggle = () => {
         setPage(state => ({ ...state, navigationDrawer: !state.navigationDrawer }));
     }
-
-    useEffect(() => {
-        console.log(page.scrollProgress);
-    }, [page.scrollProgress])
 
     if (page.navigationDrawer || page.scrollProgress >= 90) return null;
 
