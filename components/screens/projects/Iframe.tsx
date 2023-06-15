@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { projectIframeState } from '@/atoms/projectIframe';
 import useSortedProjects from '@/hooks/useSortedProjects';
-
 import NoProjectSelected from '@/components/screens/projects/NoProjectSelected';
 import Readme from '@/components/screens/projects/Readme';
-import IframeOverlay from '@/components/screens/projects/IframeOverlay';
-import Spinner from '@/components/ui/Spinner/Spinner';
 import ToggleReadmeButton from '@/components/screens/projects/ToggleReadmeButton';
+import IframeLoadingOverlay from '@/components/screens/projects/IframeLoadingOverlay';
+import IframeReadmeOverlay from '@/components/screens/projects/IframeReadmeOverlay';
 
 function Iframe() {
   const [readmeVisible, setReadmeVisible] = useState(false);
@@ -33,15 +32,16 @@ function Iframe() {
     setIframeLoading(true);
     setReadmeVisible(true);
 
-    const timeout = window.setTimeout(() => {
+    const readmeTimeout = setTimeout(() => {
       setReadmeVisible(false);
-    }, 5000);
+    }, 8*1000);
 
-    return () => {
-      if (timeout)
-        window.clearTimeout(timeout);
-    }
-  }, [projectIframe, setIframeLoading]);
+    return () => clearTimeout(readmeTimeout);
+  }, [projectIframe, setIframeLoading, setReadmeVisible]);
+
+  const handleIframeLoad = () => {
+    setIframeLoading(false);
+  };
 
   if (!projectIframe)
     return <NoProjectSelected />
@@ -50,22 +50,10 @@ function Iframe() {
     return <Readme />
 
   return <>
-    {readmeVisible &&
-      (
-        <IframeOverlay>
-          <Readme />
-        </IframeOverlay>
-      )
-    }
-    {iframeLoading &&
-      (
-        <IframeOverlay>
-          <Spinner className='w-10 h-10' />
-        </IframeOverlay>
-      )
-    }
+    {readmeVisible && <IframeReadmeOverlay />}
+    {iframeLoading && <IframeLoadingOverlay />}
     <ToggleReadmeButton active={readmeVisible} onClick={() => setReadmeVisible(!readmeVisible)} />
-    <iframe onLoad={() => setIframeLoading(false)} loading={'lazy'} src={projectIframe?.url} className="w-full h-full" />
+    <iframe onLoad={handleIframeLoad} loading={'lazy'} src={projectIframe?.url} className="w-full h-full" />
   </>
 }
 
