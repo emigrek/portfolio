@@ -10,8 +10,8 @@ My homepage powered by Sanity.io and Next.js with Typescript
 | Recoil | state management  |
 | Sanity | headless cms  |
 | react-markdown | markdown preview |
-| Hero Icons | Icons |
-| chroma-js color.js | working with colors |
+| react-icons | icons |
+| chroma.js | colors |
 
 ## 🚀 Running
 ```
