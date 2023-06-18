@@ -1,39 +1,46 @@
 import React, { FC } from 'react'
 import { useRecoilValue } from 'recoil'
 import { projectIframeState } from '@/atoms/projectIframe'
-import useSWR from 'swr'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import Spinner from '@/components/ui/Spinner/Spinner'
+import useProjectMarkdown from '@/hooks/useProjectMarkdown'
 
 const Readme: FC = () => {
     const projectIframe = useRecoilValue(projectIframeState);
-
-    const partialUrl = projectIframe?.repo?.replace('https://github.com/', '');
-    const { data, error, isLoading } = useSWR(
-        `https://raw.githubusercontent.com/${partialUrl}/main/README.md`,
-        (url) => fetch(url).then((res) => res.text())
-    );
+    const { data, error, isLoading } = useProjectMarkdown(projectIframe);
 
     if (isLoading)
         return (
-            <div className="flex items-center justify-center w-full h-full">
-                <Spinner className='w-10 h-10' />
+            <div className='flex flex-col items-center justify-center gap-8'>
+                <Spinner className='w-14 h-14' />
+                <h1 className='text-lg'>
+                    Loading markdown...
+                </h1>
+            </div>
+        )
+
+    if (error)
+        return (
+            <div className="flex items-center justify-center">
+                <h1 className='text-lg text-white'>
+                    Couldn&apos;t load markdown file
+                </h1>
+            </div>
+        )
+
+    if (!data)
+        return (
+            <div className="flex items-center justify-center">
+                <h1 className='text-lg text-white'>
+                    This project doesn&apos;t have a markdown file
+                </h1>
             </div>
         )
 
     return (
-        <div className="w-full h-full overflow-y-auto backdrop-blur-sm bg-neutral-900/95">
-            {
-                error && (
-                    <div className="flex items-center justify-center h-full">
-                        <h1 className='text-lg font-medium text-white'>
-                            Couldn&apos;t load markdown file
-                        </h1>
-                    </div>
-                )
-            }
+        <div className="w-full h-full overflow-y-auto">
             <div className='flex items-center justify-center max-w-4xl mx-auto'>
                 {
                     data && (
