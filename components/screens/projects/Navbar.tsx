@@ -16,9 +16,9 @@ function ProjectsNavbar() {
   }
 
   return (
-    <Navbar variant={'blue'} className='sticky z-0 flex items-center justify-between gap-3 px-3 lg:hidden'>
+    <Navbar variant={'blue'} className='sticky z-0 flex items-center justify-between gap-3 px-3 shadow-none lg:hidden'>
       <div className='flex items-center gap-3'>
-        <Button className='cursor-pointer bg-black/20 hover:bg-black/30' onClick={handleProjectsDrawerToggle} iconRight={GoThreeBars} />
+        <Button className='bg-transparent cursor-pointer hover:bg-black/20' onClick={handleProjectsDrawerToggle} iconRight={GoThreeBars} />
         <div className='flex flex-col'>
           <div className='text-xl font-medium text-white'>
             {projectIframe?.title}

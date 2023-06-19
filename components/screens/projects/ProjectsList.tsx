@@ -7,7 +7,7 @@ const ProjectsList: FC = () => {
 
     return (
         <div className='flex flex-col gap-2'>
-            <h1 className='py-3 mx-2 text-2xl font-medium text-white'>Projects</h1>
+            <h1 className='py-2 mx-2 text-2xl font-medium text-white'>Projects</h1>
             <div className='w-full border-b border-b-black/20'/>
             <div className='flex flex-col gap-1'>
                 {

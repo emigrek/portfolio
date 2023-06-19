@@ -45,7 +45,7 @@ const Readme: FC = () => {
                 {
                     data && (
                         <ReactMarkdown
-                            className="w-full p-2 text-white"
+                            className="w-full p-5 text-white"
                             remarkPlugins={[remarkGfm]}
                             rehypePlugins={[rehypeRaw]}
                             components={{
