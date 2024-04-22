@@ -3,7 +3,17 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['raw.githubusercontent.com', 'cdn.sanity.io', 'ui-avatars.com'],
+    remotePatterns: [
+      {
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        hostname: "cdn.sanity.io",
+      },
+      {
+        hostname: "ui-avatars.com",
+      },
+    ]
   }
 }
 
