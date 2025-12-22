@@ -1,13 +1,13 @@
-import Screen from '@/components/ui/Screen/Screen';
+import Screen from "@/components/ui/Screen/Screen";
 
-import Sidebar from '@/components/screens/projects/Sidebar';
-import Navbar from '@/components/screens/projects/Navbar';
-import Drawer from '@/components/screens/projects/Drawer';
-import Iframe from '@/components/screens/projects/Iframe';
+import Sidebar from "@/components/screens/projects/Sidebar";
+import Navbar from "@/components/screens/projects/Navbar";
+import Drawer from "@/components/screens/projects/Drawer";
+import Iframe from "@/components/screens/projects/Iframe";
 
 function ProjectsScreen() {
   return (
-    <Screen id="projects" className="relative flex">
+    <Screen id="projects" className="relative flex h-screen">
       <Sidebar />
       <Drawer />
       <div className="w-full flex flex-col lg:w-[calc(100%-theme('spacing.64'))] bg-blue-500">
@@ -17,7 +17,7 @@ function ProjectsScreen() {
         </div>
       </div>
     </Screen>
-  )
+  );
 }
 
-export default ProjectsScreen
+export default ProjectsScreen;
