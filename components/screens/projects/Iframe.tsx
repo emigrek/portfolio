@@ -7,8 +7,13 @@ import Readme from "@/components/screens/projects/Readme";
 import ToggleReadmeButton from "@/components/screens/projects/ToggleReadmeButton";
 import IframeLoadingOverlay from "@/components/screens/projects/IframeLoadingOverlay";
 import IframeReadmeOverlay from "@/components/screens/projects/IframeReadmeOverlay";
+import cn from "@/utils/cn";
 
-function Iframe() {
+interface IframeProps {
+  className?: string;
+}
+
+function Iframe({ className }: IframeProps) {
   const [readmeVisible, setReadmeVisible] = useState(false);
   const [iframeLoading, setIframeLoading] = useState(true);
   const sortedProjects = useSortedProjects();
@@ -52,7 +57,7 @@ function Iframe() {
         onLoad={handleIframeLoad}
         loading={"lazy"}
         src={projectIframe?.url}
-        className="w-full h-full"
+        className={cn("w-full h-full", className)}
       />
     </>
   );

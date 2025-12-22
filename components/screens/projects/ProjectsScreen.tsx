@@ -7,13 +7,15 @@ import Iframe from "@/components/screens/projects/Iframe";
 
 function ProjectsScreen() {
   return (
-    <Screen id="projects" className="relative flex h-screen">
+    <Screen id="projects" className="relative flex">
       <Sidebar />
       <Drawer />
-      <div className="w-full flex flex-col lg:w-[calc(100%-theme('spacing.64'))] bg-blue-500">
-        <Navbar />
-        <div className="flex items-center justify-center flex-grow md:h-[calc(100%-theme('spacing.20'))] h-[calc(100%-theme('spacing.16'))] overflow-hidden m-1 rounded-xl bg-neutral-900">
-          <Iframe />
+
+      <div className="flex w-full flex-col bg-blue-500 lg:w-[calc(100%-theme('spacing.64'))] min-h-0">
+        <Navbar className="shrink-0" />
+
+        <div className="flex items-center justify-center flex-1 min-h-0 m-1 overflow-hidden rounded-xl bg-neutral-900">
+          <Iframe className="w-full h-full" />
         </div>
       </div>
     </Screen>
