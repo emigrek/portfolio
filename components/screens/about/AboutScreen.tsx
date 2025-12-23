@@ -10,17 +10,9 @@ function AboutScreen() {
       <About />
       <div className="absolute inset-0 w-full h-full overflow-hidden z-[1]">
         <LightRays
-          color="rgba(60, 129, 246, 0.2)"
+          colors={["rgba(60, 129, 246, 0.2)", "rgba(217, 70, 239, 0.2)"]}
           length="110vh"
-          count={7}
-          blur={50}
-        />
-        <LightRays
-          color="rgba(217, 70, 239, 0.2)"
-          length="110vh"
-          count={7}
-          speed={24}
-          blur={50}
+          count={20}
         />
       </div>
       <ScrollableIndicator />

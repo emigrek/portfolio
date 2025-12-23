@@ -8,7 +8,7 @@ import cn from "@/utils/cn";
 interface LightRaysProps extends React.HTMLAttributes<HTMLDivElement> {
   ref?: React.Ref<HTMLDivElement>;
   count?: number;
-  color?: string;
+  colors?: string[]; // 👈 instead of color
   blur?: number;
   speed?: number;
   length?: string;
@@ -23,10 +23,16 @@ type LightRay = {
   delay: number;
   duration: number;
   intensity: number;
+  color: string; // 👈 per-ray color
 };
 
-const createRays = (count: number, cycle: number): LightRay[] => {
+const createRays = (
+  count: number,
+  cycle: number,
+  colors: string[]
+): LightRay[] => {
   if (count <= 0) return [];
+  const palette = colors?.length ? colors : ["rgba(160, 210, 255, 0.2)"];
 
   return Array.from({ length: count }, (_, index) => {
     const left = 8 + Math.random() * 84;
@@ -36,6 +42,7 @@ const createRays = (count: number, cycle: number): LightRay[] => {
     const delay = Math.random() * cycle;
     const duration = cycle * (0.75 + Math.random() * 0.5);
     const intensity = 0.6 + Math.random() * 0.5;
+    const color = palette[Math.floor(Math.random() * palette.length)];
 
     return {
       id: `${index}-${Math.round(left * 10)}`,
@@ -46,6 +53,7 @@ const createRays = (count: number, cycle: number): LightRay[] => {
       delay,
       duration,
       intensity,
+      color,
     };
   });
 };
@@ -58,14 +66,16 @@ const Ray = ({
   delay,
   duration,
   intensity,
+  color,
 }: LightRay) => {
   return (
     <motion.div
-      className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--light-rays-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
+      className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--ray-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
       style={
         {
           "--ray-left": `${left}%`,
           "--ray-width": `${width}px`,
+          "--ray-color": color, // 👈 per-ray var
         } as CSSProperties
       }
       initial={{ rotate: rotate }}
@@ -88,7 +98,7 @@ export function LightRays({
   className,
   style,
   count = 7,
-  color = "rgba(160, 210, 255, 0.2)",
+  colors = ["rgba(160, 210, 255, 0.2)"], // 👈 default palette
   blur = 36,
   speed = 14,
   length = "90vh",
@@ -99,8 +109,8 @@ export function LightRays({
   const cycleDuration = Math.max(speed, 0.1);
 
   useEffect(() => {
-    setRays(createRays(count, cycleDuration));
-  }, [count, cycleDuration]);
+    setRays(createRays(count, cycleDuration, colors));
+  }, [count, cycleDuration, colors]);
 
   return (
     <div
@@ -111,7 +121,6 @@ export function LightRays({
       )}
       style={
         {
-          "--light-rays-color": color,
           "--light-rays-blur": `${blur}px`,
           "--light-rays-length": length,
           ...style,

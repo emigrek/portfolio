@@ -34,10 +34,14 @@ function Navbar() {
           "flex items-center justify-between md:justify-center bg-background/90 supports-[backdrop-filter]:bg-background/90"
         )}
       >
-        <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-black/70 via-black/30 to-transparent" />
-        <div className="absolute inset-0 pointer-events-none z-[-1]">
-          <div className="w-full h-full backdrop-blur-[80px] mask-gradient-blur" />
-        </div>
+        {page.scrollProgress > 10 && (
+          <>
+            <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-black/70 via-black/30 to-transparent" />
+            <div className="absolute inset-0 pointer-events-none z-[-1]">
+              <div className="w-full h-full backdrop-blur-[80px] mask-gradient-blur" />
+            </div>
+          </>
+        )}
         <Button
           className="ml-3 cursor-pointer md:hidden"
           onClick={handleNavigationDrawerToggle}
