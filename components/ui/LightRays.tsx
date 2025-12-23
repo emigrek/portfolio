@@ -1,17 +1,36 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import * as React from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
+import { createPortal } from "react-dom";
 import { motion } from "motion/react";
-
 import cn from "@/utils/cn";
 
+type CSSVars = { [key in `--${string}`]?: string | number };
+type StyleWithVars = React.CSSProperties & CSSVars;
+
 interface LightRaysProps extends React.HTMLAttributes<HTMLDivElement> {
-  ref?: React.Ref<HTMLDivElement>;
   count?: number;
-  colors?: string[]; // 👈 instead of color
+  colors?: string[];
   blur?: number;
   speed?: number;
   length?: string;
+
+  /** Render into document.body to escape transformed ancestors */
+  portal?: boolean;
+
+  /** z-index for the container */
+  zIndex?: number;
+
+  /** If provided, rays will track this element and scroll past with it */
+  followRef?: React.RefObject<HTMLElement>;
+  followSelector?: string; // e.g. "#about"
 }
 
 type LightRay = {
@@ -23,7 +42,7 @@ type LightRay = {
   delay: number;
   duration: number;
   intensity: number;
-  color: string; // 👈 per-ray color
+  color: string;
 };
 
 const createRays = (
@@ -75,64 +94,152 @@ const Ray = ({
         {
           "--ray-left": `${left}%`,
           "--ray-width": `${width}px`,
-          "--ray-color": color, // 👈 per-ray var
-        } as CSSProperties
+          "--ray-color": color,
+        } as StyleWithVars
       }
-      initial={{ rotate: rotate }}
+      initial={{ rotate }}
       animate={{
         opacity: [0, intensity, 0],
         rotate: [rotate - swing, rotate + swing, rotate - swing],
       }}
       transition={{
-        duration: duration,
+        duration,
         repeat: Infinity,
         ease: "easeInOut",
-        delay: delay,
+        delay,
         repeatDelay: duration * 0.1,
       }}
     />
   );
 };
 
-export function LightRays({
-  className,
-  style,
-  count = 7,
-  colors = ["rgba(160, 210, 255, 0.2)"], // 👈 default palette
-  blur = 36,
-  speed = 14,
-  length = "90vh",
-  ref,
-  ...props
-}: LightRaysProps) {
-  const [rays, setRays] = useState<LightRay[]>([]);
-  const cycleDuration = Math.max(speed, 0.1);
-
-  useEffect(() => {
-    setRays(createRays(count, cycleDuration, colors));
-  }, [count, cycleDuration, colors]);
-
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "pointer-events-none absolute inset-0 isolate overflow-hidden rounded-[inherit]",
-        className
-      )}
-      style={
-        {
-          "--light-rays-blur": `${blur}px`,
-          "--light-rays-length": length,
-          ...style,
-        } as CSSProperties
-      }
-      {...props}
-    >
-      <div className="absolute inset-0 overflow-hidden">
-        {rays.map((ray) => (
-          <Ray key={ray.id} {...ray} />
-        ))}
-      </div>
-    </div>
-  );
+function setForwardedRef<T>(ref: React.ForwardedRef<T>, value: T) {
+  if (typeof ref === "function") ref(value);
+  else if (ref) (ref as React.MutableRefObject<T>).current = value;
 }
+
+export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
+  function LightRays(
+    {
+      className,
+      style,
+      count = 7,
+      colors = ["rgba(160, 210, 255, 0.2)"],
+      blur = 36,
+      speed = 14,
+      length = "90vh",
+      portal = true,
+      zIndex = 0,
+      followRef,
+      followSelector,
+      ...props
+    },
+    forwardedRef
+  ) {
+    const followEnabled = !!followRef || !!followSelector;
+
+    // mounted gate for portal (avoid SSR mismatch)
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
+    const [rays, setRays] = useState<LightRay[]>([]);
+    const cycleDuration = Math.max(speed, 0.1);
+
+    // Avoid regenerating if caller passes inline array every render
+    const paletteKey = useMemo(() => colors.join("|"), [colors]);
+
+    useEffect(() => {
+      setRays(createRays(count, cycleDuration, colors));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [count, cycleDuration, paletteKey]);
+
+    const hostRef = useRef<HTMLDivElement | null>(null);
+
+    // Follow loop: fixed + rect in RAF (smooth-scroll safe)
+    useEffect(() => {
+      if (!followEnabled) return;
+
+      let raf = 0;
+      let el: HTMLElement | null =
+        followRef?.current ??
+        (followSelector
+          ? (document.querySelector(followSelector) as HTMLElement | null)
+          : null);
+
+      const tick = () => {
+        const host = hostRef.current;
+        if (!host) {
+          raf = requestAnimationFrame(tick);
+          return;
+        }
+
+        // If element wasn't found yet, keep trying
+        if (!el) {
+          el =
+            followRef?.current ??
+            (followSelector
+              ? (document.querySelector(followSelector) as HTMLElement | null)
+              : null);
+          raf = requestAnimationFrame(tick);
+          return;
+        }
+
+        const rect = el.getBoundingClientRect();
+        const br = window.getComputedStyle(el).borderRadius || "0px";
+
+        // Important: neutralize "inset-0" and similar classes
+        host.style.inset = "auto";
+        host.style.top = `${rect.top}px`;
+        host.style.left = `${rect.left}px`;
+        host.style.right = "auto";
+        host.style.bottom = "auto";
+        host.style.width = `${rect.width}px`;
+        host.style.height = `${rect.height}px`;
+        host.style.borderRadius = br;
+
+        raf = requestAnimationFrame(tick);
+      };
+
+      raf = requestAnimationFrame(tick);
+      return () => cancelAnimationFrame(raf);
+    }, [followEnabled, followRef, followSelector]);
+
+    const node = (
+      <div
+        ref={(node) => {
+          hostRef.current = node;
+          setForwardedRef(forwardedRef, node as any);
+        }}
+        className={cn(
+          "pointer-events-none fixed isolate overflow-hidden",
+          !followEnabled && "inset-0",
+          className
+        )}
+        style={
+          {
+            zIndex,
+            // Prevent flash before RAF positions it (follow mode)
+            ...(followEnabled
+              ? { inset: "auto", top: -9999, left: -9999, width: 0, height: 0 }
+              : null),
+            "--light-rays-blur": `${blur}px`,
+            "--light-rays-length": length,
+            ...style,
+          } as StyleWithVars
+        }
+        {...props}
+      >
+        <div className="absolute inset-0 overflow-hidden">
+          {rays.map((ray) => (
+            <Ray key={ray.id} {...ray} />
+          ))}
+        </div>
+      </div>
+    );
+
+    if (!portal) return node;
+    if (!mounted) return null;
+
+    return createPortal(node, document.body);
+  }
+);

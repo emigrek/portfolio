@@ -8,13 +8,14 @@ function AboutScreen() {
   return (
     <Screen id="about" className="relative flex items-center justify-center">
       <About />
-      <div className="absolute inset-0 w-full h-full overflow-hidden z-[1]">
-        <LightRays
-          colors={["rgba(60, 129, 246, 0.2)", "rgba(217, 70, 239, 0.2)"]}
-          length="110vh"
-          count={20}
-        />
-      </div>
+      <LightRays
+        followSelector="#about" // 👈 scrolls with this section
+        portal
+        zIndex={1}
+        colors={["rgba(60, 129, 246, 0.2)", "rgba(217, 70, 239, 0.2)"]}
+        length="110vh"
+        count={14}
+      />
       <ScrollableIndicator />
       <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-stone-800 to-transparent" />
     </Screen>
