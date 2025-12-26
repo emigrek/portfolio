@@ -14,7 +14,7 @@ function ProjectsScreen() {
       <div className="flex w-full flex-col bg-blue-500 lg:w-[calc(100%-theme('spacing.64'))] min-h-0">
         <Navbar className="shrink-0" />
 
-        <div className="flex items-center justify-center flex-1 min-h-0 m-1 overflow-hidden rounded-xl bg-neutral-900">
+        <div className="flex items-center justify-center flex-1 max-h-[100dvh] m-1 overflow-hidden rounded-xl bg-neutral-900">
           <Iframe className="w-full h-full" />
         </div>
       </div>

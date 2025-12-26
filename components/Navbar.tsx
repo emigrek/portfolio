@@ -36,9 +36,9 @@ function Navbar() {
       >
         {page.scrollProgress > 10 && (
           <>
-            <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-black/70 via-black/30 to-transparent" />
+            <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-stone-900/70 via-stone-800/30 to-transparent" />
             <div className="absolute inset-0 pointer-events-none z-[-1]">
-              <div className="w-full h-full backdrop-blur-[80px] mask-gradient-blur" />
+              <div className="w-full h-full backdrop-blur-[100px] mask-gradient-blur" />
             </div>
           </>
         )}
