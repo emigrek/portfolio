@@ -34,7 +34,7 @@ function Navbar() {
           "flex items-center justify-between md:justify-center bg-background/90 supports-[backdrop-filter]:bg-background/90"
         )}
       >
-        {page.scrollProgress > 10 && (
+        {page.scrollProgress > 5 && (
           <>
             <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-stone-900/70 via-stone-800/30 to-transparent" />
             <div className="absolute inset-0 pointer-events-none z-[-1]">

@@ -15,11 +15,13 @@ import cn from "@/utils/cn";
 type CSSVars = { [key in `--${string}`]?: string | number };
 type StyleWithVars = React.CSSProperties & CSSVars;
 
+type ColorsProp = string[] | string[][];
+
 interface LightRaysProps extends React.HTMLAttributes<HTMLDivElement> {
   count?: number;
-  colors?: string[];
+  colors?: ColorsProp;
   blur?: number;
-  speed?: number;
+  speed?: number; // seconds per cycle
   length?: string;
 
   /** Render into document.body to escape transformed ancestors */
@@ -42,16 +44,35 @@ type LightRay = {
   delay: number;
   duration: number;
   intensity: number;
-  color: string;
+  colorSeed: number; // stable random seed -> resolved against current palette
 };
 
-const createRays = (
-  count: number,
-  cycle: number,
-  colors: string[]
-): LightRay[] => {
+function normalizePalettes(colors?: ColorsProp): string[][] {
+  const fallback = ["rgba(160, 210, 255, 0.2)"];
+  if (!colors) return [fallback];
+
+  // string[]
+  if (typeof colors[0] === "string") {
+    const p = (colors as string[]).filter(Boolean);
+    return [p.length ? p : fallback];
+  }
+
+  // string[][]
+  const palettes = (colors as string[][])
+    .map((p) => p.filter(Boolean))
+    .filter((p) => p.length > 0);
+
+  return palettes.length ? palettes : [fallback];
+}
+
+function resolveColor(seed: number, palette: string[]): string {
+  if (!palette.length) return "rgba(160, 210, 255, 0.2)";
+  const idx = Math.floor(seed * palette.length) % palette.length;
+  return palette[idx];
+}
+
+const createRays = (count: number, cycle: number): LightRay[] => {
   if (count <= 0) return [];
-  const palette = colors?.length ? colors : ["rgba(160, 210, 255, 0.2)"];
 
   return Array.from({ length: count }, (_, index) => {
     const left = 8 + Math.random() * 84;
@@ -61,7 +82,7 @@ const createRays = (
     const delay = Math.random() * cycle;
     const duration = cycle * (0.75 + Math.random() * 0.5);
     const intensity = 0.6 + Math.random() * 0.5;
-    const color = palette[Math.floor(Math.random() * palette.length)];
+    const colorSeed = Math.random();
 
     return {
       id: `${index}-${Math.round(left * 10)}`,
@@ -72,7 +93,7 @@ const createRays = (
       delay,
       duration,
       intensity,
-      color,
+      colorSeed,
     };
   });
 };
@@ -86,7 +107,7 @@ const Ray = ({
   duration,
   intensity,
   color,
-}: LightRay) => {
+}: Omit<LightRay, "colorSeed"> & { color: string }) => {
   return (
     <motion.div
       className="pointer-events-none absolute -top-[12%] left-[var(--ray-left)] h-[var(--light-rays-length)] w-[var(--ray-width)] origin-top -translate-x-1/2 rounded-full bg-gradient-to-b from-[color-mix(in_srgb,var(--ray-color)_70%,transparent)] to-transparent opacity-0 mix-blend-screen blur-[var(--light-rays-blur)]"
@@ -138,24 +159,54 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
   ) {
     const followEnabled = !!followRef || !!followSelector;
 
-    // mounted gate for portal (avoid SSR mismatch)
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
 
-    const [rays, setRays] = useState<LightRay[]>([]);
     const cycleDuration = Math.max(speed, 0.1);
 
-    // Avoid regenerating if caller passes inline array every render
-    const paletteKey = useMemo(() => colors.join("|"), [colors]);
+    const palettes = useMemo(() => normalizePalettes(colors), [colors]);
+    const palettesKey = useMemo(
+      () => palettes.map((p) => p.join("|")).join("||"),
+      [palettes]
+    );
 
+    const [cycleIndex, setCycleIndex] = useState(0);
+
+    // Rotate palette once per cycleDuration (aligned, minimal drift)
     useEffect(() => {
-      setRays(createRays(count, cycleDuration, colors));
+      setCycleIndex(0);
+      if (palettes.length <= 1) return;
+
+      const t0 = performance.now();
+      let timer = 0;
+
+      const schedule = () => {
+        const elapsed = (performance.now() - t0) / 1000;
+        const nextIn = cycleDuration - (elapsed % cycleDuration);
+
+        timer = window.setTimeout(
+          () => {
+            setCycleIndex((i) => (i + 1) % palettes.length);
+            schedule();
+          },
+          Math.max(0, nextIn) * 1000
+        );
+      };
+
+      schedule();
+      return () => window.clearTimeout(timer);
+    }, [palettes.length, cycleDuration, palettesKey]);
+
+    const activePalette = palettes[cycleIndex] ?? palettes[0];
+
+    const [rays, setRays] = useState<LightRay[]>([]);
+    useEffect(() => {
+      setRays(createRays(count, cycleDuration));
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [count, cycleDuration, paletteKey]);
+    }, [count, cycleDuration, palettesKey]);
 
     const hostRef = useRef<HTMLDivElement | null>(null);
 
-    // Follow loop: fixed + rect in RAF (smooth-scroll safe)
     useEffect(() => {
       if (!followEnabled) return;
 
@@ -173,7 +224,6 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
           return;
         }
 
-        // If element wasn't found yet, keep trying
         if (!el) {
           el =
             followRef?.current ??
@@ -187,7 +237,6 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
         const rect = el.getBoundingClientRect();
         const br = window.getComputedStyle(el).borderRadius || "0px";
 
-        // Important: neutralize "inset-0" and similar classes
         host.style.inset = "auto";
         host.style.top = `${rect.top}px`;
         host.style.left = `${rect.left}px`;
@@ -218,7 +267,6 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
         style={
           {
             zIndex,
-            // Prevent flash before RAF positions it (follow mode)
             ...(followEnabled
               ? { inset: "auto", top: -9999, left: -9999, width: 0, height: 0 }
               : null),
@@ -231,7 +279,11 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
       >
         <div className="absolute inset-0 overflow-hidden">
           {rays.map((ray) => (
-            <Ray key={ray.id} {...ray} />
+            <Ray
+              key={ray.id}
+              {...ray}
+              color={resolveColor(ray.colorSeed, activePalette)}
+            />
           ))}
         </div>
       </div>
