@@ -11,12 +11,14 @@ const ScrollableIndicator: FC = () => {
         iconRight={CgScrollV}
         className="hidden animate-bounce sm:flex"
         size={"large"}
+        variant={"transparent"}
       />
       <Button
         href={"#skills"}
         iconRight={MdOutlineSwipeDown}
         className="flex animate-bounce sm:hidden"
         size={"large"}
+        variant={"transparent"}
       />
     </div>
   );
