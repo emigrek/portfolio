@@ -223,6 +223,7 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
 
     useEffect(() => {
       if (!followEnabled) return;
+      if (portal && !mounted) return;
 
       const getScrollParent = (
         node: HTMLElement | null
@@ -336,7 +337,7 @@ export const LightRays = React.forwardRef<HTMLDivElement, LightRaysProps>(
         window.removeEventListener("scroll", schedule as any);
         if (raf) cancelAnimationFrame(raf);
       };
-    }, [followEnabled, followRef, followSelector]);
+    }, [followEnabled, followRef, followSelector, portal, mounted]);
 
     const node = (
       <div

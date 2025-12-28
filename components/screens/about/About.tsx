@@ -26,7 +26,7 @@ function About() {
       <div className="flex flex-row items-center gap-8 mx-auto md:gap-0 lg:items-start md:flex-col">
         <Image
           priority
-          className="relative p-2 mx-auto rounded-full shadow-xl w-36 lg:w-44 bg-neutral-300/5 backdrop-blur-xl"
+          className="relative p-2 mx-auto rounded-full shadow-xl w-[10rem] lg:w-[12rem] bg-neutral-300/5 backdrop-blur-xl"
           src={avatarSrc}
           width={500}
           height={500}
@@ -36,7 +36,7 @@ function About() {
           <h1 className="mt-4 text-lg font-medium text-white md:text-xl">
             {pageInfo?.name}
           </h1>
-          <h2 className="text-sm text-neutral-400">🎂 {birthdayFormatted}</h2>
+          <h2 className="text-sm text-neutral-400">{birthdayFormatted}</h2>
         </div>
       </div>
       <Sheet className="flex flex-col max-w-md gap-3 mx-4 text-center md:mx-0">
