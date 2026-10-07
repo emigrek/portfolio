@@ -1,15 +1,12 @@
 import React from 'react'
-import { useRecoilValue } from 'recoil';
-import { pageInfoState } from '@/atoms/pageInfo';
+import { Social as SocialType } from '@/typings';
 import Social from '@/components/screens/about/Social';
 
-function Socials() {
-    const pageInfo = useRecoilValue(pageInfoState);
-
+function Socials({ socials }: { socials: SocialType[] }) {
     return (
         <div className="flex items-center justify-center gap-2 align-middle md:flex-col">
             {
-                pageInfo?.socials?.map(social => (
+                socials?.map(social => (
                     <Social key={social?._id} social={social}/>
                 ))
             }

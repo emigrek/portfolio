@@ -4,8 +4,9 @@ import Screen from "@/components/ui/Screen/Screen";
 import ScrollableIndicator from "@/components/screens/about/ScrollableIndicator";
 import { LightRays } from "@/components/ui/LightRays";
 import { Meteors } from "@/components/ui/Meteors";
+import { PageInfo } from "@/typings";
 
-function AboutScreen() {
+function AboutScreen({ pageInfo }: { pageInfo: PageInfo }) {
   const ref = useRef<HTMLDivElement>(null);
   return (
     <Screen
@@ -13,7 +14,7 @@ function AboutScreen() {
       ref={ref}
       className="relative flex items-center justify-center"
     >
-      <About />
+      <About pageInfo={pageInfo} />
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <div className="relative w-[100dvw] h-[100dvh] overflow-hidden">
           <Meteors minDelay={0.4} number={4} angle={60} />
@@ -37,7 +38,7 @@ function AboutScreen() {
         count={14}
       />
       <ScrollableIndicator />
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-stone-800 to-transparent" />
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-stone-900 to-transparent" />
     </Screen>
   );
 }

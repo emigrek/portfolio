@@ -59,24 +59,28 @@ const buttonIconVariants = cva(
     }
 )
 
-interface ButtonProps extends HTMLAttributes<HTMLAnchorElement>,
+interface ButtonProps extends HTMLAttributes<HTMLElement>,
     VariantProps<typeof buttonVariants> {
     href?: string
     iconLeft?: IconType,
     iconRight?: IconType,
 }
 
-const Button = forwardRef<HTMLAnchorElement, ButtonProps>(({ children, iconLeft: IconL, iconRight: IconR, className, size, variant, ...props }, ref) => {
+// Renders a link when given href, otherwise a real <button> so it is keyboard and screen reader accessible.
+const Button = forwardRef<HTMLAnchorElement & HTMLButtonElement, ButtonProps>(({ children, iconLeft: IconL, iconRight: IconR, className, size, variant, ...props }, ref) => {
+    const Comp = props.href ? "a" : "button";
+
     return (
-        <a
+        <Comp
             ref={ref}
+            type={props.href ? undefined : "button"}
             className={cn(buttonVariants({ className, size, variant }))}
             {...props}
         >
             {IconL ? <IconL className={cn(buttonIconVariants({ size, variant }))} /> : null}
             {children}
             {IconR ? <IconR className={cn(buttonIconVariants({ size, variant }))} /> : null}
-        </a>
+        </Comp>
     )
 })
 

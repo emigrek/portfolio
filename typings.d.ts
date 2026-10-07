@@ -5,12 +5,6 @@ export type Screen = {
     Icon?: IconType
 }
 
-export interface Page {
-    navigationDrawer: boolean;
-    projectsDrawer: boolean;
-    scrollProgress: number;
-}
-
 interface SanityBody {
     _createdAt: string;
     _id: string;

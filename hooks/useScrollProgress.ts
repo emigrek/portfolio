@@ -1,41 +1,28 @@
 import throttle from "lodash.throttle";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 type ScrollProgressProps = {
-  scrollRef: React.RefObject<HTMLDivElement>;
+  scrollRef: RefObject<HTMLElement>;
   throttling?: number;
-  onScroll?: (progress: number) => void;
 };
 
-function useScrollProgress({
-  scrollRef,
-  throttling,
-  onScroll,
-}: ScrollProgressProps) {
+function useScrollProgress({ scrollRef, throttling = 100 }: ScrollProgressProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const handleScroll = throttle(
-    () => {
-      if (!scrollRef.current) return;
-
-      const progress =
-        scrollRef.current.scrollTop /
-        (scrollRef.current.scrollHeight - scrollRef.current.clientHeight);
-      setScrollProgress(progress * 100);
-    },
-    throttling ? throttling : 100
-  );
-
   useEffect(() => {
-    const currentRef = scrollRef.current;
-    if (!currentRef) return;
+    const el = scrollRef.current;
+    if (!el) return;
 
-    currentRef.addEventListener("scroll", handleScroll);
+    const handleScroll = throttle(() => {
+      setScrollProgress((el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100);
+    }, throttling);
 
-    onScroll && onScroll(scrollProgress);
-
-    return () => currentRef.removeEventListener("scroll", handleScroll);
-  }, [scrollRef, onScroll, handleScroll, scrollProgress]);
+    el.addEventListener("scroll", handleScroll);
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel();
+    };
+  }, [scrollRef, throttling]);
 
   return scrollProgress;
 }

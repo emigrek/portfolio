@@ -9,7 +9,7 @@ const sidebarVariants = cva(
         variants: {
             variant: {
                 transparent: "bg-transparent",
-                blue: "bg-blue-500",
+                dark: "bg-stone-900",
             }
         },
         defaultVariants: {

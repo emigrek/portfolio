@@ -1,25 +1,21 @@
 import Image from "next/image";
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { pageInfoState } from "@/atoms/pageInfo";
 import { urlFor } from "@/sanity";
+import { PageInfo } from "@/typings";
 
 import Socials from "@/components/screens/about/Socials";
 import Sheet from "@/components/ui/Sheet/Sheet";
-import Spinner from "@/components/ui/Spinner/Spinner";
 import Link from "next/link";
 
-function About() {
-  const pageInfo = useRecoilValue(pageInfoState);
-  const birthdayFormatted = new Date(pageInfo?.birthday!).toLocaleDateString(
+function About({ pageInfo }: { pageInfo: PageInfo }) {
+  // UTC: the date is rendered on the server too, a local timezone would shift it by a day.
+  const birthdayFormatted = new Date(pageInfo.birthday).toLocaleDateString(
     "en-GB",
-    { year: "numeric", month: "numeric", day: "numeric" }
+    { year: "numeric", month: "numeric", day: "numeric", timeZone: "UTC" }
   );
   const avatarSrc = pageInfo?.avatar
     ? urlFor(pageInfo.avatar).width(500).height(500).url()
     : `https://ui-avatars.com/api/?name=${pageInfo?.name}&size=500&bold=true&background=000000&color=ffffff`;
-
-  if (!pageInfo) return <Spinner className="w-10 h-10" />;
 
   return (
     <div className="z-[2] flex flex-col items-center justify-center gap-8 md:flex-row">
@@ -56,7 +52,7 @@ function About() {
           <span className="inline-block md:hidden">👇</span>
         </div>
       </Sheet>
-      <Socials />
+      <Socials socials={pageInfo.socials} />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { projectIframeState } from "@/atoms/projectIframe";
-import useSortedProjects from "@/hooks/useSortedProjects";
+import { Project } from "@/typings";
 import NoProjectSelected from "@/components/screens/projects/NoProjectSelected";
 import Readme from "@/components/screens/projects/Readme";
 import ToggleReadmeButton from "@/components/screens/projects/ToggleReadmeButton";
@@ -10,55 +8,43 @@ import IframeReadmeOverlay from "@/components/screens/projects/IframeReadmeOverl
 import cn from "@/utils/cn";
 
 interface IframeProps {
+  project: Project | null;
   className?: string;
 }
 
-function Iframe({ className }: IframeProps) {
+function Iframe({ project, className }: IframeProps) {
   const [readmeVisible, setReadmeVisible] = useState(false);
   const [iframeLoading, setIframeLoading] = useState(true);
-  const sortedProjects = useSortedProjects();
-
-  const projectIframe = useRecoilValue(projectIframeState);
-  const setProjectIframe = useSetRecoilState(projectIframeState);
-
-  useEffect(() => {
-    if (!sortedProjects || !sortedProjects.length) return;
-
-    const valid = sortedProjects.filter((project) => project.url);
-    if (!valid.length) return;
-
-    setProjectIframe(valid.at(0)!);
-  }, [sortedProjects, setProjectIframe]);
+  // Set only after hydration: a server-rendered iframe can finish loading before React attaches onLoad,
+  // which would leave the loading overlay up forever.
+  const [src, setSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!projectIframe) return;
-    if (!projectIframe?.url) return;
-
     setIframeLoading(true);
-  }, [projectIframe, setIframeLoading, setReadmeVisible]);
+    setSrc(project?.url ?? null);
+  }, [project?.url]);
 
-  const handleIframeLoad = () => {
-    setIframeLoading(false);
-  };
+  if (!project) return <NoProjectSelected />;
 
-  if (!projectIframe) return <NoProjectSelected />;
-
-  if (!projectIframe?.url) return <Readme />;
+  if (!project.url) return <Readme project={project} />;
 
   return (
     <>
-      {readmeVisible && <IframeReadmeOverlay />}
+      {readmeVisible && <IframeReadmeOverlay project={project} />}
       {iframeLoading && <IframeLoadingOverlay />}
       <ToggleReadmeButton
         active={readmeVisible}
         onClick={() => setReadmeVisible(!readmeVisible)}
       />
-      <iframe
-        onLoad={handleIframeLoad}
-        loading={"lazy"}
-        src={projectIframe?.url}
-        className={cn("w-full h-full", className)}
-      />
+      {src && (
+        <iframe
+          title={`${project.title} preview`}
+          onLoad={() => setIframeLoading(false)}
+          loading={"lazy"}
+          src={src}
+          className={cn("w-full h-full", className)}
+        />
+      )}
     </>
   );
 }

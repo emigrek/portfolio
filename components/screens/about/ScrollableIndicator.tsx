@@ -7,14 +7,14 @@ const ScrollableIndicator: FC = () => {
   return (
     <div className="items-center justify-center bottom-5 md:bottom-16 inset-x-0 z-[1] absolute flex">
       <Button
-        href={"#skills"}
+        href={"#projects"}
         iconRight={CgScrollV}
         className="hidden animate-bounce sm:flex"
         size={"large"}
         variant={"transparent"}
       />
       <Button
-        href={"#skills"}
+        href={"#projects"}
         iconRight={MdOutlineSwipeDown}
         className="flex animate-bounce sm:hidden"
         size={"large"}

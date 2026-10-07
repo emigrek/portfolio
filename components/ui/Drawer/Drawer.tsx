@@ -13,7 +13,7 @@ const drawerVariants = cva(
             },
             variant: {
                 neutral: "bg-neutral-900",
-                blue: "bg-blue-500",
+                dark: "bg-stone-900",
             }
         },
         defaultVariants: {

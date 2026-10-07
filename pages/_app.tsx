@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import { RecoilRoot } from "recoil";
 import type { AppProps } from "next/app";
 import { NextSeo } from "next-seo";
 import { imageUrl } from "@/utils/imageUrl";
@@ -30,9 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
         additionalLinkTags={additionalLinkTags}
       />
-      <RecoilRoot>
-        <Component {...pageProps} />
-      </RecoilRoot>
+      <Component {...pageProps} />
     </>
   );
 }
