@@ -1,0 +1,36 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # 22 for the type-stripping test runner; the server still runs 18
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run lint
+      - run: node --test utils/isEmbeddable.test.mjs
+
+  deploy:
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency: deploy
+    steps:
+      # The key may only run /root/portfolio-deploy.sh on the server: pull, build, reload PM2
+      - run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "[maluch.mikr.us]:10153 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9RhYtF6Gbl+aPA2gwBClav391YvIuvq61py3R8+iyk" > ~/.ssh/known_hosts
+          ssh -p 10153 root@maluch.mikr.us /root/portfolio-deploy.sh
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
