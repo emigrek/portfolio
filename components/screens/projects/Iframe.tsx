@@ -5,6 +5,7 @@ import Readme from "@/components/screens/projects/Readme";
 import ToggleReadmeButton from "@/components/screens/projects/ToggleReadmeButton";
 import IframeLoadingOverlay from "@/components/screens/projects/IframeLoadingOverlay";
 import IframeReadmeOverlay from "@/components/screens/projects/IframeReadmeOverlay";
+import PreviewBlocked from "@/components/screens/projects/PreviewBlocked";
 import cn from "@/utils/cn";
 
 interface IframeProps {
@@ -31,12 +32,14 @@ function Iframe({ project, className }: IframeProps) {
   return (
     <>
       {readmeVisible && <IframeReadmeOverlay project={project} />}
-      {iframeLoading && <IframeLoadingOverlay />}
+      {project.embeddable && iframeLoading && <IframeLoadingOverlay />}
       <ToggleReadmeButton
         active={readmeVisible}
         onClick={() => setReadmeVisible(!readmeVisible)}
       />
-      {src && (
+      {!project.embeddable ? (
+        <PreviewBlocked url={project.url} />
+      ) : src && (
         <iframe
           title={`${project.title} preview`}
           onLoad={() => setIframeLoading(false)}

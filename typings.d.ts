@@ -43,6 +43,8 @@ export interface Project extends SanityBody {
     repo: string | null;
     skills: Skill[];
     pinned: boolean;
+    // Computed in getStaticProps, not stored in Sanity.
+    embeddable: boolean;
 }
 
 export interface PageInfo extends SanityBody {

@@ -3,6 +3,7 @@ import { groq } from "next-sanity";
 import { useRef } from "react";
 import { sanityClient } from "@/sanity";
 import { PageInfo, Project } from "@/typings";
+import { isEmbeddable } from "@/utils/isEmbeddable";
 import Navbar from "@/components/Navbar";
 import AboutScreen from "@/components/screens/about/AboutScreen";
 import ProjectsScreen from "@/components/screens/projects/ProjectsScreen";
@@ -32,13 +33,20 @@ export default function Home({ pageInfo, projects }: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const [pageInfo, projects] = await Promise.all([
+  const [pageInfo, sanityProjects] = await Promise.all([
     sanityClient.fetch<PageInfo | null>(groq`*[_type == "page"][0] { ..., socials[]-> }`),
-    sanityClient.fetch<Project[]>(groq`*[_type == "project"] { ..., skills[]-> }`),
+    sanityClient.fetch<Omit<Project, "embeddable">[]>(groq`*[_type == "project"] { ..., skills[]-> }`),
   ]);
 
   // Throwing keeps the last good page during revalidation instead of serving a broken one.
   if (!pageInfo) throw new Error('Missing "page" document in Sanity');
+
+  const projects: Project[] = await Promise.all(
+    sanityProjects.map(async (project) => ({
+      ...project,
+      embeddable: project.url ? await isEmbeddable(project.url) : false,
+    }))
+  );
 
   // Pinned first, then newest. `!!` because an unset Sanity boolean is undefined.
   projects.sort(
